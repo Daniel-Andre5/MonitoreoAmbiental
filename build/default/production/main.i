@@ -11646,59 +11646,36 @@ void I2C1_ERROR_ISR(void);
 
 void SYSTEM_Initialize(void);
 # 6 "main.c" 2
-# 27 "main.c"
+# 17 "main.c"
 volatile uint8_t mcp9808_data[2] = {0, 0};
-# 37 "main.c"
+
 volatile int16_t mcp9808_temperature = 0;
-# 51 "main.c"
-volatile int16_t mcp9808_temperature_x16 = 0;
-# 63 "main.c"
-volatile int16_t mcp9808_temperature_centi = 0;
-
-
-
-
 
 volatile _Bool mcp9808_ok = 0;
-
-
-
-
-
 volatile _Bool mcp9808_finished = 0;
 
-
-
-
-
 volatile i2c_host_error_t mcp9808_error = I2C_ERROR_NONE;
+# 44 "main.c"
+volatile uint8_t vcnl4200_ps_data[2] = {0, 0};
+volatile uint8_t vcnl4200_als_data[2] = {0, 0};
+
+volatile uint8_t vcnl4200_id_data[2] = {0, 0};
 
 
 
 
-
-
-static _Bool MCP9808_WaitI2C(void)
-{
-    uint32_t timeout = 0;
-# 99 "main.c"
-    while (I2C1_IsBusy())
-    {
-        timeout++;
+volatile uint16_t vcnl4200_proximity = 0;
+volatile uint16_t vcnl4200_ambient_light = 0;
+# 66 "main.c"
+volatile uint32_t vcnl4200_lux_millilux = 0;
 
 
 
 
+volatile _Bool vcnl4200_ok = 0;
+volatile _Bool vcnl4200_finished = 0;
 
-        if (timeout > 100000UL)
-        {
-            return 0;
-        }
-    }
-
-
-    return 1;
-}
+volatile i2c_host_error_t vcnl4200_error = I2C_ERROR_NONE;
 
 
 
@@ -11708,79 +11685,48 @@ static _Bool MCP9808_WaitI2C(void)
 static _Bool MCP9808_Read(void)
 {
     uint8_t register_address;
-
-    uint16_t raw_temperature;
-
-    int16_t temperature_x16;
-
-    int16_t temperature_centi;
-
-
-
-
+    uint32_t timeout;
 
     register_address = 0x05;
 
-
-
-
-
     mcp9808_finished = 0;
-
     mcp9808_ok = 0;
-
     mcp9808_error = I2C_ERROR_NONE;
 
-
-
-
-
     mcp9808_data[0] = 0;
-
     mcp9808_data[1] = 0;
-# 168 "main.c"
+
     if (!I2C1_WriteRead(
             0x1C,
             &register_address,
             1,
-            (uint8_t *)mcp9808_data,
+            mcp9808_data,
             2))
     {
-
-
-
         mcp9808_error = I2C1_ErrorGet();
-
         mcp9808_finished = 1;
 
         return 0;
     }
 
 
+    timeout = 0;
 
-
-
-    if (!MCP9808_WaitI2C())
+    while (I2C1_IsBusy())
     {
+        timeout++;
 
+        if (timeout > 100000UL)
+        {
+            mcp9808_error = I2C_ERROR_BUS_COLLISION;
+            mcp9808_finished = 1;
 
-
-        mcp9808_error = I2C_ERROR_BUS_COLLISION;
-
-        mcp9808_finished = 1;
-
-        return 0;
+            return 0;
+        }
     }
-
-
-
 
 
     mcp9808_error = I2C1_ErrorGet();
-
-
-
-
 
     if (mcp9808_error != I2C_ERROR_NONE)
     {
@@ -11788,96 +11734,88 @@ static _Bool MCP9808_Read(void)
 
         return 0;
     }
-# 230 "main.c"
-    raw_temperature =
-        ((uint16_t)mcp9808_data[0] << 8)
-        |
-        (uint16_t)mcp9808_data[1];
-# 261 "main.c"
-    if ((raw_temperature & 0x1000U) != 0U)
+# 141 "main.c"
     {
+        uint16_t raw_temperature;
 
-
-
-
-        raw_temperature &= 0x0FFFU;
-# 279 "main.c"
-        temperature_x16 =
-            -(int16_t)(4096U - raw_temperature);
-    }
-
-
-
-
-
-
-
-    else
-    {
-
-
-
+        raw_temperature =
+            ((uint16_t)mcp9808_data[0] << 8) |
+            mcp9808_data[1];
 
         raw_temperature &= 0x0FFFU;
 
 
-
-
-
-
-        temperature_x16 =
-            (int16_t)raw_temperature;
+        if ((mcp9808_data[0] & 0x10U) != 0U)
+        {
+            mcp9808_temperature =
+                -(int16_t)((4096U - raw_temperature) / 16U);
+        }
+        else
+        {
+            mcp9808_temperature =
+                (int16_t)(raw_temperature / 16U);
+        }
     }
-# 318 "main.c"
-    mcp9808_temperature_x16 =
-        temperature_x16;
-
-
-
-
-
-
-
-    if (temperature_x16 >= 0)
-    {
-        mcp9808_temperature =
-            temperature_x16 / 16;
-    }
-    else
-    {
-        mcp9808_temperature =
-            -((-temperature_x16) / 16);
-    }
-# 377 "main.c"
-    if (temperature_x16 >= 0)
-    {
-        temperature_centi =
-            (int16_t)(
-                ((int32_t)temperature_x16 * 25L) / 4L
-            );
-    }
-    else
-    {
-        temperature_centi =
-            -(int16_t)(
-                ((int32_t)(-temperature_x16) * 25L) / 4L
-            );
-    }
-
-
-
-
-
-    mcp9808_temperature_centi =
-        temperature_centi;
-
-
-
 
 
     mcp9808_ok = 1;
-
     mcp9808_finished = 1;
+
+    return 1;
+}
+
+
+
+
+
+
+static _Bool VCNL4200_WriteRegister(
+        uint8_t reg,
+        uint8_t data_low,
+        uint8_t data_high)
+{
+    uint8_t tx_data[3];
+    uint32_t timeout;
+
+
+    tx_data[0] = reg;
+    tx_data[1] = data_low;
+    tx_data[2] = data_high;
+
+
+    if (!I2C1_Write(
+            0x51,
+            tx_data,
+            3))
+    {
+        vcnl4200_error = I2C1_ErrorGet();
+
+        return 0;
+    }
+
+
+    timeout = 0;
+
+    while (I2C1_IsBusy())
+    {
+        timeout++;
+
+        if (timeout > 100000UL)
+        {
+            vcnl4200_error =
+                I2C_ERROR_BUS_COLLISION;
+
+            return 0;
+        }
+    }
+
+
+    vcnl4200_error = I2C1_ErrorGet();
+
+    if (vcnl4200_error != I2C_ERROR_NONE)
+    {
+        return 0;
+    }
 
 
     return 1;
@@ -11888,7 +11826,223 @@ static _Bool MCP9808_Read(void)
 
 
 
-static void MCP9808_Delay(void)
+static _Bool VCNL4200_ReadRegister(
+        uint8_t reg,
+        uint8_t *data)
+{
+    uint32_t timeout;
+
+
+    if (!I2C1_WriteRead(
+            0x51,
+            &reg,
+            1,
+            data,
+            2))
+    {
+        vcnl4200_error = I2C1_ErrorGet();
+
+        return 0;
+    }
+
+
+    timeout = 0;
+
+    while (I2C1_IsBusy())
+    {
+        timeout++;
+
+        if (timeout > 100000UL)
+        {
+            vcnl4200_error =
+                I2C_ERROR_BUS_COLLISION;
+
+            return 0;
+        }
+    }
+
+
+    vcnl4200_error = I2C1_ErrorGet();
+
+    if (vcnl4200_error != I2C_ERROR_NONE)
+    {
+        return 0;
+    }
+
+
+    return 1;
+}
+
+
+
+
+
+
+static _Bool VCNL4200_Initialize(void)
+{
+    vcnl4200_ok = 0;
+    vcnl4200_finished = 0;
+    vcnl4200_error = I2C_ERROR_NONE;
+# 305 "main.c"
+    if (!VCNL4200_WriteRegister(
+            0x00,
+            0x00,
+            0x01))
+    {
+        vcnl4200_finished = 1;
+
+        return 0;
+    }
+# 332 "main.c"
+    if (!VCNL4200_WriteRegister(
+            0x03,
+            0x00,
+            0x00))
+    {
+        vcnl4200_finished = 1;
+
+        return 0;
+    }
+# 350 "main.c"
+    if (!VCNL4200_WriteRegister(
+            0x04,
+            0x00,
+            0x00))
+    {
+        vcnl4200_finished = 1;
+
+        return 0;
+    }
+# 371 "main.c"
+    vcnl4200_id_data[0] = 0;
+    vcnl4200_id_data[1] = 0;
+
+
+    if (!VCNL4200_ReadRegister(
+            0x0E,
+            vcnl4200_id_data))
+    {
+        vcnl4200_finished = 1;
+
+        return 0;
+    }
+
+
+
+
+
+
+    if ((vcnl4200_id_data[0] == 0x58U) &&
+        (vcnl4200_id_data[1] == 0x10U))
+    {
+        vcnl4200_ok = 1;
+    }
+    else
+    {
+        vcnl4200_ok = 0;
+    }
+
+
+    vcnl4200_finished = 1;
+
+    return vcnl4200_ok;
+}
+
+
+
+
+
+
+static _Bool VCNL4200_ReadAmbientLight(void)
+{
+    uint16_t raw_als;
+
+
+    if (!VCNL4200_ReadRegister(
+            0x09,
+            vcnl4200_als_data))
+    {
+        return 0;
+    }
+# 430 "main.c"
+    raw_als =
+        ((uint16_t)vcnl4200_als_data[1] << 8) |
+        vcnl4200_als_data[0];
+
+
+    vcnl4200_ambient_light = raw_als;
+# 452 "main.c"
+    vcnl4200_lux_millilux =
+        (uint32_t)raw_als * 24UL;
+
+
+    return 1;
+}
+
+
+
+
+
+
+static _Bool VCNL4200_ReadProximity(void)
+{
+    uint16_t raw_ps;
+
+
+    if (!VCNL4200_ReadRegister(
+            0x08,
+            vcnl4200_ps_data))
+    {
+        return 0;
+    }
+
+
+    raw_ps =
+        ((uint16_t)vcnl4200_ps_data[1] << 8) |
+        vcnl4200_ps_data[0];
+
+
+
+
+
+
+    raw_ps &= 0x0FFFU;
+
+
+    vcnl4200_proximity = raw_ps;
+
+
+    return 1;
+}
+
+
+
+
+
+
+static _Bool VCNL4200_Read(void)
+{
+    _Bool light_ok;
+    _Bool proximity_ok;
+
+
+    light_ok =
+        VCNL4200_ReadAmbientLight();
+
+
+    proximity_ok =
+        VCNL4200_ReadProximity();
+
+
+    return (light_ok && proximity_ok);
+}
+
+
+
+
+
+
+static void Delay_Long(void)
 {
     volatile uint32_t delay;
 
@@ -11912,9 +12066,6 @@ void main(void)
 
 
 
-
-
-
     SYSTEM_Initialize();
 
 
@@ -11922,32 +12073,57 @@ void main(void)
 
 
 
-
     I2C1_Initialize();
-# 460 "main.c"
+
+
+
+
+
+
     mcp9808_data[0] = 0;
-
     mcp9808_data[1] = 0;
-
 
     mcp9808_temperature = 0;
 
-    mcp9808_temperature_x16 = 0;
-
-    mcp9808_temperature_centi = 0;
-
-
     mcp9808_ok = 0;
-
     mcp9808_finished = 0;
 
-
     mcp9808_error = I2C_ERROR_NONE;
-# 493 "main.c"
-    INTCONbits.PEIE = 1;
 
+
+
+
+
+
+    vcnl4200_ps_data[0] = 0;
+    vcnl4200_ps_data[1] = 0;
+
+    vcnl4200_als_data[0] = 0;
+    vcnl4200_als_data[1] = 0;
+
+    vcnl4200_id_data[0] = 0;
+    vcnl4200_id_data[1] = 0;
+
+    vcnl4200_proximity = 0;
+
+    vcnl4200_ambient_light = 0;
+
+    vcnl4200_lux_millilux = 0;
+
+    vcnl4200_ok = 0;
+    vcnl4200_finished = 0;
+
+    vcnl4200_error = I2C_ERROR_NONE;
+# 603 "main.c"
+    INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
 
+
+
+
+
+
+    VCNL4200_Initialize();
 
 
 
@@ -11959,12 +12135,21 @@ void main(void)
 
 
 
+
         MCP9808_Read();
 
 
 
 
 
-        MCP9808_Delay();
+
+        VCNL4200_Read();
+
+
+
+
+
+
+        Delay_Long();
     }
 }
