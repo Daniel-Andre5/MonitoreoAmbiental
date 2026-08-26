@@ -11646,13 +11646,13 @@ void I2C1_ERROR_ISR(void);
 
 void SYSTEM_Initialize(void);
 # 6 "main.c" 2
-# 28 "main.c"
-uint8_t mcp9808_data[2] = {0, 0};
+# 27 "main.c"
+volatile uint8_t mcp9808_data[2] = {0, 0};
 # 37 "main.c"
 volatile int16_t mcp9808_temperature = 0;
-# 49 "main.c"
+# 51 "main.c"
 volatile int16_t mcp9808_temperature_x16 = 0;
-# 59 "main.c"
+# 63 "main.c"
 volatile int16_t mcp9808_temperature_centi = 0;
 
 
@@ -11660,6 +11660,11 @@ volatile int16_t mcp9808_temperature_centi = 0;
 
 
 volatile _Bool mcp9808_ok = 0;
+
+
+
+
+
 volatile _Bool mcp9808_finished = 0;
 
 
@@ -11673,14 +11678,42 @@ volatile i2c_host_error_t mcp9808_error = I2C_ERROR_NONE;
 
 
 
+static _Bool MCP9808_WaitI2C(void)
+{
+    uint32_t timeout = 0;
+# 99 "main.c"
+    while (I2C1_IsBusy())
+    {
+        timeout++;
+
+
+
+
+
+        if (timeout > 100000UL)
+        {
+            return 0;
+        }
+    }
+
+
+    return 1;
+}
+
+
+
+
+
+
 static _Bool MCP9808_Read(void)
 {
     uint8_t register_address;
-    uint32_t timeout;
 
     uint16_t raw_temperature;
-    uint16_t temperature_raw;
 
+    int16_t temperature_x16;
+
+    int16_t temperature_centi;
 
 
 
@@ -11692,31 +11725,32 @@ static _Bool MCP9808_Read(void)
 
 
 
-
     mcp9808_finished = 0;
+
     mcp9808_ok = 0;
+
     mcp9808_error = I2C_ERROR_NONE;
 
 
 
 
 
-
     mcp9808_data[0] = 0;
+
     mcp9808_data[1] = 0;
-# 119 "main.c"
+# 168 "main.c"
     if (!I2C1_WriteRead(
             0x1C,
             &register_address,
             1,
-            mcp9808_data,
+            (uint8_t *)mcp9808_data,
             2))
     {
 
 
 
-
         mcp9808_error = I2C1_ErrorGet();
+
         mcp9808_finished = 1;
 
         return 0;
@@ -11726,26 +11760,17 @@ static _Bool MCP9808_Read(void)
 
 
 
-
-    timeout = 0;
-
-    while (I2C1_IsBusy())
+    if (!MCP9808_WaitI2C())
     {
-        timeout++;
 
 
 
+        mcp9808_error = I2C_ERROR_BUS_COLLISION;
 
+        mcp9808_finished = 1;
 
-        if (timeout > 100000UL)
-        {
-            mcp9808_error = I2C_ERROR_BUS_COLLISION;
-            mcp9808_finished = 1;
-
-            return 0;
-        }
+        return 0;
     }
-
 
 
 
@@ -11753,57 +11778,127 @@ static _Bool MCP9808_Read(void)
 
     mcp9808_error = I2C1_ErrorGet();
 
+
+
+
+
     if (mcp9808_error != I2C_ERROR_NONE)
     {
         mcp9808_finished = 1;
 
         return 0;
     }
-# 186 "main.c"
+# 230 "main.c"
     raw_temperature =
-        ((uint16_t)mcp9808_data[0] << 8) |
+        ((uint16_t)mcp9808_data[0] << 8)
+        |
         (uint16_t)mcp9808_data[1];
-# 197 "main.c"
-    temperature_raw = raw_temperature & 0x1FFFU;
-# 207 "main.c"
-    if ((temperature_raw & 0x1000U) != 0U)
+# 261 "main.c"
+    if ((raw_temperature & 0x1000U) != 0U)
     {
 
 
 
 
-
-
-        temperature_raw &= 0x0FFFU;
-# 226 "main.c"
-        mcp9808_temperature_x16 =
-            -(int16_t)(4096U - temperature_raw);
+        raw_temperature &= 0x0FFFU;
+# 279 "main.c"
+        temperature_x16 =
+            -(int16_t)(4096U - raw_temperature);
     }
+
+
+
+
+
+
+
     else
     {
 
 
 
 
-        mcp9808_temperature_x16 =
-            (int16_t)temperature_raw;
-    }
-# 246 "main.c"
-    mcp9808_temperature =
-        mcp9808_temperature_x16 / 16;
-# 266 "main.c"
-    mcp9808_temperature_centi =
-        (int16_t)(((int32_t)mcp9808_temperature_x16 * 100L) / 16L);
+        raw_temperature &= 0x0FFFU;
 
+
+
+
+
+
+        temperature_x16 =
+            (int16_t)raw_temperature;
+    }
+# 318 "main.c"
+    mcp9808_temperature_x16 =
+        temperature_x16;
+
+
+
+
+
+
+
+    if (temperature_x16 >= 0)
+    {
+        mcp9808_temperature =
+            temperature_x16 / 16;
+    }
+    else
+    {
+        mcp9808_temperature =
+            -((-temperature_x16) / 16);
+    }
+# 377 "main.c"
+    if (temperature_x16 >= 0)
+    {
+        temperature_centi =
+            (int16_t)(
+                ((int32_t)temperature_x16 * 25L) / 4L
+            );
+    }
+    else
+    {
+        temperature_centi =
+            -(int16_t)(
+                ((int32_t)(-temperature_x16) * 25L) / 4L
+            );
+    }
+
+
+
+
+
+    mcp9808_temperature_centi =
+        temperature_centi;
 
 
 
 
 
     mcp9808_ok = 1;
+
     mcp9808_finished = 1;
 
+
     return 1;
+}
+
+
+
+
+
+
+static void MCP9808_Delay(void)
+{
+    volatile uint32_t delay;
+
+
+    for (delay = 0;
+         delay < 50000UL;
+         delay++)
+    {
+        ;
+    }
 }
 
 
@@ -11817,6 +11912,9 @@ void main(void)
 
 
 
+
+
+
     SYSTEM_Initialize();
 
 
@@ -11824,27 +11922,32 @@ void main(void)
 
 
 
+
     I2C1_Initialize();
-
-
-
-
-
-
+# 460 "main.c"
     mcp9808_data[0] = 0;
+
     mcp9808_data[1] = 0;
 
+
     mcp9808_temperature = 0;
+
     mcp9808_temperature_x16 = 0;
+
     mcp9808_temperature_centi = 0;
 
+
     mcp9808_ok = 0;
+
     mcp9808_finished = 0;
 
+
     mcp9808_error = I2C_ERROR_NONE;
-# 330 "main.c"
+# 493 "main.c"
     INTCONbits.PEIE = 1;
+
     INTCONbits.GIE = 1;
+
 
 
 
@@ -11856,14 +11959,12 @@ void main(void)
 
 
 
-
         MCP9808_Read();
-# 353 "main.c"
-        for (volatile uint32_t delay = 0;
-             delay < 50000UL;
-             delay++)
-        {
-            ;
-        }
+
+
+
+
+
+        MCP9808_Delay();
     }
 }

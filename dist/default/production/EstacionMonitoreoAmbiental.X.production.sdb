@@ -3,7 +3,7 @@
 [d edition pro ]
 [d chip 16F13145 ]
 [d frameptr 6 ]
-"72 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
+"81 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
 [e E6520 . `uc
 I2C_ERROR_NONE 0
 I2C_ERROR_ADDR_NACK 1
@@ -39,9 +39,13 @@ I2C_STATE_RESET 8
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "4 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\Umul8_16.c
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
-"79 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
+"88 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
+[v _MCP9808_WaitI2C MCP9808_WaitI2C `(a  1 s 1 MCP9808_WaitI2C ]
+"122
 [v _MCP9808_Read MCP9808_Read `(a  1 s 1 MCP9808_Read ]
-"285
+"416
+[v _MCP9808_Delay MCP9808_Delay `(v  1 s 1 MCP9808_Delay ]
+"434
 [v _main main `(v  1 e 1 0 ]
 "84 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\mcc_generated_files/i2c_host/src/mssp1.c
 [v _I2C1_Initialize I2C1_Initialize `(v  1 e 1 0 ]
@@ -171,7 +175,7 @@ I2C_STATE_RESET 8
 [v _SSP1ADD SSP1ADD `VEuc  1 e 1 @1933 ]
 "7192
 [v _SSP1STAT SSP1STAT `VEuc  1 e 1 @1935 ]
-[s S565 . 1 `uc 1 BF 1 0 :1:0 
+[s S570 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -181,33 +185,33 @@ I2C_STATE_RESET 8
 `uc 1 SMP 1 0 :1:7 
 ]
 "7301
-[s S574 . 1 `uc 1 . 1 0 :2:0 
+[s S579 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
-[s S579 . 1 `uc 1 . 1 0 :2:0 
+[s S584 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
-[s S584 . 1 `uc 1 . 1 0 :2:0 
+[s S589 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
-[s S589 . 1 `uc 1 . 1 0 :2:0 
+[s S594 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 DATA_ADDRESS 1 0 :1:5 
 ]
-[s S594 . 1 `uc 1 . 1 0 :2:0 
+[s S599 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ 1 0 :1:2 
 `uc 1 I2C_START 1 0 :1:3 
 `uc 1 I2C_STOP 1 0 :1:4 
 `uc 1 I2C_DAT 1 0 :1:5 
 ]
-[s S600 . 1 `uc 1 BF1 1 0 :1:0 
+[s S605 . 1 `uc 1 BF1 1 0 :1:0 
 `uc 1 UA1 1 0 :1:1 
 `uc 1 R 1 0 :1:2 
 `uc 1 START 1 0 :1:3 
@@ -216,66 +220,66 @@ I2C_STATE_RESET 8
 `uc 1 CKE1 1 0 :1:6 
 `uc 1 SMP1 1 0 :1:7 
 ]
-[s S609 . 1 `uc 1 . 1 0 :2:0 
+[s S614 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 RW 1 0 :1:2 
 `uc 1 START1 1 0 :1:3 
 `uc 1 STOP1 1 0 :1:4 
 `uc 1 DA 1 0 :1:5 
 ]
-[s S615 . 1 `uc 1 . 1 0 :2:0 
+[s S620 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 RW1 1 0 :1:2 
 `uc 1 I2C_START1 1 0 :1:3 
 `uc 1 I2C_STOP2 1 0 :1:4 
 `uc 1 DA1 1 0 :1:5 
 ]
-[s S621 . 1 `uc 1 . 1 0 :2:0 
+[s S626 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ1 1 0 :1:2 
 `uc 1 S2 1 0 :1:3 
 `uc 1 P2 1 0 :1:4 
 `uc 1 DATA_ADDRESS1 1 0 :1:5 
 ]
-[s S627 . 1 `uc 1 . 1 0 :2:0 
+[s S632 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE1 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A1 1 0 :1:5 
 ]
-[s S632 . 1 `uc 1 . 1 0 :2:0 
+[s S637 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W1 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_nA1 1 0 :1:5 
 ]
-[s S637 . 1 `uc 1 . 1 0 :2:0 
+[s S642 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_nW1 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 I2C_DAT1 1 0 :1:5 
 ]
-[s S642 . 1 `uc 1 . 1 0 :2:0 
+[s S647 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW2 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA2 1 0 :1:5 
 ]
-[s S647 . 1 `uc 1 . 1 0 :2:0 
+[s S652 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE1 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS1 1 0 :1:5 
 ]
-[u S652 . 1 `S565 1 . 1 0 `S574 1 . 1 0 `S579 1 . 1 0 `S584 1 . 1 0 `S589 1 . 1 0 `S594 1 . 1 0 `S600 1 . 1 0 `S609 1 . 1 0 `S615 1 . 1 0 `S621 1 . 1 0 `S627 1 . 1 0 `S632 1 . 1 0 `S637 1 . 1 0 `S642 1 . 1 0 `S647 1 . 1 0 ]
-[v _SSP1STATbits SSP1STATbits `VES652  1 e 1 @1935 ]
+[u S657 . 1 `S570 1 . 1 0 `S579 1 . 1 0 `S584 1 . 1 0 `S589 1 . 1 0 `S594 1 . 1 0 `S599 1 . 1 0 `S605 1 . 1 0 `S614 1 . 1 0 `S620 1 . 1 0 `S626 1 . 1 0 `S632 1 . 1 0 `S637 1 . 1 0 `S642 1 . 1 0 `S647 1 . 1 0 `S652 1 . 1 0 ]
+[v _SSP1STATbits SSP1STATbits `VES657  1 e 1 @1935 ]
 "7556
 [v _SSP1CON1 SSP1CON1 `VEuc  1 e 1 @1936 ]
-[s S414 . 1 `uc 1 SSPM 1 0 :4:0 
+[s S419 . 1 `uc 1 SSPM 1 0 :4:0 
 `uc 1 CKP 1 0 :1:4 
 `uc 1 SSPEN 1 0 :1:5 
 `uc 1 SSPOV 1 0 :1:6 
 `uc 1 WCOL 1 0 :1:7 
 ]
 "7586
-[s S420 . 1 `uc 1 SSPM0 1 0 :1:0 
+[s S425 . 1 `uc 1 SSPM0 1 0 :1:0 
 `uc 1 SSPM1 1 0 :1:1 
 `uc 1 SSPM2 1 0 :1:2 
 `uc 1 SSPM3 1 0 :1:3 
 ]
-[s S425 . 1 `uc 1 SSPM01 1 0 :1:0 
+[s S430 . 1 `uc 1 SSPM01 1 0 :1:0 
 `uc 1 SSPM11 1 0 :1:1 
 `uc 1 SSPM21 1 0 :1:2 
 `uc 1 SSPM31 1 0 :1:3 
@@ -284,11 +288,11 @@ I2C_STATE_RESET 8
 `uc 1 SSPOV1 1 0 :1:6 
 `uc 1 WCOL1 1 0 :1:7 
 ]
-[u S434 . 1 `S414 1 . 1 0 `S420 1 . 1 0 `S425 1 . 1 0 ]
-[v _SSP1CON1bits SSP1CON1bits `VES434  1 e 1 @1936 ]
+[u S439 . 1 `S419 1 . 1 0 `S425 1 . 1 0 `S430 1 . 1 0 ]
+[v _SSP1CON1bits SSP1CON1bits `VES439  1 e 1 @1936 ]
 "7676
 [v _SSP1CON2 SSP1CON2 `VEuc  1 e 1 @1937 ]
-[s S478 . 1 `uc 1 SEN 1 0 :1:0 
+[s S483 . 1 `uc 1 SEN 1 0 :1:0 
 `uc 1 RSEN 1 0 :1:1 
 `uc 1 PEN 1 0 :1:2 
 `uc 1 RCEN 1 0 :1:3 
@@ -298,17 +302,17 @@ I2C_STATE_RESET 8
 `uc 1 GCEN 1 0 :1:7 
 ]
 "7723
-[s S487 . 1 `uc 1 . 1 0 :1:0 
+[s S492 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 ADMSK 1 0 :5:1 
 ]
-[s S490 . 1 `uc 1 . 1 0 :1:0 
+[s S495 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 ADMSK1 1 0 :1:1 
 `uc 1 ADMSK2 1 0 :1:2 
 `uc 1 ADMSK3 1 0 :1:3 
 `uc 1 ADMSK4 1 0 :1:4 
 `uc 1 ADMSK5 1 0 :1:5 
 ]
-[s S497 . 1 `uc 1 SEN1 1 0 :1:0 
+[s S502 . 1 `uc 1 SEN1 1 0 :1:0 
 `uc 1 ADMSK11 1 0 :1:1 
 `uc 1 ADMSK21 1 0 :1:2 
 `uc 1 ADMSK31 1 0 :1:3 
@@ -317,15 +321,15 @@ I2C_STATE_RESET 8
 `uc 1 ACKSTAT1 1 0 :1:6 
 `uc 1 GCEN1 1 0 :1:7 
 ]
-[s S506 . 1 `uc 1 . 1 0 :1:0 
+[s S511 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 RSEN1 1 0 :1:1 
 `uc 1 PEN1 1 0 :1:2 
 `uc 1 RCEN1 1 0 :1:3 
 `uc 1 ADMSK41 1 0 :1:4 
 `uc 1 ADMSK51 1 0 :1:5 
 ]
-[u S513 . 1 `S478 1 . 1 0 `S487 1 . 1 0 `S490 1 . 1 0 `S497 1 . 1 0 `S506 1 . 1 0 ]
-[v _SSP1CON2bits SSP1CON2bits `VES513  1 e 1 @1937 ]
+[u S518 . 1 `S483 1 . 1 0 `S492 1 . 1 0 `S495 1 . 1 0 `S502 1 . 1 0 `S511 1 . 1 0 ]
+[v _SSP1CON2bits SSP1CON2bits `VES518  1 e 1 @1937 ]
 "7863
 [v _SSP1CON3 SSP1CON3 `VEuc  1 e 1 @1938 ]
 "15024
@@ -384,35 +388,33 @@ I2C_STATE_RESET 8
 [v _IOCCN IOCCN `VEuc  1 e 1 @7846 ]
 "17429
 [v _IOCCF IOCCF `VEuc  1 e 1 @7847 ]
-"28 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
-[v _mcp9808_data mcp9808_data `[2]uc  1 e 2 0 ]
+"27 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
+[v _mcp9808_data mcp9808_data `VE[2]uc  1 e 2 0 ]
 "37
 [v _mcp9808_temperature mcp9808_temperature `VEs  1 e 2 0 ]
-"49
+"51
 [v _mcp9808_temperature_x16 mcp9808_temperature_x16 `VEs  1 e 2 0 ]
-"59
+"63
 [v _mcp9808_temperature_centi mcp9808_temperature_centi `VEs  1 e 2 0 ]
-"65
+"69
 [v _mcp9808_ok mcp9808_ok `VEa  1 e 1 0 ]
-"66
+"75
 [v _mcp9808_finished mcp9808_finished `VEa  1 e 1 0 ]
-"72
+"81
 [v _mcp9808_error mcp9808_error `VEE6520  1 e 1 0 ]
 "68 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\mcc_generated_files/i2c_host/src/mssp1.c
 [v _I2C1_Callback I2C1_Callback `*.37(v  1 s 2 I2C1_Callback ]
-[s S352 . 14 `a 1 busy 1 0 `us 1 address 2 1 `*.39uc 1 writePtr 2 3 `ui 1 writeLength 2 5 `*.39uc 1 readPtr 2 7 `ui 1 readLength 2 9 `a 1 switchToRead 1 11 `E6507 1 errorState 1 12 `E6516 1 state 1 13 ]
+[s S357 . 14 `a 1 busy 1 0 `us 1 address 2 1 `*.39uc 1 writePtr 2 3 `ui 1 writeLength 2 5 `*.39uc 1 readPtr 2 7 `ui 1 readLength 2 9 `a 1 switchToRead 1 11 `E6507 1 errorState 1 12 `E6516 1 state 1 13 ]
 "69
-[v _i2c1Status i2c1Status `VES352  1 s 14 i2c1Status ]
+[v _i2c1Status i2c1Status `VES357  1 s 14 i2c1Status ]
 "72
 [v _i2c1_eventTable i2c1_eventTable `DC[9]*.37(E6516  1 s 18 i2c1_eventTable ]
 "38 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\mcc_generated_files/system/src/interrupt.c
 [v _INT_InterruptHandler INT_InterruptHandler `*.37(v  1 e 2 0 ]
-"285 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
+"434 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"353
-[v main@delay delay `VEul  1 a 4 36 ]
-"360
+"516
 } 0
 "39 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\mcc_generated_files/system/src/system.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
@@ -445,18 +447,18 @@ I2C_STATE_RESET 8
 {
 "54
 } 0
-"79 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
+"122 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
 [v _MCP9808_Read MCP9808_Read `(a  1 s 1 MCP9808_Read ]
 {
-"82
-[v MCP9808_Read@timeout timeout `ul  1 a 4 29 ]
-"85
-[v MCP9808_Read@temperature_raw temperature_raw `us  1 a 2 34 ]
-"84
-[v MCP9808_Read@raw_temperature raw_temperature `us  1 a 2 27 ]
-"81
-[v MCP9808_Read@register_address register_address `uc  1 a 1 33 ]
-"278
+"128
+[v MCP9808_Read@temperature_x16 temperature_x16 `s  1 a 2 31 ]
+"126
+[v MCP9808_Read@raw_temperature raw_temperature `us  1 a 2 29 ]
+"130
+[v MCP9808_Read@temperature_centi temperature_centi `s  1 a 2 26 ]
+"124
+[v MCP9808_Read@register_address register_address `uc  1 a 1 28 ]
+"409
 } 0
 "15 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
@@ -494,6 +496,13 @@ I2C_STATE_RESET 8
 [v ___aldiv@dividend dividend `l  1 p 4 12 ]
 "41
 } 0
+"88 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
+[v _MCP9808_WaitI2C MCP9808_WaitI2C `(a  1 s 1 MCP9808_WaitI2C ]
+{
+"90
+[v MCP9808_WaitI2C@timeout timeout `ul  1 a 4 3 ]
+"115
+} 0
 "150 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\mcc_generated_files/i2c_host/src/mssp1.c
 [v _I2C1_WriteRead I2C1_WriteRead `(a  1 e 1 0 ]
 {
@@ -523,6 +532,13 @@ I2C_STATE_RESET 8
 "171
 [v I2C1_ErrorGet@retErrorState retErrorState `E6507  1 a 1 3 ]
 "174
+} 0
+"416 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
+[v _MCP9808_Delay MCP9808_Delay `(v  1 s 1 MCP9808_Delay ]
+{
+"418
+[v MCP9808_Delay@delay delay `VEul  1 a 4 3 ]
+"427
 } 0
 "59 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\mcc_generated_files/system/src/interrupt.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
