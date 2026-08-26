@@ -1,6 +1,6 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"28 main.c
-[; ;main.c: 28: volatile i2c_host_error_t mcp9808_error = I2C_ERROR_NONE;
+"53 main.c
+[; ;main.c: 53: i2c_host_error_t mcp9808_error = I2C_ERROR_NONE;
 [c E6520 0 1 2 3 .. ]
 [n E6520 . I2C_ERROR_NONE I2C_ERROR_ADDR_NACK I2C_ERROR_DATA_NACK I2C_ERROR_BUS_COLLISION  ]
 "169 ./mcc_generated_files/system/../i2c_host/mssp1.h
@@ -1014,277 +1014,312 @@ Version 4.0 HI-TECH Software Intermediate Code
 "17927
 [; ;C:/Program Files/Microchip/MPLABX/v6.35/packs/Microchip/PIC16F1xxxx_DFP/1.31.465/xc8\pic\include\proc/pic16f13145.h: 17927: __asm("TOSH equ 01FEFh");
 [; <" TOSH equ 01FEFh ;# ">
-"21 main.c
-[; ;main.c: 21: volatile uint8_t mcp9808_data[2] = {0, 0};
-[v _mcp9808_data `Vuc ~T0 @X0 -> 2 `i e ]
+"22 main.c
+[; ;main.c: 22: uint8_t mcp9808_data[2] = {0, 0};
+[v _mcp9808_data `uc ~T0 @X0 -> 2 `i e ]
 [i _mcp9808_data
 :U ..
 -> -> 0 `i `uc
 -> -> 0 `i `uc
 ..
 ]
-"23
-[; ;main.c: 23: volatile int16_t mcp9808_temperature = 0;
-[v _mcp9808_temperature `Vs ~T0 @X0 1 e ]
+"30
+[; ;main.c: 30: int16_t mcp9808_temperature = 0;
+[v _mcp9808_temperature `s ~T0 @X0 1 e ]
 [i _mcp9808_temperature
 -> -> 0 `i `s
 ]
-"25
-[; ;main.c: 25: volatile _Bool mcp9808_ok = 0;
-[v _mcp9808_ok `Va ~T0 @X0 1 e ]
+"44
+[; ;main.c: 44: int16_t mcp9808_temperature_x16 = 0;
+[v _mcp9808_temperature_x16 `s ~T0 @X0 1 e ]
+[i _mcp9808_temperature_x16
+-> -> 0 `i `s
+]
+"48
+[; ;main.c: 48: _Bool mcp9808_ok = 0;
+[v _mcp9808_ok `a ~T0 @X0 1 e ]
 [i _mcp9808_ok
 -> -> 0 `i `a
 ]
-"26
-[; ;main.c: 26: volatile _Bool mcp9808_finished = 0;
-[v _mcp9808_finished `Va ~T0 @X0 1 e ]
+"49
+[; ;main.c: 49: _Bool mcp9808_finished = 0;
+[v _mcp9808_finished `a ~T0 @X0 1 e ]
 [i _mcp9808_finished
 -> -> 0 `i `a
 ]
-"28
-[; ;main.c: 28: volatile i2c_host_error_t mcp9808_error = I2C_ERROR_NONE;
-[v _mcp9808_error `VE6520 ~T0 @X0 1 e ]
+"53
+[; ;main.c: 53: i2c_host_error_t mcp9808_error = I2C_ERROR_NONE;
+[v _mcp9808_error `E6520 ~T0 @X0 1 e ]
 [i _mcp9808_error
 . `E6520 0
 ]
-"35
-[; ;main.c: 35: static _Bool MCP9808_Read(void)
-[v _MCP9808_Read `(a ~T0 @X0 1 sf ]
-"36
-[; ;main.c: 36: {
-{
-[e :U _MCP9808_Read ]
-[f ]
-"37
-[; ;main.c: 37:     uint8_t register_address;
-[v _register_address `uc ~T0 @X0 1 a ]
-"38
-[; ;main.c: 38:     uint32_t timeout;
-[v _timeout `ul ~T0 @X0 1 a ]
-"39
-[; ;main.c: 39:     uint16_t raw_temperature;
-[v _raw_temperature `us ~T0 @X0 1 a ]
-"41
-[; ;main.c: 41:     register_address = 0x05;
-[e = _register_address -> -> 5 `i `uc ]
-"43
-[; ;main.c: 43:     mcp9808_finished = 0;
-[e = _mcp9808_finished -> -> 0 `i `a ]
-"44
-[; ;main.c: 44:     mcp9808_ok = 0;
-[e = _mcp9808_ok -> -> 0 `i `a ]
-"45
-[; ;main.c: 45:     mcp9808_error = I2C_ERROR_NONE;
-[e = _mcp9808_error . `E6520 0 ]
-"47
-[; ;main.c: 47:     mcp9808_data[0] = 0;
-[e = *U + &U _mcp9808_data * -> -> -> 0 `i `ui `ux -> -> # *U &U _mcp9808_data `ui `ux -> -> 0 `i `uc ]
-"48
-[; ;main.c: 48:     mcp9808_data[1] = 0;
-[e = *U + &U _mcp9808_data * -> -> -> 1 `i `ui `ux -> -> # *U &U _mcp9808_data `ui `ux -> -> 0 `i `uc ]
-"55
-[; ;main.c: 55:     if (!I2C1_WriteRead(
-[e $ ! ! != -> ( _I2C1_WriteRead (4 , , , , -> -> 28 `i `us &U _register_address -> -> 1 `i `ui &U _mcp9808_data -> -> 2 `i `ui `i -> 0 `i 885  ]
+"60
+[; ;main.c: 60: static _Bool MCP9808_ReadTemperature(void)
+[v _MCP9808_ReadTemperature `(a ~T0 @X0 1 sf ]
 "61
-[; ;main.c: 61:     {
+[; ;main.c: 61: {
 {
+[e :U _MCP9808_ReadTemperature ]
+[f ]
 "62
-[; ;main.c: 62:         mcp9808_error = I2C1_ErrorGet();
-[e = _mcp9808_error ( _I2C1_ErrorGet ..  ]
+[; ;main.c: 62:     uint8_t register_address;
+[v _register_address `uc ~T0 @X0 1 a ]
 "63
-[; ;main.c: 63:         mcp9808_finished = 1;
+[; ;main.c: 63:     uint16_t raw_temperature;
+[v _raw_temperature `us ~T0 @X0 1 a ]
+"64
+[; ;main.c: 64:     uint32_t timeout;
+[v _timeout `ul ~T0 @X0 1 a ]
+"70
+[; ;main.c: 70:     register_address = 0x05;
+[e = _register_address -> -> 5 `i `uc ]
+"76
+[; ;main.c: 76:     mcp9808_finished = 0;
+[e = _mcp9808_finished -> -> 0 `i `a ]
+"77
+[; ;main.c: 77:     mcp9808_ok = 0;
+[e = _mcp9808_ok -> -> 0 `i `a ]
+"78
+[; ;main.c: 78:     mcp9808_error = I2C_ERROR_NONE;
+[e = _mcp9808_error . `E6520 0 ]
+"84
+[; ;main.c: 84:     mcp9808_data[0] = 0;
+[e = *U + &U _mcp9808_data * -> -> -> 0 `i `ui `ux -> -> # *U &U _mcp9808_data `ui `ux -> -> 0 `i `uc ]
+"85
+[; ;main.c: 85:     mcp9808_data[1] = 0;
+[e = *U + &U _mcp9808_data * -> -> -> 1 `i `ui `ux -> -> # *U &U _mcp9808_data `ui `ux -> -> 0 `i `uc ]
+"99
+[; ;main.c: 99:     if (!I2C1_WriteRead(
+[e $ ! ! != -> ( _I2C1_WriteRead (4 , , , , -> -> 28 `i `us &U _register_address -> -> 1 `i `ui &U _mcp9808_data -> -> 2 `i `ui `i -> 0 `i 885  ]
+"105
+[; ;main.c: 105:     {
+{
+"109
+[; ;main.c: 109:         mcp9808_error = I2C1_ErrorGet();
+[e = _mcp9808_error ( _I2C1_ErrorGet ..  ]
+"110
+[; ;main.c: 110:         mcp9808_finished = 1;
 [e = _mcp9808_finished -> -> 1 `i `a ]
-"65
-[; ;main.c: 65:         return 0;
+"112
+[; ;main.c: 112:         return 0;
 [e ) -> -> 0 `i `a ]
 [e $UE 884  ]
-"66
-[; ;main.c: 66:     }
+"113
+[; ;main.c: 113:     }
 }
 [e :U 885 ]
-"73
-[; ;main.c: 73:     timeout = 0;
+"121
+[; ;main.c: 121:     timeout = 0;
 [e = _timeout -> -> -> 0 `i `l `ul ]
-"75
-[; ;main.c: 75:     while (I2C1_IsBusy())
+"123
+[; ;main.c: 123:     while (I2C1_IsBusy())
 [e $U 886  ]
 [e :U 887 ]
-"76
-[; ;main.c: 76:     {
+"124
+[; ;main.c: 124:     {
 {
-"77
-[; ;main.c: 77:         timeout++;
+"125
+[; ;main.c: 125:         timeout++;
 [e ++ _timeout -> -> -> 1 `i `l `ul ]
-"79
-[; ;main.c: 79:         if (timeout > 100000UL)
+"130
+[; ;main.c: 130:         if (timeout > 100000UL)
 [e $ ! > _timeout -> 100000 `ul 889  ]
-"80
-[; ;main.c: 80:         {
+"131
+[; ;main.c: 131:         {
 {
-"81
-[; ;main.c: 81:             mcp9808_error = I2C_ERROR_BUS_COLLISION;
+"132
+[; ;main.c: 132:             mcp9808_error = I2C_ERROR_BUS_COLLISION;
 [e = _mcp9808_error . `E6520 3 ]
-"82
-[; ;main.c: 82:             mcp9808_finished = 1;
+"133
+[; ;main.c: 133:             mcp9808_finished = 1;
 [e = _mcp9808_finished -> -> 1 `i `a ]
-"84
-[; ;main.c: 84:             return 0;
+"135
+[; ;main.c: 135:             return 0;
 [e ) -> -> 0 `i `a ]
 [e $UE 884  ]
-"85
-[; ;main.c: 85:         }
+"136
+[; ;main.c: 136:         }
 }
 [e :U 889 ]
-"86
-[; ;main.c: 86:     }
+"137
+[; ;main.c: 137:     }
 }
 [e :U 886 ]
-"75
-[; ;main.c: 75:     while (I2C1_IsBusy())
+"123
+[; ;main.c: 123:     while (I2C1_IsBusy())
 [e $ != -> ( _I2C1_IsBusy ..  `i -> 0 `i 887  ]
 [e :U 888 ]
-"93
-[; ;main.c: 93:     mcp9808_error = I2C1_ErrorGet();
+"143
+[; ;main.c: 143:     mcp9808_error = I2C1_ErrorGet();
 [e = _mcp9808_error ( _I2C1_ErrorGet ..  ]
-"95
-[; ;main.c: 95:     if (mcp9808_error != I2C_ERROR_NONE)
+"146
+[; ;main.c: 146:     if (mcp9808_error != I2C_ERROR_NONE)
 [e $ ! != -> _mcp9808_error `ui -> . `E6520 0 `ui 890  ]
-"96
-[; ;main.c: 96:     {
+"147
+[; ;main.c: 147:     {
 {
-"97
-[; ;main.c: 97:         mcp9808_finished = 1;
+"148
+[; ;main.c: 148:         mcp9808_finished = 1;
 [e = _mcp9808_finished -> -> 1 `i `a ]
-"99
-[; ;main.c: 99:         return 0;
+"150
+[; ;main.c: 150:         return 0;
 [e ) -> -> 0 `i `a ]
 [e $UE 884  ]
-"100
-[; ;main.c: 100:     }
+"151
+[; ;main.c: 151:     }
 }
 [e :U 890 ]
-"107
-[; ;main.c: 107:     raw_temperature =
+"166
+[; ;main.c: 166:     raw_temperature =
 [e = _raw_temperature -> | << -> -> *U + &U _mcp9808_data * -> -> -> 0 `i `ui `ux -> -> # *U &U _mcp9808_data `ui `ux `us `ui -> 8 `i -> *U + &U _mcp9808_data * -> -> -> 1 `i `ui `ux -> -> # *U &U _mcp9808_data `ui `ux `ui `us ]
-"113
-[; ;main.c: 113:     if ((raw_temperature & 0x1000U) != 0U)
+"180
+[; ;main.c: 180:     raw_temperature &= 0x1FFF;
+[e =& _raw_temperature -> -> 8191 `i `us ]
+"188
+[; ;main.c: 188:     if ((raw_temperature & 0x1000U) != 0U)
 [e $ ! != & -> _raw_temperature `ui -> 4096 `ui -> 0 `ui 891  ]
-"114
-[; ;main.c: 114:     {
+"189
+[; ;main.c: 189:     {
 {
-"115
-[; ;main.c: 115:         raw_temperature &= 0x0FFFU;
+"193
+[; ;main.c: 193:         raw_temperature &= 0x0FFFU;
 [e =& _raw_temperature -> -> 4095 `ui `us ]
-"117
-[; ;main.c: 117:         mcp9808_temperature =
-[e = _mcp9808_temperature -> -U -> -> / - -> 4096 `ui -> _raw_temperature `ui -> 16 `ui `s `i `s ]
-"119
-[; ;main.c: 119:     }
+"205
+[; ;main.c: 205:         mcp9808_temperature_x16 =
+[e = _mcp9808_temperature_x16 -> -U -> -> - -> 4096 `ui -> _raw_temperature `ui `s `i `s ]
+"207
+[; ;main.c: 207:     }
 }
 [e $U 892  ]
-"120
-[; ;main.c: 120:     else
+"208
+[; ;main.c: 208:     else
 [e :U 891 ]
-"121
-[; ;main.c: 121:     {
+"209
+[; ;main.c: 209:     {
 {
-"123
-[; ;main.c: 123:         raw_temperature &= 0x0FFFU;
-[e =& _raw_temperature -> -> 4095 `ui `us ]
-"125
-[; ;main.c: 125:         mcp9808_temperature =
-[e = _mcp9808_temperature -> / -> _raw_temperature `ui -> 16 `ui `s ]
-"127
-[; ;main.c: 127:     }
+"216
+[; ;main.c: 216:         mcp9808_temperature_x16 =
+[e = _mcp9808_temperature_x16 -> _raw_temperature `s ]
+"218
+[; ;main.c: 218:     }
 }
 [e :U 892 ]
-"134
-[; ;main.c: 134:     mcp9808_ok = 1;
+"228
+[; ;main.c: 228:     if (mcp9808_temperature_x16 >= 0)
+[e $ ! >= -> _mcp9808_temperature_x16 `i -> 0 `i 893  ]
+"229
+[; ;main.c: 229:     {
+{
+"230
+[; ;main.c: 230:         mcp9808_temperature =
+[e = _mcp9808_temperature -> / -> _mcp9808_temperature_x16 `i -> 16 `i `s ]
+"232
+[; ;main.c: 232:     }
+}
+[e $U 894  ]
+"233
+[; ;main.c: 233:     else
+[e :U 893 ]
+"234
+[; ;main.c: 234:     {
+{
+"235
+[; ;main.c: 235:         mcp9808_temperature =
+[e = _mcp9808_temperature -> / -> _mcp9808_temperature_x16 `i -> 16 `i `s ]
+"237
+[; ;main.c: 237:     }
+}
+[e :U 894 ]
+"243
+[; ;main.c: 243:     mcp9808_ok = 1;
 [e = _mcp9808_ok -> -> 1 `i `a ]
-"135
-[; ;main.c: 135:     mcp9808_finished = 1;
+"244
+[; ;main.c: 244:     mcp9808_finished = 1;
 [e = _mcp9808_finished -> -> 1 `i `a ]
-"137
-[; ;main.c: 137:     return 1;
+"247
+[; ;main.c: 247:     return 1;
 [e ) -> -> 1 `i `a ]
 [e $UE 884  ]
-"138
-[; ;main.c: 138: }
+"248
+[; ;main.c: 248: }
 [e :UE 884 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"145
-[; ;main.c: 145: void main(void)
+"255
+[; ;main.c: 255: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"146
-[; ;main.c: 146: {
+"256
+[; ;main.c: 256: {
 {
 [e :U _main ]
 [f ]
-"148
-[; ;main.c: 148:     SYSTEM_Initialize();
+"262
+[; ;main.c: 262:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"151
-[; ;main.c: 151:     I2C1_Initialize();
+"270
+[; ;main.c: 270:     I2C1_Initialize();
 [e ( _I2C1_Initialize ..  ]
-"155
-[; ;main.c: 155:     mcp9808_data[0] = 0;
+"278
+[; ;main.c: 278:     mcp9808_data[0] = 0;
 [e = *U + &U _mcp9808_data * -> -> -> 0 `i `ui `ux -> -> # *U &U _mcp9808_data `ui `ux -> -> 0 `i `uc ]
-"156
-[; ;main.c: 156:     mcp9808_data[1] = 0;
+"279
+[; ;main.c: 279:     mcp9808_data[1] = 0;
 [e = *U + &U _mcp9808_data * -> -> -> 1 `i `ui `ux -> -> # *U &U _mcp9808_data `ui `ux -> -> 0 `i `uc ]
-"158
-[; ;main.c: 158:     mcp9808_temperature = 0;
+"281
+[; ;main.c: 281:     mcp9808_temperature = 0;
 [e = _mcp9808_temperature -> -> 0 `i `s ]
-"160
-[; ;main.c: 160:     mcp9808_ok = 0;
+"283
+[; ;main.c: 283:     mcp9808_temperature_x16 = 0;
+[e = _mcp9808_temperature_x16 -> -> 0 `i `s ]
+"285
+[; ;main.c: 285:     mcp9808_ok = 0;
 [e = _mcp9808_ok -> -> 0 `i `a ]
-"161
-[; ;main.c: 161:     mcp9808_finished = 0;
+"286
+[; ;main.c: 286:     mcp9808_finished = 0;
 [e = _mcp9808_finished -> -> 0 `i `a ]
-"163
-[; ;main.c: 163:     mcp9808_error = I2C_ERROR_NONE;
+"288
+[; ;main.c: 288:     mcp9808_error = I2C_ERROR_NONE;
 [e = _mcp9808_error . `E6520 0 ]
-"173
-[; ;main.c: 173:     INTCONbits.PEIE = 1;
+"298
+[; ;main.c: 298:     INTCONbits.PEIE = 1;
 [e = . . _INTCONbits 0 2 -> -> 1 `i `uc ]
-"174
-[; ;main.c: 174:     INTCONbits.GIE = 1;
+"299
+[; ;main.c: 299:     INTCONbits.GIE = 1;
 [e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
-"181
-[; ;main.c: 181:     while (1)
-[e :U 895 ]
-"182
-[; ;main.c: 182:     {
+"307
+[; ;main.c: 307:     while (1)
+[e :U 897 ]
+"308
+[; ;main.c: 308:     {
 {
-"183
-[; ;main.c: 183:         MCP9808_Read();
-[e ( _MCP9808_Read ..  ]
-"189
-[; ;main.c: 189:         for (volatile uint32_t delay = 0;
+"312
+[; ;main.c: 312:         MCP9808_ReadTemperature();
+[e ( _MCP9808_ReadTemperature ..  ]
+"318
+[; ;main.c: 318:         for (volatile uint32_t delay = 0;
 {
 [v _delay `Vul ~T0 @X0 1 a ]
 [e = _delay -> -> -> 0 `i `l `ul ]
-[e $ < _delay -> 50000 `ul 897  ]
-[e $U 898  ]
-[e :U 897 ]
-"192
-[; ;main.c: 192:         {
+[e $ < _delay -> 50000 `ul 899  ]
+[e $U 900  ]
+[e :U 899 ]
+"321
+[; ;main.c: 321:         {
 {
-"194
-[; ;main.c: 194:         }
+"323
+[; ;main.c: 323:         }
 }
 [e ++ _delay -> -> 1 `i `Vul ]
-[e $ < _delay -> 50000 `ul 897  ]
-[e :U 898 ]
+[e $ < _delay -> 50000 `ul 899  ]
+[e :U 900 ]
 }
-"195
-[; ;main.c: 195:     }
+"324
+[; ;main.c: 324:     }
 }
-[e :U 894 ]
-[e $U 895  ]
 [e :U 896 ]
-"196
-[; ;main.c: 196: }
-[e :UE 893 ]
+[e $U 897  ]
+[e :U 898 ]
+"325
+[; ;main.c: 325: }
+[e :UE 895 ]
 }
