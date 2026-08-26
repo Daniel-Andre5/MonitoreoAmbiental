@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V3.10 build 20250813170317 
-                                                                                               Tue Aug 25 20:51:37 2026
+                                                                                               Tue Aug 25 21:25:08 2026
 
 Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1 
      1                           	processor	16F13145
@@ -2464,7 +2464,7 @@ Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1
   2458 ;;
   2459 ;; *************** function _main *****************
   2460 ;; Defined at:
-  2461 ;;		line 157 in file "main.c"
+  2461 ;;		line 145 in file "main.c"
   2462 ;; Parameters:    Size  Location     Type
   2463 ;;		None
   2464 ;; Auto vars:     Size  Location     Type
@@ -2506,53 +2506,53 @@ Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1
   2495                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
   2496                           
   2497                           
-  2498                           ;main.c: 162:     SYSTEM_Initialize();
+  2498                           ;main.c: 148:     SYSTEM_Initialize();
   2499     00CD  3182  226E  3180   	fcall	_SYSTEM_Initialize
   2500     00D0                     l1649:
   2501                           
-  2502                           ;main.c: 168:     I2C1_Initialize();
+  2502                           ;main.c: 151:     I2C1_Initialize();
   2503     00D0  3182  225F  3180   	fcall	_I2C1_Initialize
   2504     00D3                     l1651:
   2505                           
-  2506                           ;main.c: 174:     mcp9808_data[0] = 0;
+  2506                           ;main.c: 155:     mcp9808_data[0] = 0;
   2507     00D3  0140               	movlb	0	; select bank0
   2508     00D4  01B3               	clrf	_mcp9808_data	;volatile
   2509     00D5                     l1653:
   2510                           
-  2511                           ;main.c: 175:     mcp9808_data[1] = 0;
+  2511                           ;main.c: 156:     mcp9808_data[1] = 0;
   2512     00D5  01B4               	clrf	_mcp9808_data+1	;volatile
   2513     00D6                     l1655:
   2514                           
-  2515                           ;main.c: 177:     mcp9808_temperature = 0;
+  2515                           ;main.c: 158:     mcp9808_temperature = 0;
   2516     00D6  01AE               	clrf	_mcp9808_temperature	;volatile
   2517     00D7  01AF               	clrf	_mcp9808_temperature+1	;volatile
   2518     00D8                     l1657:
   2519                           
-  2520                           ;main.c: 179:     mcp9808_ok = 0;
+  2520                           ;main.c: 160:     mcp9808_ok = 0;
   2521     00D8  01B2               	clrf	_mcp9808_ok	;volatile
   2522     00D9                     l1659:
   2523                           
-  2524                           ;main.c: 180:     mcp9808_finished = 0;
+  2524                           ;main.c: 161:     mcp9808_finished = 0;
   2525     00D9  01B1               	clrf	_mcp9808_finished	;volatile
   2526     00DA                     l1661:
   2527                           
-  2528                           ;main.c: 182:     mcp9808_error = I2C_ERROR_NONE;
+  2528                           ;main.c: 163:     mcp9808_error = I2C_ERROR_NONE;
   2529     00DA  01B0               	clrf	_mcp9808_error	;volatile
   2530     00DB                     l1663:
   2531                           
-  2532                           ;main.c: 191:     INTCONbits.PEIE = 1;
+  2532                           ;main.c: 173:     INTCONbits.PEIE = 1;
   2533     00DB  170B               	bsf	11,6	;volatile
   2534     00DC                     l1665:
   2535                           
-  2536                           ;main.c: 192:     INTCONbits.GIE = 1;
+  2536                           ;main.c: 174:     INTCONbits.GIE = 1;
   2537     00DC  178B               	bsf	11,7	;volatile
   2538     00DD                     l1667:
   2539                           
-  2540                           ;main.c: 199:     {;main.c: 203:         MCP9808_Read();
+  2540                           ;main.c: 182:     {;main.c: 183:         MCP9808_Read();
   2541     00DD  3180  2038  3180   	fcall	_MCP9808_Read
   2542     00E0                     l1669:
   2543                           
-  2544                           ;main.c: 209:         for (volatile uint32_t delay = 0;
+  2544                           ;main.c: 189:         for (volatile uint32_t delay = 0;
   2545     00E0  3000               	movlw	0
   2546     00E1  0140               	movlb	0	; select bank0
   2547     00E2  00C7               	movwf	main@delay+3	;volatile
@@ -2582,7 +2582,7 @@ Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1
   2571     00F7  28DD               	goto	l1667
   2572     00F8                     l1675:
   2573                           
-  2574                           ;main.c: 212:         {;main.c: 214:         }
+  2574                           ;main.c: 192:         {;main.c: 194:         }
   2575     00F8  3001               	movlw	1
   2576     00F9  0140               	movlb	0	; select bank0
   2577     00FA  07C4               	addwf	main@delay,f	;volatile
@@ -3142,12 +3142,12 @@ Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1
   3099     0038                     __ptext7:	
   3100 ;; *************** function _MCP9808_Read *****************
   3101 ;; Defined at:
-  3102 ;;		line 39 in file "main.c"
+  3102 ;;		line 35 in file "main.c"
   3103 ;; Parameters:    Size  Location     Type
   3104 ;;		None
   3105 ;; Auto vars:     Size  Location     Type
-  3106 ;;  raw_temperat    2   13[BANK0 ] unsigned short 
-  3107 ;;  timeout         4    8[BANK0 ] unsigned long 
+  3106 ;;  timeout         4    8[BANK0 ] unsigned long 
+  3107 ;;  raw_temperat    2   13[BANK0 ] unsigned short 
   3108 ;;  register_add    1   12[BANK0 ] unsigned char 
   3109 ;; Return value:  Size  Location     Type
   3110 ;;                  1    wreg      _Bool 
@@ -3187,30 +3187,30 @@ Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1
   3139                           ; Regs used in _MCP9808_Read: [wreg+status,2+status,0+pclath+cstack]
   3140                           
   3141                           
-  3142                           ;main.c: 41:     uint8_t register_address;;main.c: 42:     uint32_t timeout;;main.c: 44:
-      +                               register_address = 0x05;
+  3142                           ;main.c: 37:     uint8_t register_address;;main.c: 38:     uint32_t timeout;;main.c: 39:
+      +                               uint16_t raw_temperature;;main.c: 41:     register_address = 0x05;
   3143     0038  3005               	movlw	5
   3144     0039  0140               	movlb	0	; select bank0
   3145     003A  00C1               	movwf	MCP9808_Read@register_address
   3146     003B                     l1605:
   3147                           
-  3148                           ;main.c: 46:     mcp9808_finished = 0;
+  3148                           ;main.c: 43:     mcp9808_finished = 0;
   3149     003B  01B1               	clrf	_mcp9808_finished	;volatile
   3150                           
-  3151                           ;main.c: 47:     mcp9808_ok = 0;
+  3151                           ;main.c: 44:     mcp9808_ok = 0;
   3152     003C  01B2               	clrf	_mcp9808_ok	;volatile
   3153                           
-  3154                           ;main.c: 48:     mcp9808_error = I2C_ERROR_NONE;
+  3154                           ;main.c: 45:     mcp9808_error = I2C_ERROR_NONE;
   3155     003D  01B0               	clrf	_mcp9808_error	;volatile
   3156                           
-  3157                           ;main.c: 50:     mcp9808_data[0] = 0;
+  3157                           ;main.c: 47:     mcp9808_data[0] = 0;
   3158     003E  01B3               	clrf	_mcp9808_data	;volatile
   3159                           
-  3160                           ;main.c: 51:     mcp9808_data[1] = 0;
+  3160                           ;main.c: 48:     mcp9808_data[1] = 0;
   3161     003F  01B4               	clrf	_mcp9808_data+1	;volatile
   3162     0040                     l1607:
   3163                           
-  3164                           ;main.c: 57:     if (!I2C1_WriteRead(
+  3164                           ;main.c: 55:     if (!I2C1_WriteRead(
   3165     0040  301C               	movlw	28
   3166     0041  00B5               	movwf	I2C1_WriteRead@address
   3167     0042  3000               	movlw	0
@@ -3237,19 +3237,19 @@ Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1
   3188     0058                     u570:
   3189     0058                     l1609:
   3190                           
-  3191                           ;main.c: 63:     {;main.c: 64:         mcp9808_error = I2C1_ErrorGet();
+  3191                           ;main.c: 61:     {;main.c: 62:         mcp9808_error = I2C1_ErrorGet();
   3192     0058  3182  22B6  3180   	fcall	_I2C1_ErrorGet
   3193     005B  0140               	movlb	0	; select bank0
   3194     005C  00B0               	movwf	_mcp9808_error	;volatile
   3195     005D                     l1611:
   3196                           
-  3197                           ;main.c: 65:         mcp9808_finished = 1;
+  3197                           ;main.c: 63:         mcp9808_finished = 1;
   3198     005D  3001               	movlw	1
   3199     005E  00B1               	movwf	_mcp9808_finished	;volatile
   3200     005F  28CC               	goto	l97
   3201     0060                     l1615:
   3202                           
-  3203                           ;main.c: 77:     timeout = 0;
+  3203                           ;main.c: 73:     timeout = 0;
   3204     0060  3000               	movlw	0
   3205     0061  0140               	movlb	0	; select bank0
   3206     0062  00C0               	movwf	MCP9808_Read@timeout+3
@@ -3260,11 +3260,11 @@ Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1
   3211     0067  3000               	movlw	0
   3212     0068  00BD               	movwf	MCP9808_Read@timeout
   3213                           
-  3214                           ;main.c: 79:     while (I2C1_IsBusy())
+  3214                           ;main.c: 75:     while (I2C1_IsBusy())
   3215     0069  2884               	goto	l1621
   3216     006A                     l1617:
   3217                           
-  3218                           ;main.c: 80:     {;main.c: 81:         timeout++;
+  3218                           ;main.c: 76:     {;main.c: 77:         timeout++;
   3219     006A  3001               	movlw	1
   3220     006B  0140               	movlb	0	; select bank0
   3221     006C  07BD               	addwf	MCP9808_Read@timeout,f
@@ -3273,7 +3273,7 @@ Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1
   3224     006F  3DBF               	addwfc	MCP9808_Read@timeout+2,f
   3225     0070  3DC0               	addwfc	MCP9808_Read@timeout+3,f
   3226                           
-  3227                           ;main.c: 83:         if (timeout > 100000UL)
+  3227                           ;main.c: 79:         if (timeout > 100000UL)
   3228     0071  0840               	movf	MCP9808_Read@timeout+3,w
   3229     0072  1D03               	btfss	3,2
   3230     0073  287E               	goto	u580
@@ -3291,20 +3291,20 @@ Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1
   3242     007E                     u580:
   3243     007E                     l1619:
   3244                           
-  3245                           ;main.c: 84:         {;main.c: 85:             mcp9808_error = I2C_ERROR_BUS_COLLISION;
+  3245                           ;main.c: 80:         {;main.c: 81:             mcp9808_error = I2C_ERROR_BUS_COLLISION;
   3246     007E  3003               	movlw	3
   3247     007F  0140               	movlb	0	; select bank0
   3248     0080  00B0               	movwf	_mcp9808_error	;volatile
   3249                           
-  3250                           ;main.c: 86:             mcp9808_finished = 1;
+  3250                           ;main.c: 82:             mcp9808_finished = 1;
   3251     0081  3001               	movlw	1
   3252     0082  00B1               	movwf	_mcp9808_finished	;volatile
   3253                           
-  3254                           ;main.c: 88:             return 0;;	Return value of _MCP9808_Read is never used
+  3254                           ;main.c: 84:             return 0;;	Return value of _MCP9808_Read is never used
   3255     0083  28CC               	goto	l97
   3256     0084                     l1621:
   3257                           
-  3258                           ;main.c: 79:     while (I2C1_IsBusy())
+  3258                           ;main.c: 75:     while (I2C1_IsBusy())
   3259     0084  3182  22DA  3180   	fcall	_I2C1_IsBusy
   3260     0087  3A00               	xorlw	0
   3261     0088  1D03               	skipz
@@ -3315,13 +3315,13 @@ Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1
   3266     008C                     u590:
   3267     008C                     l1623:
   3268                           
-  3269                           ;main.c: 96:     mcp9808_error = I2C1_ErrorGet();
+  3269                           ;main.c: 93:     mcp9808_error = I2C1_ErrorGet();
   3270     008C  3182  22B6  3180   	fcall	_I2C1_ErrorGet
   3271     008F  0140               	movlb	0	; select bank0
   3272     0090  00B0               	movwf	_mcp9808_error	;volatile
   3273     0091                     l1625:
   3274                           
-  3275                           ;main.c: 98:     if (mcp9808_error != I2C_ERROR_NONE)
+  3275                           ;main.c: 95:     if (mcp9808_error != I2C_ERROR_NONE)
   3276     0091  0830               	movf	_mcp9808_error,w	;volatile
   3277     0092  1903               	btfsc	3,2
   3278     0093  2895               	goto	u601
@@ -3332,15 +3332,14 @@ Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1
   3283     0096  285D               	goto	l1611
   3284     0097                     l1629:
   3285                           
-  3286                           ;main.c: 111:     {;main.c: 112:         uint16_t raw_temperature;;main.c: 114:         
-      +                          raw_temperature =
+  3286                           ;main.c: 107:     raw_temperature =
   3287     0097  0833               	movf	_mcp9808_data,w	;volatile
   3288     0098  00C3               	movwf	MCP9808_Read@raw_temperature+1
   3289     0099  0834               	movf	_mcp9808_data+1,w	;volatile
   3290     009A  00C2               	movwf	MCP9808_Read@raw_temperature
   3291     009B                     l1631:
   3292                           
-  3293                           ;main.c: 122:         if ((raw_temperature & 0x1000U) != 0U)
+  3293                           ;main.c: 113:     if ((raw_temperature & 0x1000U) != 0U)
   3294     009B  1E43               	btfss	MCP9808_Read@raw_temperature+1,4
   3295     009C  289E               	goto	u611
   3296     009D  289F               	goto	u610
@@ -3349,14 +3348,14 @@ Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1
   3299     009F                     u610:
   3300     009F                     l1633:
   3301                           
-  3302                           ;main.c: 123:         {;main.c: 124:             raw_temperature &= 0x0FFFU;
+  3302                           ;main.c: 114:     {;main.c: 115:         raw_temperature &= 0x0FFFU;
   3303     009F  30FF               	movlw	255
   3304     00A0  05C2               	andwf	MCP9808_Read@raw_temperature,f
   3305     00A1  300F               	movlw	15
   3306     00A2  05C3               	andwf	MCP9808_Read@raw_temperature+1,f
   3307     00A3                     l1635:
   3308                           
-  3309                           ;main.c: 130:             mcp9808_temperature =
+  3309                           ;main.c: 117:         mcp9808_temperature =
   3310     00A3  3000               	movlw	0
   3311     00A4  00F4               	movwf	??_MCP9808_Read
   3312     00A5  3010               	movlw	16
@@ -3383,18 +3382,18 @@ Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1
   3333     00B9  0877               	movf	??_MCP9808_Read+3,w
   3334     00BA  00AF               	movwf	_mcp9808_temperature+1	;volatile
   3335                           
-  3336                           ;main.c: 132:         }
+  3336                           ;main.c: 119:     }
   3337     00BB  28C9               	goto	l1641
   3338     00BC                     l1637:
   3339                           
-  3340                           ;main.c: 134:         {;main.c: 138:             raw_temperature &= 0x0FFFU;
+  3340                           ;main.c: 121:     {;main.c: 123:         raw_temperature &= 0x0FFFU;
   3341     00BC  30FF               	movlw	255
   3342     00BD  05C2               	andwf	MCP9808_Read@raw_temperature,f
   3343     00BE  300F               	movlw	15
   3344     00BF  05C3               	andwf	MCP9808_Read@raw_temperature+1,f
   3345     00C0                     l1639:
   3346                           
-  3347                           ;main.c: 140:             mcp9808_temperature =
+  3347                           ;main.c: 125:         mcp9808_temperature =
   3348     00C0  0E42               	swapf	MCP9808_Read@raw_temperature,w
   3349     00C1  390F               	andlw	15
   3350     00C2  00AE               	movwf	_mcp9808_temperature	;volatile
@@ -3406,7 +3405,7 @@ Microchip MPLAB XC8 C Compiler v3.10 (Free license) build 20250813170317 Og1
   3356     00C8  00AF               	movwf	_mcp9808_temperature+1	;volatile
   3357     00C9                     l1641:
   3358                           
-  3359                           ;main.c: 143:     };main.c: 146:     mcp9808_ok = 1;
+  3359                           ;main.c: 134:     mcp9808_ok = 1;
   3360     00C9  3001               	movlw	1
   3361     00CA  00B2               	movwf	_mcp9808_ok	;volatile
   3362     00CB  285D               	goto	l1611
@@ -5542,7 +5541,7 @@ DATA                 0      0      52      0.0%
 
 
 Microchip Technology PIC Macro Assembler V3.10 build 20250813170317 
-Symbol Table                                                                                   Tue Aug 25 20:51:37 2026
+Symbol Table                                                                                   Tue Aug 25 21:25:08 2026
 
                I2C1_WriteRead@readLength 003B                                       l13 028E  
                                      l36 0285                                       l71 027A  

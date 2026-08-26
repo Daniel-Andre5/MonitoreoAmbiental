@@ -11646,16 +11646,13 @@ void I2C1_ERROR_ISR(void);
 
 void SYSTEM_Initialize(void);
 # 6 "main.c" 2
-# 22 "main.c"
+# 21 "main.c"
 volatile uint8_t mcp9808_data[2] = {0, 0};
-
 
 volatile int16_t mcp9808_temperature = 0;
 
-
 volatile _Bool mcp9808_ok = 0;
 volatile _Bool mcp9808_finished = 0;
-
 
 volatile i2c_host_error_t mcp9808_error = I2C_ERROR_NONE;
 
@@ -11668,6 +11665,7 @@ static _Bool MCP9808_Read(void)
 {
     uint8_t register_address;
     uint32_t timeout;
+    uint16_t raw_temperature;
 
     register_address = 0x05;
 
@@ -11682,11 +11680,12 @@ static _Bool MCP9808_Read(void)
 
 
 
+
     if (!I2C1_WriteRead(
             0x1C,
             &register_address,
             1,
-            mcp9808_data,
+            (uint8_t *)mcp9808_data,
             2))
     {
         mcp9808_error = I2C1_ErrorGet();
@@ -11694,7 +11693,12 @@ static _Bool MCP9808_Read(void)
 
         return 0;
     }
-# 77 "main.c"
+
+
+
+
+
+
     timeout = 0;
 
     while (I2C1_IsBusy())
@@ -11714,6 +11718,7 @@ static _Bool MCP9808_Read(void)
 
 
 
+
     mcp9808_error = I2C1_ErrorGet();
 
     if (mcp9808_error != I2C_ERROR_NONE)
@@ -11728,40 +11733,31 @@ static _Bool MCP9808_Read(void)
 
 
 
+    raw_temperature =
+        ((uint16_t)mcp9808_data[0] << 8) |
+        mcp9808_data[1];
 
+
+
+    if ((raw_temperature & 0x1000U) != 0U)
     {
-        uint16_t raw_temperature;
+        raw_temperature &= 0x0FFFU;
 
-        raw_temperature =
-            ((uint16_t)mcp9808_data[0] << 8) |
-            mcp9808_data[1];
-
-
-
-
-
-        if ((raw_temperature & 0x1000U) != 0U)
-        {
-            raw_temperature &= 0x0FFFU;
-
-
-
-
-
-            mcp9808_temperature =
-                -(int16_t)((4096U - raw_temperature) / 16U);
-        }
-        else
-        {
-
-
-
-            raw_temperature &= 0x0FFFU;
-
-            mcp9808_temperature =
-                (int16_t)(raw_temperature / 16U);
-        }
+        mcp9808_temperature =
+            -(int16_t)((4096U - raw_temperature) / 16U);
     }
+    else
+    {
+
+        raw_temperature &= 0x0FFFU;
+
+        mcp9808_temperature =
+            (int16_t)(raw_temperature / 16U);
+    }
+
+
+
+
 
 
     mcp9808_ok = 1;
@@ -11778,17 +11774,10 @@ static _Bool MCP9808_Read(void)
 void main(void)
 {
 
-
-
     SYSTEM_Initialize();
 
 
-
-
-
     I2C1_Initialize();
-
-
 
 
 
@@ -11801,7 +11790,7 @@ void main(void)
     mcp9808_finished = 0;
 
     mcp9808_error = I2C_ERROR_NONE;
-# 191 "main.c"
+# 173 "main.c"
     INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
 
@@ -11809,11 +11798,9 @@ void main(void)
 
 
 
+
     while (1)
     {
-
-
-
         MCP9808_Read();
 
 
