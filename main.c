@@ -15,87 +15,107 @@
 
 
 /* =========================================================
- * VARIABLES PARA MPLAB X WATCH
+ * VARIABLES PARA MPLAB X - WATCH
  * ========================================================= */
 
-/* Bytes recibidos del MCP9808 */
+/*
+ * Bytes recibidos del MCP9808.
+ *
+ * NO se declara volatile para evitar el warning al pasar
+ * el buffer a I2C1_WriteRead(), cuya función espera
+ * uint8_t *.
+ */
 uint8_t mcp9808_data[2] = {0, 0};
 
-/*
- * Temperatura en grados enteros.
- *
- * Ejemplo:
- * 24 = 24 °C
- */
-int16_t mcp9808_temperature = 0;
-
 
 /*
- * Temperatura multiplicada por 16.
+ * Temperatura en grados Celsius enteros.
+ *
+ * Ejemplo:
+ * 23.81 °C -> 23
+ */
+volatile int16_t mcp9808_temperature = 0;
+
+
+/*
+ * Temperatura en unidades de 1/16 °C.
  *
  * Ejemplo:
  *
- * 24.000 °C -> 384
- * 24.0625 °C -> 385
- * 24.125 °C -> 386
+ * 23.8125 °C
  *
- * Esto permite observar la parte fraccionaria.
+ * 23.8125 * 16 = 381 = 0x017D
  */
-int16_t mcp9808_temperature_x16 = 0;
+volatile int16_t mcp9808_temperature_x16 = 0;
 
 
-/* Estado de comunicación */
-bool mcp9808_ok = false;
-bool mcp9808_finished = false;
+/*
+ * Temperatura en centésimas de grado Celsius.
+ *
+ * Ejemplo:
+ *
+ * 23.81 °C -> 2381
+ */
+volatile int16_t mcp9808_temperature_centi = 0;
 
 
-/* Error I2C */
-i2c_host_error_t mcp9808_error = I2C_ERROR_NONE;
+/*
+ * Estado de comunicación.
+ */
+volatile bool mcp9808_ok = false;
+volatile bool mcp9808_finished = false;
+
+
+/*
+ * Error del bus I2C.
+ */
+volatile i2c_host_error_t mcp9808_error = I2C_ERROR_NONE;
 
 
 /* =========================================================
- * MCP9808 - LEER TEMPERATURA
+ * LEER TEMPERATURA DEL MCP9808
  * ========================================================= */
 
-static bool MCP9808_ReadTemperature(void)
+static bool MCP9808_Read(void)
 {
     uint8_t register_address;
-    uint16_t raw_temperature;
     uint32_t timeout;
 
+    uint16_t raw_temperature;
+    uint16_t temperature_raw;
 
-    /*
-     * Registro de temperatura del MCP9808.
-     */
+
+    /* -----------------------------------------------------
+     * Registro que queremos leer
+     * ----------------------------------------------------- */
+
     register_address = MCP9808_TEMP_REGISTER;
 
 
-    /*
-     * Estados iniciales.
-     */
+    /* -----------------------------------------------------
+     * Estado inicial
+     * ----------------------------------------------------- */
+
     mcp9808_finished = false;
     mcp9808_ok = false;
     mcp9808_error = I2C_ERROR_NONE;
 
 
-    /*
-     * Limpiar buffer.
-     */
+    /* -----------------------------------------------------
+     * Limpiar datos anteriores
+     * ----------------------------------------------------- */
+
     mcp9808_data[0] = 0;
     mcp9808_data[1] = 0;
 
 
-    /*
-     * -----------------------------------------------------
+    /* -----------------------------------------------------
      * I2C:
      *
-     * Escribir:
-     *     0x05
-     *
-     * Luego leer:
-     *     2 bytes
-     * -----------------------------------------------------
-     */
+     * 1. Escribir registro 0x05
+     * 2. Leer 2 bytes
+     * ----------------------------------------------------- */
+
     if (!I2C1_WriteRead(
             MCP9808_ADDRESS,
             &register_address,
@@ -104,8 +124,9 @@ static bool MCP9808_ReadTemperature(void)
             2))
     {
         /*
-         * La transferencia no pudo comenzar.
+         * La transferencia no pudo iniciarse.
          */
+
         mcp9808_error = I2C1_ErrorGet();
         mcp9808_finished = true;
 
@@ -113,11 +134,10 @@ static bool MCP9808_ReadTemperature(void)
     }
 
 
-    /*
-     * -----------------------------------------------------
-     * Esperar a que termine el I2C.
-     * -----------------------------------------------------
-     */
+    /* -----------------------------------------------------
+     * Esperar a que termine I2C
+     * ----------------------------------------------------- */
+
     timeout = 0;
 
     while (I2C1_IsBusy())
@@ -127,6 +147,7 @@ static bool MCP9808_ReadTemperature(void)
         /*
          * Evitar bloqueo infinito.
          */
+
         if (timeout > 100000UL)
         {
             mcp9808_error = I2C_ERROR_BUS_COLLISION;
@@ -137,11 +158,11 @@ static bool MCP9808_ReadTemperature(void)
     }
 
 
-    /*
-     * Obtener resultado de la transferencia.
-     */
-    mcp9808_error = I2C1_ErrorGet();
+    /* -----------------------------------------------------
+     * Comprobar error I2C
+     * ----------------------------------------------------- */
 
+    mcp9808_error = I2C1_ErrorGet();
 
     if (mcp9808_error != I2C_ERROR_NONE)
     {
@@ -151,98 +172,107 @@ static bool MCP9808_ReadTemperature(void)
     }
 
 
-    /*
-     * -----------------------------------------------------
-     * Combinar los dos bytes.
+    /* -----------------------------------------------------
+     * Unir los dos bytes recibidos
      *
-     * Ejemplo de tu captura:
+     * Ejemplo:
      *
-     * data[0] = C1
-     * data[1] = 82
+     * data[0] = 0xC1
+     * data[1] = 0x7D
      *
-     * raw = C182
-     * -----------------------------------------------------
-     */
+     * raw = 0xC17D
+     * ----------------------------------------------------- */
+
     raw_temperature =
         ((uint16_t)mcp9808_data[0] << 8) |
-        mcp9808_data[1];
+        (uint16_t)mcp9808_data[1];
 
 
-    /*
-     * -----------------------------------------------------
-     * MCP9808:
+    /* -----------------------------------------------------
+     * El MCP9808 tiene bits de estado en los bits 15:13.
      *
-     * Resolución = 0.0625 °C
+     * La temperatura está en los bits 12:0.
+     * ----------------------------------------------------- */
+
+    temperature_raw = raw_temperature & 0x1FFFU;
+
+
+    /* -----------------------------------------------------
+     * Comprobar signo.
      *
-     * Los bits 12..0 contienen la temperatura.
-     * -----------------------------------------------------
-     */
-    raw_temperature &= 0x1FFF;
+     * Bit 12 = 1 -> temperatura negativa
+     * Bit 12 = 0 -> temperatura positiva
+     * ----------------------------------------------------- */
 
-
-    /*
-     * -----------------------------------------------------
-     * Temperatura negativa
-     * -----------------------------------------------------
-     */
-    if ((raw_temperature & 0x1000U) != 0U)
+    if ((temperature_raw & 0x1000U) != 0U)
     {
         /*
-         * Quitar bit de signo.
+         * Temperatura negativa.
+         *
+         * El valor útil queda en los bits 11:0.
          */
-        raw_temperature &= 0x0FFFU;
+
+        temperature_raw &= 0x0FFFU;
 
 
         /*
          * Guardar temperatura en unidades de 1/16 °C.
          *
-         * Ejemplo:
+         * Para temperatura negativa:
          *
-         * -10.125 °C
-         *
-         * -> -162
+         * -(4096 - valor)
          */
+
         mcp9808_temperature_x16 =
-            -(int16_t)(4096U - raw_temperature);
+            -(int16_t)(4096U - temperature_raw);
     }
     else
     {
         /*
          * Temperatura positiva.
-         *
-         * El valor queda directamente
-         * expresado en unidades de 1/16 °C.
          */
+
         mcp9808_temperature_x16 =
-            (int16_t)raw_temperature;
+            (int16_t)temperature_raw;
     }
 
 
-    /*
-     * -----------------------------------------------------
-     * Temperatura entera.
+    /* -----------------------------------------------------
+     * Convertir a grados Celsius enteros.
      *
-     * 386 / 16 = 24
-     * -----------------------------------------------------
-     */
-    if (mcp9808_temperature_x16 >= 0)
-    {
-        mcp9808_temperature =
-            mcp9808_temperature_x16 / 16;
-    }
-    else
-    {
-        mcp9808_temperature =
-            mcp9808_temperature_x16 / 16;
-    }
+     * 381 / 16 = 23
+     * ----------------------------------------------------- */
+
+    mcp9808_temperature =
+        mcp9808_temperature_x16 / 16;
 
 
-    /*
-     * Comunicación correcta.
-     */
+    /* -----------------------------------------------------
+     * Convertir a centésimas de grado.
+     *
+     * x16 contiene la temperatura multiplicada por 16.
+     *
+     * Celsius * 100 =
+     *
+     * x16 * 100 / 16
+     *
+     * Ejemplo:
+     *
+     * 381 * 100 / 16
+     * = 2381
+     * = 23.81 °C
+     * ----------------------------------------------------- */
+
+    mcp9808_temperature_centi =
+        (int16_t)(((int32_t)mcp9808_temperature_x16 * 100L) / 16L);
+
+
+    /* -----------------------------------------------------
+     * Comunicación correcta
+     * ----------------------------------------------------- */
+
     mcp9808_ok = true;
     mcp9808_finished = true;
-
 
     return true;
 }
@@ -254,33 +284,30 @@ static bool MCP9808_ReadTemperature(void)
 
 void main(void)
 {
-    /*
-     * -----------------------------------------------------
-     * Inicialización del sistema generada por MCC.
-     * -----------------------------------------------------
-     */
+    /* -----------------------------------------------------
+     * Inicialización de MCC
+     * ----------------------------------------------------- */
+
     SYSTEM_Initialize();
 
 
-    /*
-     * -----------------------------------------------------
-     * Inicialización del I2C.
-     * -----------------------------------------------------
-     */
+    /* -----------------------------------------------------
+     * Inicialización del I2C MSSP1
+     * ----------------------------------------------------- */
+
     I2C1_Initialize();
 
 
-    /*
-     * -----------------------------------------------------
-     * Inicializar variables.
-     * -----------------------------------------------------
-     */
+    /* -----------------------------------------------------
+     * Inicializar variables
+     * ----------------------------------------------------- */
+
     mcp9808_data[0] = 0;
     mcp9808_data[1] = 0;
 
     mcp9808_temperature = 0;
-
     mcp9808_temperature_x16 = 0;
+    mcp9808_temperature_centi = 0;
 
     mcp9808_ok = false;
     mcp9808_finished = false;
@@ -288,33 +315,41 @@ void main(void)
     mcp9808_error = I2C_ERROR_NONE;
 
 
-    /*
-     * -----------------------------------------------------
+    /* -----------------------------------------------------
      * Habilitar interrupciones.
      *
-     * En el PIC16F13145 el registro correcto es INTCONbits.
-     * -----------------------------------------------------
-     */
+     * IMPORTANTE:
+     *
+     * Para el PIC16F13145 se utiliza INTCONbits.
+     *
+     * NO utilizar:
+     *
+     * INTCON0bits
+     * ----------------------------------------------------- */
+
     INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
 
 
-    /*
-     * -----------------------------------------------------
-     * Bucle principal.
-     * -----------------------------------------------------
-     */
+    /* -----------------------------------------------------
+     * Bucle principal
+     * ----------------------------------------------------- */
+
     while (1)
     {
-        /*
-         * Leer MCP9808.
-         */
-        MCP9808_ReadTemperature();
+        /* -------------------------------------------------
+         * Leer MCP9808
+         * ------------------------------------------------- */
+
+        MCP9808_Read();
 
 
-        /*
-         * Pequeña espera antes de la siguiente lectura.
-         */
+        /* -------------------------------------------------
+         * Pequeña espera entre mediciones.
+         *
+         * Esto evita realizar lecturas continuamente.
+         * ------------------------------------------------- */
+
         for (volatile uint32_t delay = 0;
              delay < 50000UL;
              delay++)
