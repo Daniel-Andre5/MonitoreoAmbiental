@@ -1,4 +1,4 @@
-# 1 "main.c"
+# 1 "mcc_generated_files/uart/src/eusart1.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 295 "<built-in>" 3
@@ -6,7 +6,120 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main.c" 2
+# 1 "mcc_generated_files/uart/src/eusart1.c" 2
+# 37 "mcc_generated_files/uart/src/eusart1.c"
+# 1 "mcc_generated_files/uart/src/../eusart1.h" 1
+# 37 "mcc_generated_files/uart/src/../eusart1.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdbool.h" 1 3
+# 38 "mcc_generated_files/uart/src/../eusart1.h" 2
+# 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdint.h" 1 3
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/musl_xc8.h" 1 3
+# 5 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdint.h" 2 3
+# 26 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdint.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/bits/alltypes.h" 1 3
+# 133 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/bits/alltypes.h" 3
+typedef unsigned short uintptr_t;
+# 148 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/bits/alltypes.h" 3
+typedef short intptr_t;
+# 164 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/bits/alltypes.h" 3
+typedef signed char int8_t;
+
+
+
+
+typedef short int16_t;
+
+
+
+
+typedef __int24 int24_t;
+
+
+
+
+typedef long int32_t;
+
+
+
+
+
+typedef long long int64_t;
+# 194 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/bits/alltypes.h" 3
+typedef long long intmax_t;
+
+
+
+
+
+typedef unsigned char uint8_t;
+
+
+
+
+typedef unsigned short uint16_t;
+
+
+
+
+typedef __uint24 uint24_t;
+
+
+
+
+typedef unsigned long uint32_t;
+
+
+
+
+
+typedef unsigned long long uint64_t;
+# 235 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/bits/alltypes.h" 3
+typedef unsigned long long uintmax_t;
+# 27 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdint.h" 2 3
+
+typedef int8_t int_fast8_t;
+
+typedef int64_t int_fast64_t;
+
+
+typedef int8_t int_least8_t;
+typedef int16_t int_least16_t;
+
+typedef int24_t int_least24_t;
+typedef int24_t int_fast24_t;
+
+typedef int32_t int_least32_t;
+
+typedef int64_t int_least64_t;
+
+
+typedef uint8_t uint_fast8_t;
+
+typedef uint64_t uint_fast64_t;
+
+
+typedef uint8_t uint_least8_t;
+typedef uint16_t uint_least16_t;
+
+typedef uint24_t uint_least24_t;
+typedef uint24_t uint_fast24_t;
+
+typedef uint32_t uint_least32_t;
+
+typedef uint64_t uint_least64_t;
+# 148 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdint.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/bits/stdint.h" 1 3
+typedef int16_t int_fast16_t;
+typedef int32_t int_fast32_t;
+typedef uint16_t uint_fast16_t;
+typedef uint32_t uint_fast32_t;
+# 149 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdint.h" 2 3
+# 39 "mcc_generated_files/uart/src/../eusart1.h" 2
+# 1 "mcc_generated_files/uart/src/../../system/system.h" 1
+# 39 "mcc_generated_files/uart/src/../../system/system.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/xc.h" 1 3
 # 18 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -19,16 +132,7 @@ extern double __fpnormalize(double);
 
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdlib.h" 1 3
-
-
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/musl_xc8.h" 1 3
-# 5 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdlib.h" 2 3
-
-
-
-
-
+# 10 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdlib.h" 3
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/features.h" 1 3
 # 11 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdlib.h" 2 3
 # 21 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdlib.h" 3
@@ -37,10 +141,6 @@ extern double __fpnormalize(double);
 typedef long int wchar_t;
 # 128 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/bits/alltypes.h" 3
 typedef unsigned size_t;
-# 174 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/bits/alltypes.h" 3
-typedef __int24 int24_t;
-# 210 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/bits/alltypes.h" 3
-typedef __uint24 uint24_t;
 # 22 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdlib.h" 2 3
 
 int atoi (const char *);
@@ -128,91 +228,7 @@ extern void __builtin_software_breakpoint(void);
 
 
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdint.h" 1 3
-# 26 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdint.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/bits/alltypes.h" 1 3
-# 133 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/bits/alltypes.h" 3
-typedef unsigned short uintptr_t;
-# 148 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/bits/alltypes.h" 3
-typedef short intptr_t;
-# 164 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/bits/alltypes.h" 3
-typedef signed char int8_t;
 
-
-
-
-typedef short int16_t;
-# 179 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/bits/alltypes.h" 3
-typedef long int32_t;
-
-
-
-
-
-typedef long long int64_t;
-# 194 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/bits/alltypes.h" 3
-typedef long long intmax_t;
-
-
-
-
-
-typedef unsigned char uint8_t;
-
-
-
-
-typedef unsigned short uint16_t;
-# 215 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/bits/alltypes.h" 3
-typedef unsigned long uint32_t;
-
-
-
-
-
-typedef unsigned long long uint64_t;
-# 235 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/bits/alltypes.h" 3
-typedef unsigned long long uintmax_t;
-# 27 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdint.h" 2 3
-
-typedef int8_t int_fast8_t;
-
-typedef int64_t int_fast64_t;
-
-
-typedef int8_t int_least8_t;
-typedef int16_t int_least16_t;
-
-typedef int24_t int_least24_t;
-typedef int24_t int_fast24_t;
-
-typedef int32_t int_least32_t;
-
-typedef int64_t int_least64_t;
-
-
-typedef uint8_t uint_fast8_t;
-
-typedef uint64_t uint_fast64_t;
-
-
-typedef uint8_t uint_least8_t;
-typedef uint16_t uint_least16_t;
-
-typedef uint24_t uint_least24_t;
-typedef uint24_t uint_fast24_t;
-
-typedef uint32_t uint_least32_t;
-
-typedef uint64_t uint_least64_t;
-# 148 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdint.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/bits/stdint.h" 1 3
-typedef int16_t int_fast16_t;
-typedef int32_t int_fast32_t;
-typedef uint16_t uint_fast16_t;
-typedef uint32_t uint_fast32_t;
-# 149 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdint.h" 2 3
-# 5 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/builtins.h" 2 3
 
 
 #pragma intrinsic(__nop)
@@ -11449,22 +11465,18 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include/xc.h" 2 3
-# 2 "main.c" 2
+# 40 "mcc_generated_files/uart/src/../../system/system.h" 2
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v3.10\\pic\\include\\c99/stdbool.h" 1 3
-# 4 "main.c" 2
 
-# 1 "./mcc_generated_files/system/system.h" 1
-# 42 "./mcc_generated_files/system/system.h"
-# 1 "./mcc_generated_files/system/config_bits.h" 1
-# 39 "./mcc_generated_files/system/config_bits.h"
-# 1 "./mcc_generated_files/system/../system/clock.h" 1
-# 56 "./mcc_generated_files/system/../system/clock.h"
+# 1 "mcc_generated_files/uart/src/../../system/config_bits.h" 1
+# 39 "mcc_generated_files/uart/src/../../system/config_bits.h"
+# 1 "mcc_generated_files/uart/src/../../system/../system/clock.h" 1
+# 56 "mcc_generated_files/uart/src/../../system/../system/clock.h"
 void CLOCK_Initialize(void);
-# 40 "./mcc_generated_files/system/config_bits.h" 2
-# 43 "./mcc_generated_files/system/system.h" 2
-# 1 "./mcc_generated_files/system/../system/pins.h" 1
-# 96 "./mcc_generated_files/system/../system/pins.h"
+# 40 "mcc_generated_files/uart/src/../../system/config_bits.h" 2
+# 43 "mcc_generated_files/uart/src/../../system/system.h" 2
+# 1 "mcc_generated_files/uart/src/../../system/../system/pins.h" 1
+# 134 "mcc_generated_files/uart/src/../../system/../system/pins.h"
 void PIN_MANAGER_Initialize (void);
 
 
@@ -11474,28 +11486,30 @@ void PIN_MANAGER_Initialize (void);
 
 
 void PIN_MANAGER_IOC(void);
-# 44 "./mcc_generated_files/system/system.h" 2
-# 1 "./mcc_generated_files/system/../system/interrupt.h" 1
-# 85 "./mcc_generated_files/system/../system/interrupt.h"
+# 44 "mcc_generated_files/uart/src/../../system/system.h" 2
+# 1 "mcc_generated_files/uart/src/../eusart1.h" 1
+# 45 "mcc_generated_files/uart/src/../../system/system.h" 2
+# 1 "mcc_generated_files/uart/src/../../system/../system/interrupt.h" 1
+# 85 "mcc_generated_files/uart/src/../../system/../system/interrupt.h"
 void INTERRUPT_Initialize (void);
-# 139 "./mcc_generated_files/system/../system/interrupt.h"
+# 139 "mcc_generated_files/uart/src/../../system/../system/interrupt.h"
 void INT_ISR(void);
-# 148 "./mcc_generated_files/system/../system/interrupt.h"
+# 148 "mcc_generated_files/uart/src/../../system/../system/interrupt.h"
 void INT_CallBack(void);
-# 157 "./mcc_generated_files/system/../system/interrupt.h"
+# 157 "mcc_generated_files/uart/src/../../system/../system/interrupt.h"
 void INT_SetInterruptHandler(void (* InterruptHandler)(void));
-# 166 "./mcc_generated_files/system/../system/interrupt.h"
+# 166 "mcc_generated_files/uart/src/../../system/../system/interrupt.h"
 extern void (*INT_InterruptHandler)(void);
-# 175 "./mcc_generated_files/system/../system/interrupt.h"
+# 175 "mcc_generated_files/uart/src/../../system/../system/interrupt.h"
 void INT_DefaultInterruptHandler(void);
-# 45 "./mcc_generated_files/system/system.h" 2
+# 46 "mcc_generated_files/uart/src/../../system/system.h" 2
 
-# 1 "./mcc_generated_files/system/../i2c_host/mssp1.h" 1
-# 42 "./mcc_generated_files/system/../i2c_host/mssp1.h"
-# 1 "./mcc_generated_files/system/../i2c_host/i2c_host_event_types.h" 1
-# 40 "./mcc_generated_files/system/../i2c_host/i2c_host_event_types.h"
-# 1 "./mcc_generated_files/system/../i2c_host/i2c_host_types.h" 1
-# 45 "./mcc_generated_files/system/../i2c_host/i2c_host_types.h"
+# 1 "mcc_generated_files/uart/src/../../system/../i2c_host/mssp1.h" 1
+# 42 "mcc_generated_files/uart/src/../../system/../i2c_host/mssp1.h"
+# 1 "mcc_generated_files/uart/src/../../system/../i2c_host/i2c_host_event_types.h" 1
+# 40 "mcc_generated_files/uart/src/../../system/../i2c_host/i2c_host_event_types.h"
+# 1 "mcc_generated_files/uart/src/../../system/../i2c_host/i2c_host_types.h" 1
+# 45 "mcc_generated_files/uart/src/../../system/../i2c_host/i2c_host_types.h"
 typedef enum
 {
     I2C_ERROR_NONE,
@@ -11503,12 +11517,12 @@ typedef enum
     I2C_ERROR_DATA_NACK,
     I2C_ERROR_BUS_COLLISION,
 } i2c_host_error_t;
-# 63 "./mcc_generated_files/system/../i2c_host/i2c_host_types.h"
+# 63 "mcc_generated_files/uart/src/../../system/../i2c_host/i2c_host_types.h"
 typedef struct i2c_transfer_setup
 {
     uint32_t clkSpeed;
 } i2c_host_transfer_setup_t;
-# 41 "./mcc_generated_files/system/../i2c_host/i2c_host_event_types.h" 2
+# 41 "mcc_generated_files/uart/src/../../system/../i2c_host/i2c_host_event_types.h" 2
 
 
 
@@ -11545,9 +11559,9 @@ typedef struct
     i2c_host_error_t errorState;
     i2c_host_event_states_t state;
 } i2c_host_event_status_t;
-# 43 "./mcc_generated_files/system/../i2c_host/mssp1.h" 2
-# 1 "./mcc_generated_files/system/../i2c_host/i2c_host_interface.h" 1
-# 49 "./mcc_generated_files/system/../i2c_host/i2c_host_interface.h"
+# 43 "mcc_generated_files/uart/src/../../system/../i2c_host/mssp1.h" 2
+# 1 "mcc_generated_files/uart/src/../../system/../i2c_host/i2c_host_interface.h" 1
+# 49 "mcc_generated_files/uart/src/../../system/../i2c_host/i2c_host_interface.h"
 typedef struct
 {
 
@@ -11600,10 +11614,10 @@ typedef struct
 
     void (*Tasks)(void);
 }i2c_host_interface_t;
-# 44 "./mcc_generated_files/system/../i2c_host/mssp1.h" 2
-# 63 "./mcc_generated_files/system/../i2c_host/mssp1.h"
+# 44 "mcc_generated_files/uart/src/../../system/../i2c_host/mssp1.h" 2
+# 63 "mcc_generated_files/uart/src/../../system/../i2c_host/mssp1.h"
 extern const i2c_host_interface_t I2C1_Host;
-# 72 "./mcc_generated_files/system/../i2c_host/mssp1.h"
+# 72 "mcc_generated_files/uart/src/../../system/../i2c_host/mssp1.h"
 void I2C1_Initialize(void);
 
 
@@ -11613,15 +11627,15 @@ void I2C1_Initialize(void);
 
 
 void I2C1_Deinitialize(void);
-# 109 "./mcc_generated_files/system/../i2c_host/mssp1.h"
+# 109 "mcc_generated_files/uart/src/../../system/../i2c_host/mssp1.h"
 _Bool I2C1_Write(uint16_t address, uint8_t *data, size_t dataLength);
-# 138 "./mcc_generated_files/system/../i2c_host/mssp1.h"
+# 138 "mcc_generated_files/uart/src/../../system/../i2c_host/mssp1.h"
 _Bool I2C1_Read(uint16_t address, uint8_t *data, size_t dataLength);
-# 169 "./mcc_generated_files/system/../i2c_host/mssp1.h"
+# 169 "mcc_generated_files/uart/src/../../system/../i2c_host/mssp1.h"
 _Bool I2C1_WriteRead(uint16_t address, uint8_t *writeData, size_t writeLength, uint8_t *readData, size_t readLength);
-# 182 "./mcc_generated_files/system/../i2c_host/mssp1.h"
+# 182 "mcc_generated_files/uart/src/../../system/../i2c_host/mssp1.h"
 i2c_host_error_t I2C1_ErrorGet(void);
-# 193 "./mcc_generated_files/system/../i2c_host/mssp1.h"
+# 193 "mcc_generated_files/uart/src/../../system/../i2c_host/mssp1.h"
 _Bool I2C1_IsBusy(void);
 
 
@@ -11631,11 +11645,11 @@ _Bool I2C1_IsBusy(void);
 
 
 void I2C1_CallbackRegister(void (*callback)(void));
-# 211 "./mcc_generated_files/system/../i2c_host/mssp1.h"
+# 211 "mcc_generated_files/uart/src/../../system/../i2c_host/mssp1.h"
 void I2C1_ISR(void);
-# 221 "./mcc_generated_files/system/../i2c_host/mssp1.h"
+# 221 "mcc_generated_files/uart/src/../../system/../i2c_host/mssp1.h"
 void I2C1_ERROR_ISR(void);
-# 47 "./mcc_generated_files/system/system.h" 2
+# 48 "mcc_generated_files/uart/src/../../system/system.h" 2
 
 
 
@@ -11645,461 +11659,328 @@ void I2C1_ERROR_ISR(void);
 
 
 void SYSTEM_Initialize(void);
-# 6 "main.c" 2
-# 39 "main.c"
-volatile int16_t mcp9808_temperature = 0;
-volatile int16_t mcp9808_temperature_centi = 0;
-volatile int16_t mcp9808_temperature_integer = 0;
-volatile uint16_t mcp9808_temperature_decimal = 0;
-
-volatile _Bool mcp9808_ok = 0;
-volatile i2c_host_error_t mcp9808_error = I2C_ERROR_NONE;
-
-
-
-
-
-
-volatile uint16_t vcnl4200_ambient_light = 0;
-
-volatile uint32_t vcnl4200_lux_millilux = 0;
-volatile uint32_t vcnl4200_lux_integer = 0;
-volatile uint16_t vcnl4200_lux_decimal = 0;
-
-volatile uint16_t vcnl4200_proximity = 0;
-
-volatile uint8_t vcnl4200_id_data[2] = {0, 0};
-
-volatile _Bool vcnl4200_ok = 0;
-volatile i2c_host_error_t vcnl4200_error = I2C_ERROR_NONE;
+# 40 "mcc_generated_files/uart/src/../eusart1.h" 2
+# 61 "mcc_generated_files/uart/src/../eusart1.h"
+typedef union {
+    struct {
+        uint8_t perr : 1;
+        uint8_t ferr : 1;
+        uint8_t oerr : 1;
+        uint8_t reserved : 5;
+    };
+    size_t status;
+}eusart1_status_t;
+# 81 "mcc_generated_files/uart/src/../eusart1.h"
+void EUSART1_Initialize(void);
 
 
 
 
 
 
-static uint8_t i2c_write_buffer[3];
-static uint8_t i2c_read_buffer[2];
+
+void EUSART1_Deinitialize(void);
 
 
 
 
 
 
-static void Delay_Long(void)
+
+void EUSART1_Enable(void);
+
+
+
+
+
+
+
+void EUSART1_Disable(void);
+# 114 "mcc_generated_files/uart/src/../eusart1.h"
+void EUSART1_TransmitEnable(void);
+
+
+
+
+
+
+
+void EUSART1_TransmitDisable(void);
+# 131 "mcc_generated_files/uart/src/../eusart1.h"
+void EUSART1_ReceiveEnable(void);
+
+
+
+
+
+
+
+void EUSART1_ReceiveDisable(void);
+# 148 "mcc_generated_files/uart/src/../eusart1.h"
+void EUSART1_SendBreakControlEnable(void);
+
+
+
+
+
+
+
+void EUSART1_SendBreakControlDisable(void);
+
+
+
+
+
+
+
+void EUSART1_AutoBaudSet(_Bool enable);
+
+
+
+
+
+
+
+_Bool EUSART1_AutoBaudQuery(void);
+
+
+
+
+
+
+
+_Bool EUSART1_IsAutoBaudDetectOverflow(void);
+
+
+
+
+
+
+
+void EUSART1_AutoBaudDetectOverflowReset(void);
+# 197 "mcc_generated_files/uart/src/../eusart1.h"
+_Bool EUSART1_IsRxReady(void);
+# 206 "mcc_generated_files/uart/src/../eusart1.h"
+_Bool EUSART1_IsTxReady(void);
+# 215 "mcc_generated_files/uart/src/../eusart1.h"
+_Bool EUSART1_IsTxDone(void);
+
+
+
+
+
+
+
+size_t EUSART1_ErrorGet(void);
+# 233 "mcc_generated_files/uart/src/../eusart1.h"
+uint8_t EUSART1_Read(void);
+# 243 "mcc_generated_files/uart/src/../eusart1.h"
+void EUSART1_Write(uint8_t txData);
+
+
+
+
+
+
+
+void EUSART1_FramingErrorCallbackRegister(void (* callbackHandler)(void));
+
+
+
+
+
+
+
+void EUSART1_OverrunErrorCallbackRegister(void (* callbackHandler)(void));
+# 38 "mcc_generated_files/uart/src/eusart1.c" 2
+# 51 "mcc_generated_files/uart/src/eusart1.c"
+static volatile eusart1_status_t eusart1RxLastError;
+
+
+
+
+
+static void (*EUSART1_FramingErrorHandler)(void) = ((void*)0);
+static void (*EUSART1_OverrunErrorHandler)(void) = ((void*)0);
+
+static void EUSART1_DefaultFramingErrorCallback(void);
+static void EUSART1_DefaultOverrunErrorCallback(void);
+
+
+
+
+
+
+void EUSART1_Initialize(void)
 {
-    volatile uint32_t delay;
 
-    for (delay = 0; delay < 50000UL; delay++)
-    {
-        ;
-    }
+
+
+    BAUD1CON = 0x48;
+
+    RC1STA = 0x90;
+
+    TX1STA = 0x26;
+
+    SP1BRGL = 0x40;
+
+    SP1BRGH = 0x3;
+
+    EUSART1_FramingErrorCallbackRegister(EUSART1_DefaultFramingErrorCallback);
+    EUSART1_OverrunErrorCallbackRegister(EUSART1_DefaultOverrunErrorCallback);
+    eusart1RxLastError.status = 0;
+
+}
+
+void EUSART1_Deinitialize(void)
+{
+    BAUD1CON = 0x00;
+    RC1STA = 0x00;
+    TX1STA = 0x00;
+    SP1BRGL = 0x00;
+    SP1BRGH = 0x00;
+}
+
+void EUSART1_Enable(void)
+{
+    RC1STAbits.SPEN = 1;
+
+}
+
+void EUSART1_Disable(void)
+{
+    RC1STAbits.SPEN = 0;
 }
 
 
-
-
-
-
-static _Bool I2C_WaitComplete(void)
+void EUSART1_TransmitEnable(void)
 {
-    volatile uint32_t timeout = 0;
-
-    while (I2C1_IsBusy())
-    {
-        timeout++;
-
-        if (timeout > 100000UL)
-        {
-            return 0;
-        }
-    }
-
-    return 1;
+    TX1STAbits.TXEN = 1;
 }
 
-
-
-
-
-
-static _Bool VCNL4200_WriteRegister16(uint8_t reg,
-                                     uint8_t low,
-                                     uint8_t high)
+void EUSART1_TransmitDisable(void)
 {
-    i2c_write_buffer[0] = reg;
-    i2c_write_buffer[1] = low;
-    i2c_write_buffer[2] = high;
-
-    if (!I2C1_Write(0x51,
-                    i2c_write_buffer,
-                    3))
-    {
-        return 0;
-    }
-
-    if (!I2C_WaitComplete())
-    {
-        return 0;
-    }
-
-    vcnl4200_error = I2C1_ErrorGet();
-
-    if (vcnl4200_error != I2C_ERROR_NONE)
-    {
-        return 0;
-    }
-
-    return 1;
+    TX1STAbits.TXEN = 0;
 }
 
-
-
-
-
-
-static _Bool VCNL4200_ReadRegister16(uint8_t reg,
-                                    uint16_t *value)
+void EUSART1_ReceiveEnable(void)
 {
-    i2c_write_buffer[0] = reg;
-
-    i2c_read_buffer[0] = 0;
-    i2c_read_buffer[1] = 0;
-
-    if (!I2C1_WriteRead(0x51,
-                        i2c_write_buffer,
-                        1,
-                        i2c_read_buffer,
-                        2))
-    {
-        return 0;
-    }
-
-    if (!I2C_WaitComplete())
-    {
-        return 0;
-    }
-
-    vcnl4200_error = I2C1_ErrorGet();
-
-    if (vcnl4200_error != I2C_ERROR_NONE)
-    {
-        return 0;
-    }
-
-    *value =
-        ((uint16_t)i2c_read_buffer[1] << 8) |
-        i2c_read_buffer[0];
-
-    return 1;
+    RC1STAbits.CREN = 1;
 }
 
-
-
-
-
-
-static _Bool MCP9808_ReadTemperatureRaw(uint16_t *value)
+void EUSART1_ReceiveDisable(void)
 {
-    i2c_write_buffer[0] = 0x05;
-
-    i2c_read_buffer[0] = 0;
-    i2c_read_buffer[1] = 0;
-
-    if (!I2C1_WriteRead(0x1C,
-                        i2c_write_buffer,
-                        1,
-                        i2c_read_buffer,
-                        2))
-    {
-        return 0;
-    }
-
-    if (!I2C_WaitComplete())
-    {
-        return 0;
-    }
-
-    mcp9808_error = I2C1_ErrorGet();
-
-    if (mcp9808_error != I2C_ERROR_NONE)
-    {
-        return 0;
-    }
-
-    *value =
-        ((uint16_t)i2c_read_buffer[0] << 8) |
-        i2c_read_buffer[1];
-
-    return 1;
+    RC1STAbits.CREN = 0;
 }
 
-
-
-
-
-
-static void MCP9808_ProcessTemperature(uint16_t raw)
+void EUSART1_SendBreakControlEnable(void)
 {
-    int16_t temperature_raw;
-    int16_t centi;
+    TX1STAbits.SENDB = 1;
+}
 
-    temperature_raw = raw & 0x1FFF;
+void EUSART1_SendBreakControlDisable(void)
+{
+    TX1STAbits.SENDB = 0;
+}
 
-    if (temperature_raw & 0x1000)
+void EUSART1_AutoBaudSet(_Bool enable)
+{
+    if(enable)
     {
-        temperature_raw -= 0x2000;
-    }
-
-    centi =
-        (int16_t)(((int32_t)temperature_raw * 25) / 4);
-
-    mcp9808_temperature_centi = centi;
-
-    mcp9808_temperature_integer =
-        centi / 100;
-
-    if (centi >= 0)
-    {
-        mcp9808_temperature_decimal =
-            (uint16_t)(centi % 100);
+        BAUD1CONbits.ABDEN = 1;
     }
     else
     {
-        mcp9808_temperature_decimal =
-            (uint16_t)((-centi) % 100);
+       BAUD1CONbits.ABDEN = 0;
     }
-
-    mcp9808_temperature =
-        mcp9808_temperature_integer;
 }
 
-
-
-
-
-
-static _Bool VCNL4200_Initialize(void)
+_Bool EUSART1_AutoBaudQuery(void)
 {
-    _Bool ok;
-
-
-
-
-    ok = VCNL4200_WriteRegister16(
-        0x00,
-        0x00,
-        0x00
-    );
-
-    if (!ok)
-    {
-        return 0;
-    }
-
-
-
-
-    ok = VCNL4200_WriteRegister16(
-        0x03,
-        0x00,
-        0x00
-    );
-
-    if (!ok)
-    {
-        return 0;
-    }
-
-    return 1;
-}
-# 318 "main.c"
-static _Bool VCNL4200_ReadSensors(void)
-{
-    uint16_t ambient;
-
-
-
-
-
-    if (!VCNL4200_ReadRegister16(
-            0x09,
-            &ambient))
-    {
-        return 0;
-    }
-
-    vcnl4200_ambient_light = ambient;
-
-
-
-
-
-
-
-    vcnl4200_lux_millilux =
-        (uint32_t)ambient * 24UL;
-
-
-
-
-
-    vcnl4200_lux_integer =
-        vcnl4200_lux_millilux / 1000UL;
-
-
-
-
-
-    vcnl4200_lux_decimal =
-        (uint16_t)(
-            (vcnl4200_lux_millilux % 1000UL) / 10UL
-        );
-
-    return 1;
+return (_Bool)(!BAUD1CONbits.ABDEN);
 }
 
-
-
-
-
-
-static _Bool VCNL4200_ReadID(void)
+_Bool EUSART1_IsAutoBaudDetectOverflow(void)
 {
-    uint16_t id;
-
-    if (!VCNL4200_ReadRegister16(
-            0x0E,
-            &id))
-    {
-        return 0;
-    }
-
-    vcnl4200_id_data[0] =
-        (uint8_t)(id & 0xFF);
-
-    vcnl4200_id_data[1] =
-        (uint8_t)((id >> 8) & 0xFF);
-
-    return 1;
+    return (_Bool)BAUD1CONbits.ABDOVF;
 }
 
-
-
-
-
-
-void main(void)
+void EUSART1_AutoBaudDetectOverflowReset(void)
 {
-    uint16_t mcp9808_raw_temperature;
+    BAUD1CONbits.ABDOVF = 0;
+}
 
+_Bool EUSART1_IsRxReady(void)
+{
+    return (_Bool)(PIR4bits.RC1IF);
+}
 
+_Bool EUSART1_IsTxReady(void)
+{
+    return (_Bool)(PIR4bits.TX1IF && TX1STAbits.TXEN);
+}
 
+_Bool EUSART1_IsTxDone(void)
+{
+    return TX1STAbits.TRMT;
+}
 
+size_t EUSART1_ErrorGet(void)
+{
+    return eusart1RxLastError.status;
+}
 
-    SYSTEM_Initialize();
-
-
-
-
-
-    I2C1_Initialize();
-
-
-
-
-
-    mcp9808_temperature = 0;
-    mcp9808_temperature_centi = 0;
-    mcp9808_temperature_integer = 0;
-    mcp9808_temperature_decimal = 0;
-
-    mcp9808_ok = 0;
-    mcp9808_error = I2C_ERROR_NONE;
-
-
-
-
-
-    vcnl4200_ambient_light = 0;
-    vcnl4200_lux_millilux = 0;
-    vcnl4200_lux_integer = 0;
-    vcnl4200_lux_decimal = 0;
-
-    vcnl4200_proximity = 0;
-
-    vcnl4200_id_data[0] = 0;
-    vcnl4200_id_data[1] = 0;
-
-    vcnl4200_ok = 0;
-    vcnl4200_error = I2C_ERROR_NONE;
-
-
-
-
-
-    INTCONbits.PEIE = 1;
-    INTCONbits.GIE = 1;
-
-
-
-
-
-    vcnl4200_ok =
-        VCNL4200_Initialize();
-
-
-
-
-
-    if (vcnl4200_ok)
+uint8_t EUSART1_Read(void)
+{
+    eusart1RxLastError.status = 0;
+    if(1 == RC1STAbits.OERR)
     {
-        if (!VCNL4200_ReadID())
+        eusart1RxLastError.oerr = 1;
+        if(((void*)0) != EUSART1_OverrunErrorHandler)
         {
-            vcnl4200_ok = 0;
+            EUSART1_OverrunErrorHandler();
         }
     }
-
-
-
-
-
-    while (1)
+    if(1 == RC1STAbits.FERR)
     {
-
-
-
-
-
-
-        if (MCP9808_ReadTemperatureRaw(
-                &mcp9808_raw_temperature))
+        eusart1RxLastError.ferr = 1;
+        if(((void*)0) != EUSART1_FramingErrorHandler)
         {
-            MCP9808_ProcessTemperature(
-                mcp9808_raw_temperature
-            );
-
-            mcp9808_ok = 1;
+            EUSART1_FramingErrorHandler();
         }
-        else
-        {
-            mcp9808_ok = 0;
-        }
-# 497 "main.c"
-        if (VCNL4200_ReadSensors())
-        {
-            vcnl4200_ok = 1;
-        }
-        else
-        {
-            vcnl4200_ok = 0;
-        }
+    }
+    return RC1REG;
+}
 
+void EUSART1_Write(uint8_t txData)
+{
+    TX1REG = txData;
+}
 
+static void EUSART1_DefaultFramingErrorCallback(void)
+{
 
+}
 
+static void EUSART1_DefaultOverrunErrorCallback(void)
+{
 
+    RC1STAbits.CREN = 0;
+    RC1STAbits.CREN = 1;
+}
 
-        Delay_Long();
+void EUSART1_FramingErrorCallbackRegister(void (* callbackHandler)(void))
+{
+    if(((void*)0) != callbackHandler)
+    {
+        EUSART1_FramingErrorHandler = callbackHandler;
+    }
+}
+
+void EUSART1_OverrunErrorCallbackRegister(void (* callbackHandler)(void))
+{
+    if(((void*)0) != callbackHandler)
+    {
+        EUSART1_OverrunErrorHandler = callbackHandler;
     }
 }

@@ -11464,7 +11464,7 @@ void CLOCK_Initialize(void);
 # 40 "./mcc_generated_files/system/config_bits.h" 2
 # 43 "./mcc_generated_files/system/system.h" 2
 # 1 "./mcc_generated_files/system/../system/pins.h" 1
-# 96 "./mcc_generated_files/system/../system/pins.h"
+# 134 "./mcc_generated_files/system/../system/pins.h"
 void PIN_MANAGER_Initialize (void);
 
 
@@ -11475,6 +11475,143 @@ void PIN_MANAGER_Initialize (void);
 
 void PIN_MANAGER_IOC(void);
 # 44 "./mcc_generated_files/system/system.h" 2
+# 1 "./mcc_generated_files/system/../uart/eusart1.h" 1
+# 39 "./mcc_generated_files/system/../uart/eusart1.h"
+# 1 "./mcc_generated_files/system/system.h" 1
+# 40 "./mcc_generated_files/system/../uart/eusart1.h" 2
+# 61 "./mcc_generated_files/system/../uart/eusart1.h"
+typedef union {
+    struct {
+        uint8_t perr : 1;
+        uint8_t ferr : 1;
+        uint8_t oerr : 1;
+        uint8_t reserved : 5;
+    };
+    size_t status;
+}eusart1_status_t;
+# 81 "./mcc_generated_files/system/../uart/eusart1.h"
+void EUSART1_Initialize(void);
+
+
+
+
+
+
+
+void EUSART1_Deinitialize(void);
+
+
+
+
+
+
+
+void EUSART1_Enable(void);
+
+
+
+
+
+
+
+void EUSART1_Disable(void);
+# 114 "./mcc_generated_files/system/../uart/eusart1.h"
+void EUSART1_TransmitEnable(void);
+
+
+
+
+
+
+
+void EUSART1_TransmitDisable(void);
+# 131 "./mcc_generated_files/system/../uart/eusart1.h"
+void EUSART1_ReceiveEnable(void);
+
+
+
+
+
+
+
+void EUSART1_ReceiveDisable(void);
+# 148 "./mcc_generated_files/system/../uart/eusart1.h"
+void EUSART1_SendBreakControlEnable(void);
+
+
+
+
+
+
+
+void EUSART1_SendBreakControlDisable(void);
+
+
+
+
+
+
+
+void EUSART1_AutoBaudSet(_Bool enable);
+
+
+
+
+
+
+
+_Bool EUSART1_AutoBaudQuery(void);
+
+
+
+
+
+
+
+_Bool EUSART1_IsAutoBaudDetectOverflow(void);
+
+
+
+
+
+
+
+void EUSART1_AutoBaudDetectOverflowReset(void);
+# 197 "./mcc_generated_files/system/../uart/eusart1.h"
+_Bool EUSART1_IsRxReady(void);
+# 206 "./mcc_generated_files/system/../uart/eusart1.h"
+_Bool EUSART1_IsTxReady(void);
+# 215 "./mcc_generated_files/system/../uart/eusart1.h"
+_Bool EUSART1_IsTxDone(void);
+
+
+
+
+
+
+
+size_t EUSART1_ErrorGet(void);
+# 233 "./mcc_generated_files/system/../uart/eusart1.h"
+uint8_t EUSART1_Read(void);
+# 243 "./mcc_generated_files/system/../uart/eusart1.h"
+void EUSART1_Write(uint8_t txData);
+
+
+
+
+
+
+
+void EUSART1_FramingErrorCallbackRegister(void (* callbackHandler)(void));
+
+
+
+
+
+
+
+void EUSART1_OverrunErrorCallbackRegister(void (* callbackHandler)(void));
+# 45 "./mcc_generated_files/system/system.h" 2
 # 1 "./mcc_generated_files/system/../system/interrupt.h" 1
 # 85 "./mcc_generated_files/system/../system/interrupt.h"
 void INTERRUPT_Initialize (void);
@@ -11488,7 +11625,7 @@ void INT_SetInterruptHandler(void (* InterruptHandler)(void));
 extern void (*INT_InterruptHandler)(void);
 # 175 "./mcc_generated_files/system/../system/interrupt.h"
 void INT_DefaultInterruptHandler(void);
-# 45 "./mcc_generated_files/system/system.h" 2
+# 46 "./mcc_generated_files/system/system.h" 2
 
 # 1 "./mcc_generated_files/system/../i2c_host/mssp1.h" 1
 # 42 "./mcc_generated_files/system/../i2c_host/mssp1.h"
@@ -11635,7 +11772,7 @@ void I2C1_CallbackRegister(void (*callback)(void));
 void I2C1_ISR(void);
 # 221 "./mcc_generated_files/system/../i2c_host/mssp1.h"
 void I2C1_ERROR_ISR(void);
-# 47 "./mcc_generated_files/system/system.h" 2
+# 48 "./mcc_generated_files/system/system.h" 2
 
 
 
@@ -11646,7 +11783,7 @@ void I2C1_ERROR_ISR(void);
 
 void SYSTEM_Initialize(void);
 # 6 "main.c" 2
-# 39 "main.c"
+# 40 "main.c"
 volatile int16_t mcp9808_temperature = 0;
 volatile int16_t mcp9808_temperature_centi = 0;
 volatile int16_t mcp9808_temperature_integer = 0;
@@ -11723,6 +11860,152 @@ static _Bool I2C_WaitComplete(void)
 
 
 
+static void UART_WriteChar(char c)
+{
+    while (!EUSART1_IsTxReady())
+    {
+        ;
+    }
+
+    EUSART1_Write((uint8_t)c);
+}
+
+
+
+
+
+
+static void UART_WriteString(const char *text)
+{
+    while (*text != '\0')
+    {
+        UART_WriteChar(*text);
+        text++;
+    }
+}
+
+
+
+
+
+
+static void UART_WriteUInt16(uint16_t value)
+{
+    char buffer[6];
+    uint8_t i = 0;
+
+    if (value == 0)
+    {
+        UART_WriteChar('0');
+        return;
+    }
+
+    while (value > 0)
+    {
+        buffer[i] = (char)('0' + (value % 10));
+        value /= 10;
+        i++;
+    }
+
+    while (i > 0)
+    {
+        i--;
+        UART_WriteChar(buffer[i]);
+    }
+}
+
+
+
+
+
+
+static void UART_WriteUInt32(uint32_t value)
+{
+    char buffer[11];
+    uint8_t i = 0;
+
+    if (value == 0)
+    {
+        UART_WriteChar('0');
+        return;
+    }
+
+    while (value > 0)
+    {
+        buffer[i] = (char)('0' + (value % 10UL));
+        value /= 10UL;
+        i++;
+    }
+
+    while (i > 0)
+    {
+        i--;
+        UART_WriteChar(buffer[i]);
+    }
+}
+
+
+
+
+
+
+static void UART_WriteTemperature(void)
+{
+    UART_WriteString("Temperatura: ");
+
+    if (mcp9808_temperature_centi < 0)
+    {
+        UART_WriteChar('-');
+    }
+
+    UART_WriteUInt16(
+        (uint16_t)(
+            mcp9808_temperature_integer < 0
+            ? -mcp9808_temperature_integer
+            : mcp9808_temperature_integer
+        )
+    );
+
+    UART_WriteChar('.');
+
+    if (mcp9808_temperature_decimal < 10)
+    {
+        UART_WriteChar('0');
+    }
+
+    UART_WriteUInt16(mcp9808_temperature_decimal);
+
+    UART_WriteString(" C\r\n");
+}
+
+
+
+
+
+
+static void UART_WriteLight(void)
+{
+    UART_WriteString("Luz: ");
+
+    UART_WriteUInt32(vcnl4200_lux_integer);
+
+    UART_WriteChar('.');
+
+    if (vcnl4200_lux_decimal < 10)
+    {
+        UART_WriteChar('0');
+    }
+
+    UART_WriteUInt16(vcnl4200_lux_decimal);
+
+    UART_WriteString(" lux\r\n");
+}
+
+
+
+
+
+
 static _Bool VCNL4200_WriteRegister16(uint8_t reg,
                                      uint8_t low,
                                      uint8_t high)
@@ -11787,6 +12070,11 @@ static _Bool VCNL4200_ReadRegister16(uint8_t reg,
         return 0;
     }
 
+
+
+
+
+
     *value =
         ((uint16_t)i2c_read_buffer[1] << 8) |
         i2c_read_buffer[0];
@@ -11826,7 +12114,7 @@ static _Bool MCP9808_ReadTemperatureRaw(uint16_t *value)
     {
         return 0;
     }
-
+# 378 "main.c"
     *value =
         ((uint16_t)i2c_read_buffer[0] << 8) |
         i2c_read_buffer[1];
@@ -11844,20 +12132,36 @@ static void MCP9808_ProcessTemperature(uint16_t raw)
     int16_t temperature_raw;
     int16_t centi;
 
+
+
+
+
     temperature_raw = raw & 0x1FFF;
+
+
+
+
 
     if (temperature_raw & 0x1000)
     {
         temperature_raw -= 0x2000;
     }
-
+# 419 "main.c"
     centi =
         (int16_t)(((int32_t)temperature_raw * 25) / 4);
 
     mcp9808_temperature_centi = centi;
 
+
+
+
+
     mcp9808_temperature_integer =
         centi / 100;
+
+
+
+
 
     if (centi >= 0)
     {
@@ -11869,6 +12173,10 @@ static void MCP9808_ProcessTemperature(uint16_t raw)
         mcp9808_temperature_decimal =
             (uint16_t)((-centi) % 100);
     }
+
+
+
+
 
     mcp9808_temperature =
         mcp9808_temperature_integer;
@@ -11886,6 +12194,9 @@ static _Bool VCNL4200_Initialize(void)
 
 
 
+
+
+
     ok = VCNL4200_WriteRegister16(
         0x00,
         0x00,
@@ -11896,6 +12207,7 @@ static _Bool VCNL4200_Initialize(void)
     {
         return 0;
     }
+
 
 
 
@@ -11913,7 +12225,12 @@ static _Bool VCNL4200_Initialize(void)
 
     return 1;
 }
-# 318 "main.c"
+
+
+
+
+
+
 static _Bool VCNL4200_ReadSensors(void)
 {
     uint16_t ambient;
@@ -11930,13 +12247,7 @@ static _Bool VCNL4200_ReadSensors(void)
     }
 
     vcnl4200_ambient_light = ambient;
-
-
-
-
-
-
-
+# 528 "main.c"
     vcnl4200_lux_millilux =
         (uint32_t)ambient * 24UL;
 
@@ -11997,18 +12308,14 @@ void main(void)
 
 
 
+
+
     SYSTEM_Initialize();
-
-
-
-
-
+# 599 "main.c"
     I2C1_Initialize();
-
-
-
-
-
+# 608 "main.c"
+    EUSART1_Initialize();
+# 617 "main.c"
     mcp9808_temperature = 0;
     mcp9808_temperature_centi = 0;
     mcp9808_temperature_integer = 0;
@@ -12016,12 +12323,9 @@ void main(void)
 
     mcp9808_ok = 0;
     mcp9808_error = I2C_ERROR_NONE;
-
-
-
-
-
+# 632 "main.c"
     vcnl4200_ambient_light = 0;
+
     vcnl4200_lux_millilux = 0;
     vcnl4200_lux_integer = 0;
     vcnl4200_lux_decimal = 0;
@@ -12033,25 +12337,33 @@ void main(void)
 
     vcnl4200_ok = 0;
     vcnl4200_error = I2C_ERROR_NONE;
-
-
-
-
-
+# 653 "main.c"
     INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
+# 663 "main.c"
+    UART_WriteString(
+        "\r\n================================\r\n"
+    );
 
+    UART_WriteString(
+        "Estacion Monitoreo Ambiental\r\n"
+    );
 
+    UART_WriteString(
+        "PIC16F13145\r\n"
+    );
 
+    UART_WriteString(
+        "UART: 9600 8N1\r\n"
+    );
 
-
+    UART_WriteString(
+        "================================\r\n\r\n"
+    );
+# 690 "main.c"
     vcnl4200_ok =
         VCNL4200_Initialize();
-
-
-
-
-
+# 700 "main.c"
     if (vcnl4200_ok)
     {
         if (!VCNL4200_ReadID())
@@ -12059,13 +12371,32 @@ void main(void)
             vcnl4200_ok = 0;
         }
     }
+# 715 "main.c"
+    if (vcnl4200_ok)
+    {
+        UART_WriteString(
+            "VCNL4200: OK\r\n"
+        );
+
+        UART_WriteString(
+            "ID LOW: 0x"
+        );
 
 
 
 
 
+    }
+    else
+    {
+        UART_WriteString(
+            "VCNL4200: ERROR\r\n"
+        );
+    }
+# 744 "main.c"
     while (1)
     {
+
 
 
 
@@ -12085,7 +12416,7 @@ void main(void)
         {
             mcp9808_ok = 0;
         }
-# 497 "main.c"
+# 774 "main.c"
         if (VCNL4200_ReadSensors())
         {
             vcnl4200_ok = 1;
@@ -12094,6 +12425,38 @@ void main(void)
         {
             vcnl4200_ok = 0;
         }
+# 790 "main.c"
+        if (mcp9808_ok)
+        {
+            UART_WriteTemperature();
+        }
+        else
+        {
+            UART_WriteString(
+                "Temperatura: ERROR\r\n"
+            );
+        }
+
+
+        if (vcnl4200_ok)
+        {
+            UART_WriteLight();
+        }
+        else
+        {
+            UART_WriteString(
+                "Luz: ERROR\r\n"
+            );
+        }
+
+
+
+
+
+
+        UART_WriteString(
+            "-----------------------------\r\n"
+        );
 
 
 

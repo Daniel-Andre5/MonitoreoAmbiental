@@ -11478,7 +11478,7 @@ void CLOCK_Initialize(void);
 # 40 "mcc_generated_files/system/src/../../system/config_bits.h" 2
 # 43 "mcc_generated_files/system/src/../../system/system.h" 2
 # 1 "mcc_generated_files/system/src/../../system/../system/pins.h" 1
-# 96 "mcc_generated_files/system/src/../../system/../system/pins.h"
+# 134 "mcc_generated_files/system/src/../../system/../system/pins.h"
 void PIN_MANAGER_Initialize (void);
 
 
@@ -11489,6 +11489,143 @@ void PIN_MANAGER_Initialize (void);
 
 void PIN_MANAGER_IOC(void);
 # 44 "mcc_generated_files/system/src/../../system/system.h" 2
+# 1 "mcc_generated_files/system/src/../../system/../uart/eusart1.h" 1
+# 39 "mcc_generated_files/system/src/../../system/../uart/eusart1.h"
+# 1 "mcc_generated_files/system/src/../../system/system.h" 1
+# 40 "mcc_generated_files/system/src/../../system/../uart/eusart1.h" 2
+# 61 "mcc_generated_files/system/src/../../system/../uart/eusart1.h"
+typedef union {
+    struct {
+        uint8_t perr : 1;
+        uint8_t ferr : 1;
+        uint8_t oerr : 1;
+        uint8_t reserved : 5;
+    };
+    size_t status;
+}eusart1_status_t;
+# 81 "mcc_generated_files/system/src/../../system/../uart/eusart1.h"
+void EUSART1_Initialize(void);
+
+
+
+
+
+
+
+void EUSART1_Deinitialize(void);
+
+
+
+
+
+
+
+void EUSART1_Enable(void);
+
+
+
+
+
+
+
+void EUSART1_Disable(void);
+# 114 "mcc_generated_files/system/src/../../system/../uart/eusart1.h"
+void EUSART1_TransmitEnable(void);
+
+
+
+
+
+
+
+void EUSART1_TransmitDisable(void);
+# 131 "mcc_generated_files/system/src/../../system/../uart/eusart1.h"
+void EUSART1_ReceiveEnable(void);
+
+
+
+
+
+
+
+void EUSART1_ReceiveDisable(void);
+# 148 "mcc_generated_files/system/src/../../system/../uart/eusart1.h"
+void EUSART1_SendBreakControlEnable(void);
+
+
+
+
+
+
+
+void EUSART1_SendBreakControlDisable(void);
+
+
+
+
+
+
+
+void EUSART1_AutoBaudSet(_Bool enable);
+
+
+
+
+
+
+
+_Bool EUSART1_AutoBaudQuery(void);
+
+
+
+
+
+
+
+_Bool EUSART1_IsAutoBaudDetectOverflow(void);
+
+
+
+
+
+
+
+void EUSART1_AutoBaudDetectOverflowReset(void);
+# 197 "mcc_generated_files/system/src/../../system/../uart/eusart1.h"
+_Bool EUSART1_IsRxReady(void);
+# 206 "mcc_generated_files/system/src/../../system/../uart/eusart1.h"
+_Bool EUSART1_IsTxReady(void);
+# 215 "mcc_generated_files/system/src/../../system/../uart/eusart1.h"
+_Bool EUSART1_IsTxDone(void);
+
+
+
+
+
+
+
+size_t EUSART1_ErrorGet(void);
+# 233 "mcc_generated_files/system/src/../../system/../uart/eusart1.h"
+uint8_t EUSART1_Read(void);
+# 243 "mcc_generated_files/system/src/../../system/../uart/eusart1.h"
+void EUSART1_Write(uint8_t txData);
+
+
+
+
+
+
+
+void EUSART1_FramingErrorCallbackRegister(void (* callbackHandler)(void));
+
+
+
+
+
+
+
+void EUSART1_OverrunErrorCallbackRegister(void (* callbackHandler)(void));
+# 45 "mcc_generated_files/system/src/../../system/system.h" 2
 
 
 # 1 "mcc_generated_files/system/src/../../system/../i2c_host/mssp1.h" 1
@@ -11636,7 +11773,7 @@ void I2C1_CallbackRegister(void (*callback)(void));
 void I2C1_ISR(void);
 # 221 "mcc_generated_files/system/src/../../system/../i2c_host/mssp1.h"
 void I2C1_ERROR_ISR(void);
-# 47 "mcc_generated_files/system/src/../../system/system.h" 2
+# 48 "mcc_generated_files/system/src/../../system/system.h" 2
 
 
 

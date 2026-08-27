@@ -5,6 +5,8 @@ mcc_generated_files/system/src/../../system/system.h  \
 mcc_generated_files/system/src/../../system/config_bits.h  \
 mcc_generated_files/system/src/../../system/../system/clock.h  \
 mcc_generated_files/system/src/../../system/../system/pins.h  \
+mcc_generated_files/system/src/../../system/../uart/eusart1.h  \
+mcc_generated_files/system/src/../../system/../uart/../system/system.h  \
 mcc_generated_files/system/src/../../system/../system/interrupt.h  \
 mcc_generated_files/system/src/../../system/../i2c_host/mssp1.h  \
 mcc_generated_files/system/src/../../system/../i2c_host/i2c_host_event_types.h  \
