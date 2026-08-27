@@ -22,7 +22,7 @@ I2C_STATE_ERROR 6
 I2C_STATE_STOP 7
 I2C_STATE_RESET 8
 ]
-"46 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
+"74 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
 [e E6559 . `uc
 I2C_ERROR_NONE 0
 I2C_ERROR_ADDR_NACK 1
@@ -49,37 +49,39 @@ I2C_ERROR_BUS_COLLISION 3
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "4 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\Umul8_16.c
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
-"79 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
-[v _Delay_Long Delay_Long `(v  1 s 1 Delay_Long ]
-"94
-[v _I2C_WaitComplete I2C_WaitComplete `(a  1 s 1 I2C_WaitComplete ]
-"116
+"110 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
 [v _UART_WriteChar UART_WriteChar `(v  1 s 1 UART_WriteChar ]
-"131
+"126
 [v _UART_WriteString UART_WriteString `(v  1 s 1 UART_WriteString ]
-"145
+"147
+[v _UART_ClearScreen UART_ClearScreen `(v  1 s 1 UART_ClearScreen ]
+"164
 [v _UART_WriteUInt16 UART_WriteUInt16 `(v  1 s 1 UART_WriteUInt16 ]
-"175
+"195
 [v _UART_WriteUInt32 UART_WriteUInt32 `(v  1 s 1 UART_WriteUInt32 ]
-"205
+"226
 [v _UART_WriteTemperature UART_WriteTemperature `(v  1 s 1 UART_WriteTemperature ]
-"239
+"261
 [v _UART_WriteLight UART_WriteLight `(v  1 s 1 UART_WriteLight ]
-"262
+"285
+[v _I2C_WaitComplete I2C_WaitComplete `(a  1 s 1 I2C_WaitComplete ]
+"308
 [v _VCNL4200_WriteRegister16 VCNL4200_WriteRegister16 `(a  1 s 1 VCNL4200_WriteRegister16 ]
-"297
+"345
 [v _VCNL4200_ReadRegister16 VCNL4200_ReadRegister16 `(a  1 s 1 VCNL4200_ReadRegister16 ]
-"343
+"394
 [v _MCP9808_ReadTemperatureRaw MCP9808_ReadTemperatureRaw `(a  1 s 1 MCP9808_ReadTemperatureRaw ]
-"390
+"443
 [v _MCP9808_ProcessTemperature MCP9808_ProcessTemperature `(v  1 s 1 MCP9808_ProcessTemperature ]
-"459
+"513
 [v _VCNL4200_Initialize VCNL4200_Initialize `(a  1 s 1 VCNL4200_Initialize ]
-"503
+"556
 [v _VCNL4200_ReadSensors VCNL4200_ReadSensors `(a  1 s 1 VCNL4200_ReadSensors ]
-"555
+"611
 [v _VCNL4200_ReadID VCNL4200_ReadID `(a  1 s 1 VCNL4200_ReadID ]
-"580
+"646
+[v _Delay_3_Seconds Delay_3_Seconds `(v  1 s 1 Delay_3_Seconds ]
+"662
 [v _main main `(v  1 e 1 0 ]
 "84 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\mcc_generated_files/i2c_host/src/mssp1.c
 [v _I2C1_Initialize I2C1_Initialize `(v  1 e 1 0 ]
@@ -187,7 +189,7 @@ I2C_ERROR_BUS_COLLISION 3
 "830
 [u S685 . 1 `S680 1 . 1 0 ]
 [v _PIR0bits PIR0bits `VES685  1 e 1 @140 ]
-[s S1040 . 1 `uc 1 . 1 0 :2:0 
+[s S1057 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 CLC1IF 1 0 :1:2 
 `uc 1 CLC2IF 1 0 :1:3 
 `uc 1 CLC3IF 1 0 :1:4 
@@ -196,8 +198,8 @@ I2C_ERROR_BUS_COLLISION 3
 `uc 1 RC1IF 1 0 :1:7 
 ]
 "964
-[u S1048 . 1 `S1040 1 . 1 0 ]
-[v _PIR4bits PIR4bits `VES1048  1 e 1 @144 ]
+[u S1065 . 1 `S1057 1 . 1 0 ]
+[v _PIR4bits PIR4bits `VES1065  1 e 1 @144 ]
 [s S349 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 SSP1IF 1 0 :1:2 
 `uc 1 BCL1IF 1 0 :1:3 
@@ -238,7 +240,7 @@ I2C_ERROR_BUS_COLLISION 3
 [v _SP1BRGH SP1BRGH `VEuc  1 e 1 @1807 ]
 "6806
 [v _RC1STA RC1STA `VEuc  1 e 1 @1808 ]
-[s S977 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S994 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -248,11 +250,11 @@ I2C_ERROR_BUS_COLLISION 3
 `uc 1 SPEN 1 0 :1:7 
 ]
 "6823
-[u S986 . 1 `S977 1 . 1 0 ]
-[v _RC1STAbits RC1STAbits `VES986  1 e 1 @1808 ]
+[u S1003 . 1 `S994 1 . 1 0 ]
+[v _RC1STAbits RC1STAbits `VES1003  1 e 1 @1808 ]
 "6868
 [v _TX1STA TX1STA `VEuc  1 e 1 @1809 ]
-[s S998 . 1 `uc 1 TX9D 1 0 :1:0 
+[s S1015 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -262,11 +264,11 @@ I2C_ERROR_BUS_COLLISION 3
 `uc 1 CSRC 1 0 :1:7 
 ]
 "6885
-[u S1007 . 1 `S998 1 . 1 0 ]
-[v _TX1STAbits TX1STAbits `VES1007  1 e 1 @1809 ]
+[u S1024 . 1 `S1015 1 . 1 0 ]
+[v _TX1STAbits TX1STAbits `VES1024  1 e 1 @1809 ]
 "6930
 [v _BAUD1CON BAUD1CON `VEuc  1 e 1 @1810 ]
-[s S1019 . 1 `uc 1 ABDEN 1 0 :1:0 
+[s S1036 . 1 `uc 1 ABDEN 1 0 :1:0 
 `uc 1 WUE 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 BRG16 1 0 :1:3 
@@ -276,8 +278,8 @@ I2C_ERROR_BUS_COLLISION 3
 `uc 1 ABDOVF 1 0 :1:7 
 ]
 "6947
-[u S1028 . 1 `S1019 1 . 1 0 ]
-[v _BAUD1CONbits BAUD1CONbits `VES1028  1 e 1 @1810 ]
+[u S1045 . 1 `S1036 1 . 1 0 ]
+[v _BAUD1CONbits BAUD1CONbits `VES1045  1 e 1 @1810 ]
 "6982
 [v _SSP1BUF SSP1BUF `VEuc  1 e 1 @1932 ]
 "7002
@@ -501,37 +503,37 @@ I2C_ERROR_BUS_COLLISION 3
 [v _IOCCN IOCCN `VEuc  1 e 1 @7846 ]
 "17429
 [v _IOCCF IOCCF `VEuc  1 e 1 @7847 ]
-"40 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
+"68 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
 [v _mcp9808_temperature mcp9808_temperature `VEs  1 e 2 0 ]
-"41
+"69
 [v _mcp9808_temperature_centi mcp9808_temperature_centi `VEs  1 e 2 0 ]
-"42
+"70
 [v _mcp9808_temperature_integer mcp9808_temperature_integer `VEs  1 e 2 0 ]
-"43
-[v _mcp9808_temperature_decimal mcp9808_temperature_decimal `VEus  1 e 2 0 ]
-"45
-[v _mcp9808_ok mcp9808_ok `VEa  1 e 1 0 ]
-"46
-[v _mcp9808_error mcp9808_error `VEE6559  1 e 1 0 ]
-"53
-[v _vcnl4200_ambient_light vcnl4200_ambient_light `VEus  1 e 2 0 ]
-"55
-[v _vcnl4200_lux_millilux vcnl4200_lux_millilux `VEul  1 e 4 0 ]
-"56
-[v _vcnl4200_lux_integer vcnl4200_lux_integer `VEul  1 e 4 0 ]
-"57
-[v _vcnl4200_lux_decimal vcnl4200_lux_decimal `VEus  1 e 2 0 ]
-"59
-[v _vcnl4200_proximity vcnl4200_proximity `VEus  1 e 2 0 ]
-"61
-[v _vcnl4200_id_data vcnl4200_id_data `VE[2]uc  1 e 2 0 ]
-"63
-[v _vcnl4200_ok vcnl4200_ok `VEa  1 e 1 0 ]
-"64
-[v _vcnl4200_error vcnl4200_error `VEE6559  1 e 1 0 ]
 "71
+[v _mcp9808_temperature_decimal mcp9808_temperature_decimal `VEus  1 e 2 0 ]
+"73
+[v _mcp9808_ok mcp9808_ok `VEa  1 e 1 0 ]
+"74
+[v _mcp9808_error mcp9808_error `VEE6559  1 e 1 0 ]
+"82
+[v _vcnl4200_ambient_light vcnl4200_ambient_light `VEus  1 e 2 0 ]
+"84
+[v _vcnl4200_lux_millilux vcnl4200_lux_millilux `VEul  1 e 4 0 ]
+"85
+[v _vcnl4200_lux_integer vcnl4200_lux_integer `VEul  1 e 4 0 ]
+"86
+[v _vcnl4200_lux_decimal vcnl4200_lux_decimal `VEus  1 e 2 0 ]
+"88
+[v _vcnl4200_proximity vcnl4200_proximity `VEus  1 e 2 0 ]
+"90
+[v _vcnl4200_id_data vcnl4200_id_data `VE[2]uc  1 e 2 0 ]
+"92
+[v _vcnl4200_ok vcnl4200_ok `VEa  1 e 1 0 ]
+"93
+[v _vcnl4200_error vcnl4200_error `VEE6559  1 e 1 0 ]
+"101
 [v _i2c_write_buffer i2c_write_buffer `[3]uc  1 s 3 i2c_write_buffer ]
-"72
+"102
 [v _i2c_read_buffer i2c_read_buffer `[2]uc  1 s 2 i2c_read_buffer ]
 "68 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\mcc_generated_files/i2c_host/src/mssp1.c
 [v _I2C1_Callback I2C1_Callback `*.37(v  1 s 2 I2C1_Callback ]
@@ -542,101 +544,101 @@ I2C_ERROR_BUS_COLLISION 3
 [v _i2c1_eventTable i2c1_eventTable `DC[9]*.37(E6516  1 s 18 i2c1_eventTable ]
 "38 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\mcc_generated_files/system/src/interrupt.c
 [v _INT_InterruptHandler INT_InterruptHandler `*.37(v  1 e 2 0 ]
-[s S940 . 1 `uc 1 perr 1 0 :1:0 
+[s S957 . 1 `uc 1 perr 1 0 :1:0 
 `uc 1 ferr 1 0 :1:1 
 `uc 1 oerr 1 0 :1:2 
 `uc 1 reserved 1 0 :5:3 
 ]
 "51 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\mcc_generated_files/uart/src/eusart1.c
-[u S945 . 2 `S940 1 . 1 0 `ui 1 status 2 0 ]
-[v _eusart1RxLastError eusart1RxLastError `VES945  1 s 2 eusart1RxLastError ]
+[u S962 . 2 `S957 1 . 1 0 `ui 1 status 2 0 ]
+[v _eusart1RxLastError eusart1RxLastError `VES962  1 s 2 eusart1RxLastError ]
 "57
 [v _EUSART1_FramingErrorHandler EUSART1_FramingErrorHandler `*.37(v  1 s 2 EUSART1_FramingErrorHandler ]
 "58
 [v _EUSART1_OverrunErrorHandler EUSART1_OverrunErrorHandler `*.37(v  1 s 2 EUSART1_OverrunErrorHandler ]
-"580 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
+"662 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"582
-[v main@mcp9808_raw_temperature mcp9808_raw_temperature `us  1 a 2 0 ]
-"829
+"664
+[v main@mcp9808_raw_temperature mcp9808_raw_temperature `us  1 a 2 37 ]
+"938
 } 0
-"503
+"556
 [v _VCNL4200_ReadSensors VCNL4200_ReadSensors `(a  1 s 1 VCNL4200_ReadSensors ]
 {
-"505
-[v VCNL4200_ReadSensors@ambient ambient `us  1 a 2 16 ]
-"548
+"558
+[v VCNL4200_ReadSensors@ambient ambient `us  1 a 2 21 ]
+"603
 } 0
-"555
+"611
 [v _VCNL4200_ReadID VCNL4200_ReadID `(a  1 s 1 VCNL4200_ReadID ]
 {
-"557
+"613
 [v VCNL4200_ReadID@id id `us  1 a 2 9 ]
-"573
+"629
 } 0
-"297
+"345
 [v _VCNL4200_ReadRegister16 VCNL4200_ReadRegister16 `(a  1 s 1 VCNL4200_ReadRegister16 ]
 {
 [v VCNL4200_ReadRegister16@reg reg `uc  1 p 1 wreg ]
 [v VCNL4200_ReadRegister16@reg reg `uc  1 p 1 wreg ]
-"298
+"346
 [v VCNL4200_ReadRegister16@value value `*.4us  1 p 1 8 ]
-"300
+"348
 [v VCNL4200_ReadRegister16@reg reg `uc  1 p 1 7 ]
-"336
+"386
 } 1
-"459
+"513
 [v _VCNL4200_Initialize VCNL4200_Initialize `(a  1 s 1 VCNL4200_Initialize ]
 {
-"461
-[v VCNL4200_Initialize@ok ok `a  1 a 1 3 ]
-"496
+"515
+[v VCNL4200_Initialize@ok ok `a  1 a 1 4 ]
+"548
 } 0
-"262
+"308
 [v _VCNL4200_WriteRegister16 VCNL4200_WriteRegister16 `(a  1 s 1 VCNL4200_WriteRegister16 ]
 {
 [v VCNL4200_WriteRegister16@reg reg `uc  1 p 1 wreg ]
 [v VCNL4200_WriteRegister16@reg reg `uc  1 p 1 wreg ]
-"263
-[v VCNL4200_WriteRegister16@low low `uc  1 p 1 0 ]
-"264
-[v VCNL4200_WriteRegister16@high high `uc  1 p 1 1 ]
-"266
-[v VCNL4200_WriteRegister16@reg reg `uc  1 p 1 2 ]
-"290
+"309
+[v VCNL4200_WriteRegister16@low low `uc  1 p 1 1 ]
+"310
+[v VCNL4200_WriteRegister16@high high `uc  1 p 1 2 ]
+"312
+[v VCNL4200_WriteRegister16@reg reg `uc  1 p 1 3 ]
+"337
 } 1
 "112 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\mcc_generated_files/i2c_host/src/mssp1.c
 [v _I2C1_Write I2C1_Write `(a  1 e 1 0 ]
 {
 "114
-[v I2C1_Write@retStatus retStatus `a  1 a 1 8 ]
+[v I2C1_Write@retStatus retStatus `a  1 a 1 0 ]
 "112
 [v I2C1_Write@address address `us  1 p 2 3 ]
 [v I2C1_Write@data data `*.4uc  1 p 1 5 ]
 [v I2C1_Write@dataLength dataLength `ui  1 p 2 6 ]
 "129
 } 0
-"205 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
+"226 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
 [v _UART_WriteTemperature UART_WriteTemperature `(v  1 s 1 UART_WriteTemperature ]
 {
-"232
+"253
 } 0
-"239
+"261
 [v _UART_WriteLight UART_WriteLight `(v  1 s 1 UART_WriteLight ]
 {
-"255
+"277
 } 0
-"175
+"195
 [v _UART_WriteUInt32 UART_WriteUInt32 `(v  1 s 1 UART_WriteUInt32 ]
 {
-"177
-[v UART_WriteUInt32@buffer buffer `[11]uc  1 a 11 20 ]
-"178
-[v UART_WriteUInt32@i i `uc  1 a 1 31 ]
-"175
-[v UART_WriteUInt32@value value `ul  1 p 4 16 ]
+"197
+[v UART_WriteUInt32@buffer buffer `[11]uc  1 a 11 25 ]
 "198
+[v UART_WriteUInt32@i i `uc  1 a 1 36 ]
+"195
+[v UART_WriteUInt32@value value `ul  1 p 4 21 ]
+"218
 } 0
 "5 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\llmod.c
 [v ___llmod __llmod `(ul  1 e 4 0 ]
@@ -652,24 +654,24 @@ I2C_ERROR_BUS_COLLISION 3
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
 {
 "10
-[v ___lldiv@quotient quotient `ul  1 a 4 4 ]
+[v ___lldiv@quotient quotient `ul  1 a 4 17 ]
 "11
-[v ___lldiv@counter counter `uc  1 a 1 8 ]
+[v ___lldiv@counter counter `uc  1 a 1 16 ]
 "5
 [v ___lldiv@divisor divisor `ul  1 p 4 8 ]
 [v ___lldiv@dividend dividend `ul  1 p 4 12 ]
 "30
 } 0
-"145 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
+"164 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
 [v _UART_WriteUInt16 UART_WriteUInt16 `(v  1 s 1 UART_WriteUInt16 ]
 {
-"147
+"166
 [v UART_WriteUInt16@buffer buffer `[6]uc  1 a 6 5 ]
-"148
+"167
 [v UART_WriteUInt16@i i `uc  1 a 1 11 ]
-"145
+"164
 [v UART_WriteUInt16@value value `us  1 p 2 3 ]
-"168
+"187
 } 0
 "5 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\lwmod.c
 [v ___lwmod __lwmod `(ui  1 e 2 0 ]
@@ -693,19 +695,24 @@ I2C_ERROR_BUS_COLLISION 3
 [v ___lwdiv@dividend dividend `ui  1 p 2 5 ]
 "30
 } 0
-"131 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
+"147 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
+[v _UART_ClearScreen UART_ClearScreen `(v  1 s 1 UART_ClearScreen ]
+{
+"156
+} 0
+"126
 [v _UART_WriteString UART_WriteString `(v  1 s 1 UART_WriteString ]
 {
 [v UART_WriteString@text text `*.25DCuc  1 p 2 5 ]
-"138
+"133
 } 0
-"116
+"110
 [v _UART_WriteChar UART_WriteChar `(v  1 s 1 UART_WriteChar ]
 {
 [v UART_WriteChar@c c `uc  1 p 1 wreg ]
 [v UART_WriteChar@c c `uc  1 p 1 wreg ]
 [v UART_WriteChar@c c `uc  1 p 1 4 ]
-"124
+"118
 } 1
 "209 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\mcc_generated_files/uart/src/eusart1.c
 [v _EUSART1_Write EUSART1_Write `(v  1 e 1 0 ]
@@ -769,18 +776,18 @@ I2C_ERROR_BUS_COLLISION 3
 {
 "54
 } 0
-"343 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
+"394 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
 [v _MCP9808_ReadTemperatureRaw MCP9808_ReadTemperatureRaw `(a  1 s 1 MCP9808_ReadTemperatureRaw ]
 {
 [v MCP9808_ReadTemperatureRaw@value value `*.4us  1 p 1 8 ]
-"383
+"435
 } 0
-"94
+"285
 [v _I2C_WaitComplete I2C_WaitComplete `(a  1 s 1 I2C_WaitComplete ]
 {
-"96
+"287
 [v I2C_WaitComplete@timeout timeout `VEul  1 a 4 3 ]
-"109
+"300
 } 0
 "150 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\mcc_generated_files/i2c_host/src/mssp1.c
 [v _I2C1_WriteRead I2C1_WriteRead `(a  1 e 1 0 ]
@@ -812,16 +819,16 @@ I2C_ERROR_BUS_COLLISION 3
 [v I2C1_ErrorGet@retErrorState retErrorState `E6507  1 a 1 3 ]
 "174
 } 0
-"390 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
+"443 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
 [v _MCP9808_ProcessTemperature MCP9808_ProcessTemperature `(v  1 s 1 MCP9808_ProcessTemperature ]
 {
-"393
+"446
 [v MCP9808_ProcessTemperature@centi centi `s  1 a 2 28 ]
-"392
+"445
 [v MCP9808_ProcessTemperature@temperature_raw temperature_raw `s  1 a 2 26 ]
-"390
+"443
 [v MCP9808_ProcessTemperature@raw raw `us  1 p 2 22 ]
-"452
+"505
 } 0
 "15 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
@@ -837,8 +844,8 @@ I2C_ERROR_BUS_COLLISION 3
 [v ___awmod __awmod `(i  1 e 2 0 ]
 {
 "10
-[v ___awmod@sign sign `uc  1 a 1 8 ]
-[v ___awmod@counter counter `uc  1 a 1 7 ]
+[v ___awmod@sign sign `uc  1 a 1 1 ]
+[v ___awmod@counter counter `uc  1 a 1 0 ]
 "5
 [v ___awmod@divisor divisor `i  1 p 2 3 ]
 [v ___awmod@dividend dividend `i  1 p 2 5 ]
@@ -870,12 +877,12 @@ I2C_ERROR_BUS_COLLISION 3
 [v ___aldiv@dividend dividend `l  1 p 4 12 ]
 "41
 } 0
-"79 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
-[v _Delay_Long Delay_Long `(v  1 s 1 Delay_Long ]
+"646 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\main.c
+[v _Delay_3_Seconds Delay_3_Seconds `(v  1 s 1 Delay_3_Seconds ]
 {
-"81
-[v Delay_Long@delay delay `VEul  1 a 4 3 ]
-"87
+"648
+[v Delay_3_Seconds@i i `uc  1 a 1 5 ]
+"654
 } 0
 "59 C:\Users\Usuario\MPLABXProjects\EstacionMonitoreoAmbiental.X\mcc_generated_files/system/src/interrupt.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]

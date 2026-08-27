@@ -1,18 +1,18 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"46 main.c
-[; ;main.c: 46: volatile i2c_host_error_t mcp9808_error = I2C_ERROR_NONE;
+"74 main.c
+[; ;main.c: 74: volatile i2c_host_error_t mcp9808_error = I2C_ERROR_NONE;
 [c E6559 0 1 2 3 .. ]
 [n E6559 . I2C_ERROR_NONE I2C_ERROR_ADDR_NACK I2C_ERROR_DATA_NACK I2C_ERROR_BUS_COLLISION  ]
-"193 ./mcc_generated_files/system/../i2c_host/mssp1.h
-[; ;./mcc_generated_files/system/../i2c_host/mssp1.h: 193: _Bool I2C1_IsBusy(void);
-[v _I2C1_IsBusy `(a ~T0 @X0 0 ef ]
 "206 ./mcc_generated_files/system/../uart/eusart1.h
 [; ;./mcc_generated_files/system/../uart/eusart1.h: 206: _Bool EUSART1_IsTxReady(void);
 [v _EUSART1_IsTxReady `(a ~T0 @X0 0 ef ]
 "243
 [; ;./mcc_generated_files/system/../uart/eusart1.h: 243: void EUSART1_Write(uint8_t txData);
 [v _EUSART1_Write `(v ~T0 @X0 0 ef1`uc ]
-"109 ./mcc_generated_files/system/../i2c_host/mssp1.h
+"193 ./mcc_generated_files/system/../i2c_host/mssp1.h
+[; ;./mcc_generated_files/system/../i2c_host/mssp1.h: 193: _Bool I2C1_IsBusy(void);
+[v _I2C1_IsBusy `(a ~T0 @X0 0 ef ]
+"109
 [; ;./mcc_generated_files/system/../i2c_host/mssp1.h: 109: _Bool I2C1_Write(uint16_t address, uint8_t *data, size_t dataLength);
 [v _I2C1_Write `(a ~T0 @X0 0 ef3`us`*uc`ui ]
 "182
@@ -21,6 +21,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "169
 [; ;./mcc_generated_files/system/../i2c_host/mssp1.h: 169: _Bool I2C1_WriteRead(uint16_t address, uint8_t *writeData, size_t writeLength, uint8_t *readData, size_t readLength);
 [v _I2C1_WriteRead `(a ~T0 @X0 0 ef5`us`*uc`ui`*uc`ui ]
+[v F202 `(v ~T0 @X0 1 tf1`ul ]
+"20 C:\Program Files\Microchip\xc8\v3.10\pic\include/builtins.h
+[v __delay `JF202 ~T0 @X0 0 e ]
+[p i __delay ]
 [p mainexit ]
 "56 ./mcc_generated_files/system/system.h
 [; ;./mcc_generated_files/system/system.h: 56: void SYSTEM_Initialize(void);
@@ -1026,74 +1030,74 @@ Version 4.0 HI-TECH Software Intermediate Code
 "17927
 [; ;C:/Program Files/Microchip/MPLABX/v6.35/packs/Microchip/PIC16F1xxxx_DFP/1.31.465/xc8\pic\include\proc/pic16f13145.h: 17927: __asm("TOSH equ 01FEFh");
 [; <" TOSH equ 01FEFh ;# ">
-"40 main.c
-[; ;main.c: 40: volatile int16_t mcp9808_temperature = 0;
+"68 main.c
+[; ;main.c: 68: volatile int16_t mcp9808_temperature = 0;
 [v _mcp9808_temperature `Vs ~T0 @X0 1 e ]
 [i _mcp9808_temperature
 -> -> 0 `i `s
 ]
-"41
-[; ;main.c: 41: volatile int16_t mcp9808_temperature_centi = 0;
+"69
+[; ;main.c: 69: volatile int16_t mcp9808_temperature_centi = 0;
 [v _mcp9808_temperature_centi `Vs ~T0 @X0 1 e ]
 [i _mcp9808_temperature_centi
 -> -> 0 `i `s
 ]
-"42
-[; ;main.c: 42: volatile int16_t mcp9808_temperature_integer = 0;
+"70
+[; ;main.c: 70: volatile int16_t mcp9808_temperature_integer = 0;
 [v _mcp9808_temperature_integer `Vs ~T0 @X0 1 e ]
 [i _mcp9808_temperature_integer
 -> -> 0 `i `s
 ]
-"43
-[; ;main.c: 43: volatile uint16_t mcp9808_temperature_decimal = 0;
+"71
+[; ;main.c: 71: volatile uint16_t mcp9808_temperature_decimal = 0;
 [v _mcp9808_temperature_decimal `Vus ~T0 @X0 1 e ]
 [i _mcp9808_temperature_decimal
 -> -> 0 `i `us
 ]
-"45
-[; ;main.c: 45: volatile _Bool mcp9808_ok = 0;
+"73
+[; ;main.c: 73: volatile _Bool mcp9808_ok = 0;
 [v _mcp9808_ok `Va ~T0 @X0 1 e ]
 [i _mcp9808_ok
 -> -> 0 `i `a
 ]
-"46
-[; ;main.c: 46: volatile i2c_host_error_t mcp9808_error = I2C_ERROR_NONE;
+"74
+[; ;main.c: 74: volatile i2c_host_error_t mcp9808_error = I2C_ERROR_NONE;
 [v _mcp9808_error `VE6559 ~T0 @X0 1 e ]
 [i _mcp9808_error
 . `E6559 0
 ]
-"53
-[; ;main.c: 53: volatile uint16_t vcnl4200_ambient_light = 0;
+"82
+[; ;main.c: 82: volatile uint16_t vcnl4200_ambient_light = 0;
 [v _vcnl4200_ambient_light `Vus ~T0 @X0 1 e ]
 [i _vcnl4200_ambient_light
 -> -> 0 `i `us
 ]
-"55
-[; ;main.c: 55: volatile uint32_t vcnl4200_lux_millilux = 0;
+"84
+[; ;main.c: 84: volatile uint32_t vcnl4200_lux_millilux = 0;
 [v _vcnl4200_lux_millilux `Vul ~T0 @X0 1 e ]
 [i _vcnl4200_lux_millilux
 -> -> -> 0 `i `l `ul
 ]
-"56
-[; ;main.c: 56: volatile uint32_t vcnl4200_lux_integer = 0;
+"85
+[; ;main.c: 85: volatile uint32_t vcnl4200_lux_integer = 0;
 [v _vcnl4200_lux_integer `Vul ~T0 @X0 1 e ]
 [i _vcnl4200_lux_integer
 -> -> -> 0 `i `l `ul
 ]
-"57
-[; ;main.c: 57: volatile uint16_t vcnl4200_lux_decimal = 0;
+"86
+[; ;main.c: 86: volatile uint16_t vcnl4200_lux_decimal = 0;
 [v _vcnl4200_lux_decimal `Vus ~T0 @X0 1 e ]
 [i _vcnl4200_lux_decimal
 -> -> 0 `i `us
 ]
-"59
-[; ;main.c: 59: volatile uint16_t vcnl4200_proximity = 0;
+"88
+[; ;main.c: 88: volatile uint16_t vcnl4200_proximity = 0;
 [v _vcnl4200_proximity `Vus ~T0 @X0 1 e ]
 [i _vcnl4200_proximity
 -> -> 0 `i `us
 ]
-"61
-[; ;main.c: 61: volatile uint8_t vcnl4200_id_data[2] = {0, 0};
+"90
+[; ;main.c: 90: volatile uint8_t vcnl4200_id_data[2] = {0, 0};
 [v _vcnl4200_id_data `Vuc ~T0 @X0 -> 2 `i e ]
 [i _vcnl4200_id_data
 :U ..
@@ -1101,1181 +1105,1211 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ..
 ]
-"63
-[; ;main.c: 63: volatile _Bool vcnl4200_ok = 0;
+"92
+[; ;main.c: 92: volatile _Bool vcnl4200_ok = 0;
 [v _vcnl4200_ok `Va ~T0 @X0 1 e ]
 [i _vcnl4200_ok
 -> -> 0 `i `a
 ]
-"64
-[; ;main.c: 64: volatile i2c_host_error_t vcnl4200_error = I2C_ERROR_NONE;
+"93
+[; ;main.c: 93: volatile i2c_host_error_t vcnl4200_error = I2C_ERROR_NONE;
 [v _vcnl4200_error `VE6559 ~T0 @X0 1 e ]
 [i _vcnl4200_error
 . `E6559 0
 ]
-"71
-[; ;main.c: 71: static uint8_t i2c_write_buffer[3];
+"101
+[; ;main.c: 101: static uint8_t i2c_write_buffer[3];
 [v _i2c_write_buffer `uc ~T0 @X0 -> 3 `i s ]
-"72
-[; ;main.c: 72: static uint8_t i2c_read_buffer[2];
-[v _i2c_read_buffer `uc ~T0 @X0 -> 2 `i s ]
-"79
-[; ;main.c: 79: static void Delay_Long(void)
-[v _Delay_Long `(v ~T0 @X0 1 sf ]
-"80
-[; ;main.c: 80: {
-{
-[e :U _Delay_Long ]
-[f ]
-"81
-[; ;main.c: 81:     volatile uint32_t delay;
-[v _delay `Vul ~T0 @X0 1 a ]
-"83
-[; ;main.c: 83:     for (delay = 0; delay < 50000UL; delay++)
-{
-[e = _delay -> -> -> 0 `i `l `ul ]
-[e $ < _delay -> 50000 `ul 887  ]
-[e $U 888  ]
-[e :U 887 ]
-"84
-[; ;main.c: 84:     {
-{
-"86
-[; ;main.c: 86:     }
-}
-[e ++ _delay -> -> 1 `i `Vul ]
-[e $ < _delay -> 50000 `ul 887  ]
-[e :U 888 ]
-}
-"87
-[; ;main.c: 87: }
-[e :UE 886 ]
-}
-"94
-[; ;main.c: 94: static _Bool I2C_WaitComplete(void)
-[v _I2C_WaitComplete `(a ~T0 @X0 1 sf ]
-"95
-[; ;main.c: 95: {
-{
-[e :U _I2C_WaitComplete ]
-[f ]
-"96
-[; ;main.c: 96:     volatile uint32_t timeout = 0;
-[v _timeout `Vul ~T0 @X0 1 a ]
-[e = _timeout -> -> -> 0 `i `l `ul ]
-"98
-[; ;main.c: 98:     while (I2C1_IsBusy())
-[e $U 891  ]
-[e :U 892 ]
-"99
-[; ;main.c: 99:     {
-{
-"100
-[; ;main.c: 100:         timeout++;
-[e ++ _timeout -> -> 1 `i `Vul ]
 "102
-[; ;main.c: 102:         if (timeout > 100000UL)
-[e $ ! > _timeout -> 100000 `ul 894  ]
-"103
-[; ;main.c: 103:         {
-{
-"104
-[; ;main.c: 104:             return 0;
-[e ) -> -> 0 `i `a ]
-[e $UE 890  ]
-"105
-[; ;main.c: 105:         }
-}
-[e :U 894 ]
-"106
-[; ;main.c: 106:     }
-}
-[e :U 891 ]
-"98
-[; ;main.c: 98:     while (I2C1_IsBusy())
-[e $ != -> ( _I2C1_IsBusy ..  `i -> 0 `i 892  ]
-[e :U 893 ]
-"108
-[; ;main.c: 108:     return 1;
-[e ) -> -> 1 `i `a ]
-[e $UE 890  ]
-"109
-[; ;main.c: 109: }
-[e :UE 890 ]
-}
-"116
-[; ;main.c: 116: static void UART_WriteChar(char c)
+[; ;main.c: 102: static uint8_t i2c_read_buffer[2];
+[v _i2c_read_buffer `uc ~T0 @X0 -> 2 `i s ]
+"110
+[; ;main.c: 110: static void UART_WriteChar(char c)
 [v _UART_WriteChar `(v ~T0 @X0 1 sf1`uc ]
-"117
-[; ;main.c: 117: {
+"111
+[; ;main.c: 111: {
 {
 [e :U _UART_WriteChar ]
-"116
-[; ;main.c: 116: static void UART_WriteChar(char c)
+"110
+[; ;main.c: 110: static void UART_WriteChar(char c)
 [v _c `uc ~T0 @X0 1 r1 ]
-"117
-[; ;main.c: 117: {
+"111
+[; ;main.c: 111: {
 [f ]
-"118
-[; ;main.c: 118:     while (!EUSART1_IsTxReady())
-[e $U 896  ]
-[e :U 897 ]
-"119
-[; ;main.c: 119:     {
+"112
+[; ;main.c: 112:     while (!EUSART1_IsTxReady())
+[e $U 887  ]
+[e :U 888 ]
+"113
+[; ;main.c: 113:     {
 {
-"121
-[; ;main.c: 121:     }
+"115
+[; ;main.c: 115:     }
 }
-[e :U 896 ]
-"118
-[; ;main.c: 118:     while (!EUSART1_IsTxReady())
-[e $ ! != -> ( _EUSART1_IsTxReady ..  `i -> 0 `i 897  ]
-[e :U 898 ]
-"123
-[; ;main.c: 123:     EUSART1_Write((uint8_t)c);
+[e :U 887 ]
+"112
+[; ;main.c: 112:     while (!EUSART1_IsTxReady())
+[e $ ! != -> ( _EUSART1_IsTxReady ..  `i -> 0 `i 888  ]
+[e :U 889 ]
+"117
+[; ;main.c: 117:     EUSART1_Write((uint8_t)c);
 [e ( _EUSART1_Write (1 -> _c `uc ]
-"124
-[; ;main.c: 124: }
-[e :UE 895 ]
+"118
+[; ;main.c: 118: }
+[e :UE 886 ]
 }
-"131
-[; ;main.c: 131: static void UART_WriteString(const char *text)
+"126
+[; ;main.c: 126: static void UART_WriteString(const char *text)
 [v _UART_WriteString `(v ~T0 @X0 1 sf1`*Cuc ]
-"132
-[; ;main.c: 132: {
+"127
+[; ;main.c: 127: {
 {
 [e :U _UART_WriteString ]
-"131
-[; ;main.c: 131: static void UART_WriteString(const char *text)
+"126
+[; ;main.c: 126: static void UART_WriteString(const char *text)
 [v _text `*Cuc ~T0 @X0 1 r1 ]
-"132
-[; ;main.c: 132: {
+"127
+[; ;main.c: 127: {
 [f ]
-"133
-[; ;main.c: 133:     while (*text != '\0')
-[e $U 900  ]
-[e :U 901 ]
-"134
-[; ;main.c: 134:     {
+"128
+[; ;main.c: 128:     while (*text != '\0')
+[e $U 891  ]
+[e :U 892 ]
+"129
+[; ;main.c: 129:     {
 {
-"135
-[; ;main.c: 135:         UART_WriteChar(*text);
+"130
+[; ;main.c: 130:         UART_WriteChar(*text);
 [e ( _UART_WriteChar (1 *U _text ]
-"136
-[; ;main.c: 136:         text++;
+"131
+[; ;main.c: 131:         text++;
 [e ++ _text * -> -> 1 `i `x -> -> # *U _text `i `x ]
-"137
-[; ;main.c: 137:     }
+"132
+[; ;main.c: 132:     }
 }
-[e :U 900 ]
+[e :U 891 ]
+"128
+[; ;main.c: 128:     while (*text != '\0')
+[e $ != -> *U _text `ui -> 0 `ui 892  ]
+[e :U 893 ]
 "133
-[; ;main.c: 133:     while (*text != '\0')
-[e $ != -> *U _text `ui -> 0 `ui 901  ]
-[e :U 902 ]
-"138
-[; ;main.c: 138: }
-[e :UE 899 ]
+[; ;main.c: 133: }
+[e :UE 890 ]
 }
-"145
-[; ;main.c: 145: static void UART_WriteUInt16(uint16_t value)
+"147
+[; ;main.c: 147: static void UART_ClearScreen(void)
+[v _UART_ClearScreen `(v ~T0 @X0 1 sf ]
+"148
+[; ;main.c: 148: {
+{
+[e :U _UART_ClearScreen ]
+[f ]
+"149
+[; ;main.c: 149:     UART_WriteChar(0x1B);
+[e ( _UART_WriteChar (1 -> -> 27 `i `uc ]
+"150
+[; ;main.c: 150:     UART_WriteChar('[');
+[e ( _UART_WriteChar (1 -> -> 91 `ui `uc ]
+"151
+[; ;main.c: 151:     UART_WriteString("2J");
+[e ( _UART_WriteString (1 :s 1C ]
+"153
+[; ;main.c: 153:     UART_WriteChar(0x1B);
+[e ( _UART_WriteChar (1 -> -> 27 `i `uc ]
+"154
+[; ;main.c: 154:     UART_WriteChar('[');
+[e ( _UART_WriteChar (1 -> -> 91 `ui `uc ]
+"155
+[; ;main.c: 155:     UART_WriteChar('H');
+[e ( _UART_WriteChar (1 -> -> 72 `ui `uc ]
+"156
+[; ;main.c: 156: }
+[e :UE 894 ]
+}
+"164
+[; ;main.c: 164: static void UART_WriteUInt16(uint16_t value)
 [v _UART_WriteUInt16 `(v ~T0 @X0 1 sf1`us ]
-"146
-[; ;main.c: 146: {
+"165
+[; ;main.c: 165: {
 {
 [e :U _UART_WriteUInt16 ]
-"145
-[; ;main.c: 145: static void UART_WriteUInt16(uint16_t value)
+"164
+[; ;main.c: 164: static void UART_WriteUInt16(uint16_t value)
 [v _value `us ~T0 @X0 1 r1 ]
-"146
-[; ;main.c: 146: {
+"165
+[; ;main.c: 165: {
 [f ]
-"147
-[; ;main.c: 147:     char buffer[6];
+"166
+[; ;main.c: 166:     char buffer[6];
 [v _buffer `uc ~T0 @X0 -> 6 `i a ]
-"148
-[; ;main.c: 148:     uint8_t i = 0;
+"167
+[; ;main.c: 167:     uint8_t i = 0;
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-"150
-[; ;main.c: 150:     if (value == 0)
-[e $ ! == -> _value `ui -> -> 0 `i `ui 904  ]
-"151
-[; ;main.c: 151:     {
+"169
+[; ;main.c: 169:     if (value == 0)
+[e $ ! == -> _value `ui -> -> 0 `i `ui 896  ]
+"170
+[; ;main.c: 170:     {
 {
-"152
-[; ;main.c: 152:         UART_WriteChar('0');
+"171
+[; ;main.c: 171:         UART_WriteChar('0');
 [e ( _UART_WriteChar (1 -> -> 48 `ui `uc ]
-"153
-[; ;main.c: 153:         return;
-[e $UE 903  ]
-"154
-[; ;main.c: 154:     }
+"172
+[; ;main.c: 172:         return;
+[e $UE 895  ]
+"173
+[; ;main.c: 173:     }
 }
-[e :U 904 ]
-"156
-[; ;main.c: 156:     while (value > 0)
-[e $U 905  ]
-[e :U 906 ]
-"157
-[; ;main.c: 157:     {
-{
-"158
-[; ;main.c: 158:         buffer[i] = (char)('0' + (value % 10));
-[e = *U + &U _buffer * -> _i `ux -> -> # *U &U _buffer `ui `ux -> + -> 48 `ui % -> _value `ui -> -> 10 `i `ui `uc ]
-"159
-[; ;main.c: 159:         value /= 10;
-[e =/ _value -> -> 10 `i `ui ]
-"160
-[; ;main.c: 160:         i++;
-[e ++ _i -> -> 1 `i `uc ]
-"161
-[; ;main.c: 161:     }
-}
-[e :U 905 ]
-"156
-[; ;main.c: 156:     while (value > 0)
-[e $ > -> _value `ui -> -> 0 `i `ui 906  ]
-[e :U 907 ]
-"163
-[; ;main.c: 163:     while (i > 0)
-[e $U 908  ]
-[e :U 909 ]
-"164
-[; ;main.c: 164:     {
-{
-"165
-[; ;main.c: 165:         i--;
-[e -- _i -> -> 1 `i `uc ]
-"166
-[; ;main.c: 166:         UART_WriteChar(buffer[i]);
-[e ( _UART_WriteChar (1 *U + &U _buffer * -> _i `ux -> -> # *U &U _buffer `ui `ux ]
-"167
-[; ;main.c: 167:     }
-}
-[e :U 908 ]
-"163
-[; ;main.c: 163:     while (i > 0)
-[e $ > -> _i `i -> 0 `i 909  ]
-[e :U 910 ]
-"168
-[; ;main.c: 168: }
-[e :UE 903 ]
-}
+[e :U 896 ]
 "175
-[; ;main.c: 175: static void UART_WriteUInt32(uint32_t value)
-[v _UART_WriteUInt32 `(v ~T0 @X0 1 sf1`ul ]
+[; ;main.c: 175:     while (value > 0)
+[e $U 897  ]
+[e :U 898 ]
 "176
-[; ;main.c: 176: {
+[; ;main.c: 176:     {
+{
+"177
+[; ;main.c: 177:         buffer[i] = (char)('0' + (value % 10));
+[e = *U + &U _buffer * -> _i `ux -> -> # *U &U _buffer `ui `ux -> + -> 48 `ui % -> _value `ui -> -> 10 `i `ui `uc ]
+"178
+[; ;main.c: 178:         value /= 10;
+[e =/ _value -> -> 10 `i `ui ]
+"179
+[; ;main.c: 179:         i++;
+[e ++ _i -> -> 1 `i `uc ]
+"180
+[; ;main.c: 180:     }
+}
+[e :U 897 ]
+"175
+[; ;main.c: 175:     while (value > 0)
+[e $ > -> _value `ui -> -> 0 `i `ui 898  ]
+[e :U 899 ]
+"182
+[; ;main.c: 182:     while (i > 0)
+[e $U 900  ]
+[e :U 901 ]
+"183
+[; ;main.c: 183:     {
+{
+"184
+[; ;main.c: 184:         i--;
+[e -- _i -> -> 1 `i `uc ]
+"185
+[; ;main.c: 185:         UART_WriteChar(buffer[i]);
+[e ( _UART_WriteChar (1 *U + &U _buffer * -> _i `ux -> -> # *U &U _buffer `ui `ux ]
+"186
+[; ;main.c: 186:     }
+}
+[e :U 900 ]
+"182
+[; ;main.c: 182:     while (i > 0)
+[e $ > -> _i `i -> 0 `i 901  ]
+[e :U 902 ]
+"187
+[; ;main.c: 187: }
+[e :UE 895 ]
+}
+"195
+[; ;main.c: 195: static void UART_WriteUInt32(uint32_t value)
+[v _UART_WriteUInt32 `(v ~T0 @X0 1 sf1`ul ]
+"196
+[; ;main.c: 196: {
 {
 [e :U _UART_WriteUInt32 ]
-"175
-[; ;main.c: 175: static void UART_WriteUInt32(uint32_t value)
+"195
+[; ;main.c: 195: static void UART_WriteUInt32(uint32_t value)
 [v _value `ul ~T0 @X0 1 r1 ]
-"176
-[; ;main.c: 176: {
+"196
+[; ;main.c: 196: {
 [f ]
-"177
-[; ;main.c: 177:     char buffer[11];
+"197
+[; ;main.c: 197:     char buffer[11];
 [v _buffer `uc ~T0 @X0 -> 11 `i a ]
-"178
-[; ;main.c: 178:     uint8_t i = 0;
+"198
+[; ;main.c: 198:     uint8_t i = 0;
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-"180
-[; ;main.c: 180:     if (value == 0)
-[e $ ! == _value -> -> -> 0 `i `l `ul 912  ]
-"181
-[; ;main.c: 181:     {
+"200
+[; ;main.c: 200:     if (value == 0)
+[e $ ! == _value -> -> -> 0 `i `l `ul 904  ]
+"201
+[; ;main.c: 201:     {
 {
-"182
-[; ;main.c: 182:         UART_WriteChar('0');
+"202
+[; ;main.c: 202:         UART_WriteChar('0');
 [e ( _UART_WriteChar (1 -> -> 48 `ui `uc ]
-"183
-[; ;main.c: 183:         return;
-[e $UE 911  ]
-"184
-[; ;main.c: 184:     }
+"203
+[; ;main.c: 203:         return;
+[e $UE 903  ]
+"204
+[; ;main.c: 204:     }
 }
-[e :U 912 ]
-"186
-[; ;main.c: 186:     while (value > 0)
-[e $U 913  ]
-[e :U 914 ]
-"187
-[; ;main.c: 187:     {
-{
-"188
-[; ;main.c: 188:         buffer[i] = (char)('0' + (value % 10UL));
-[e = *U + &U _buffer * -> _i `ux -> -> # *U &U _buffer `ui `ux -> + -> -> 48 `ui `ul % _value -> 10 `ul `uc ]
-"189
-[; ;main.c: 189:         value /= 10UL;
-[e =/ _value -> 10 `ul ]
-"190
-[; ;main.c: 190:         i++;
-[e ++ _i -> -> 1 `i `uc ]
-"191
-[; ;main.c: 191:     }
-}
-[e :U 913 ]
-"186
-[; ;main.c: 186:     while (value > 0)
-[e $ > _value -> -> -> 0 `i `l `ul 914  ]
-[e :U 915 ]
-"193
-[; ;main.c: 193:     while (i > 0)
-[e $U 916  ]
-[e :U 917 ]
-"194
-[; ;main.c: 194:     {
-{
-"195
-[; ;main.c: 195:         i--;
-[e -- _i -> -> 1 `i `uc ]
-"196
-[; ;main.c: 196:         UART_WriteChar(buffer[i]);
-[e ( _UART_WriteChar (1 *U + &U _buffer * -> _i `ux -> -> # *U &U _buffer `ui `ux ]
-"197
-[; ;main.c: 197:     }
-}
-[e :U 916 ]
-"193
-[; ;main.c: 193:     while (i > 0)
-[e $ > -> _i `i -> 0 `i 917  ]
-[e :U 918 ]
-"198
-[; ;main.c: 198: }
-[e :UE 911 ]
-}
-"205
-[; ;main.c: 205: static void UART_WriteTemperature(void)
-[v _UART_WriteTemperature `(v ~T0 @X0 1 sf ]
+[e :U 904 ]
 "206
-[; ;main.c: 206: {
+[; ;main.c: 206:     while (value > 0)
+[e $U 905  ]
+[e :U 906 ]
+"207
+[; ;main.c: 207:     {
+{
+"208
+[; ;main.c: 208:         buffer[i] = (char)('0' + (value % 10UL));
+[e = *U + &U _buffer * -> _i `ux -> -> # *U &U _buffer `ui `ux -> + -> -> 48 `ui `ul % _value -> 10 `ul `uc ]
+"209
+[; ;main.c: 209:         value /= 10UL;
+[e =/ _value -> 10 `ul ]
+"210
+[; ;main.c: 210:         i++;
+[e ++ _i -> -> 1 `i `uc ]
+"211
+[; ;main.c: 211:     }
+}
+[e :U 905 ]
+"206
+[; ;main.c: 206:     while (value > 0)
+[e $ > _value -> -> -> 0 `i `l `ul 906  ]
+[e :U 907 ]
+"213
+[; ;main.c: 213:     while (i > 0)
+[e $U 908  ]
+[e :U 909 ]
+"214
+[; ;main.c: 214:     {
+{
+"215
+[; ;main.c: 215:         i--;
+[e -- _i -> -> 1 `i `uc ]
+"216
+[; ;main.c: 216:         UART_WriteChar(buffer[i]);
+[e ( _UART_WriteChar (1 *U + &U _buffer * -> _i `ux -> -> # *U &U _buffer `ui `ux ]
+"217
+[; ;main.c: 217:     }
+}
+[e :U 908 ]
+"213
+[; ;main.c: 213:     while (i > 0)
+[e $ > -> _i `i -> 0 `i 909  ]
+[e :U 910 ]
+"218
+[; ;main.c: 218: }
+[e :UE 903 ]
+}
+"226
+[; ;main.c: 226: static void UART_WriteTemperature(void)
+[v _UART_WriteTemperature `(v ~T0 @X0 1 sf ]
+"227
+[; ;main.c: 227: {
 {
 [e :U _UART_WriteTemperature ]
 [f ]
-"207
-[; ;main.c: 207:     UART_WriteString("Temperatura: ");
-[e ( _UART_WriteString (1 :s 1C ]
-"209
-[; ;main.c: 209:     if (mcp9808_temperature_centi < 0)
-[e $ ! < -> _mcp9808_temperature_centi `i -> 0 `i 920  ]
-"210
-[; ;main.c: 210:     {
-{
-"211
-[; ;main.c: 211:         UART_WriteChar('-');
-[e ( _UART_WriteChar (1 -> -> 45 `ui `uc ]
-"212
-[; ;main.c: 212:     }
-}
-[e :U 920 ]
-"214
-[; ;main.c: 214:     UART_WriteUInt16(
-[e ( _UART_WriteUInt16 (1 -> ? < -> _mcp9808_temperature_integer `i -> 0 `i : -U -> _mcp9808_temperature_integer `i -> _mcp9808_temperature_integer `i `us ]
-"222
-[; ;main.c: 222:     UART_WriteChar('.');
-[e ( _UART_WriteChar (1 -> -> 46 `ui `uc ]
-"224
-[; ;main.c: 224:     if (mcp9808_temperature_decimal < 10)
-[e $ ! < -> _mcp9808_temperature_decimal `ui -> -> 10 `i `ui 921  ]
-"225
-[; ;main.c: 225:     {
-{
-"226
-[; ;main.c: 226:         UART_WriteChar('0');
-[e ( _UART_WriteChar (1 -> -> 48 `ui `uc ]
-"227
-[; ;main.c: 227:     }
-}
-[e :U 921 ]
-"229
-[; ;main.c: 229:     UART_WriteUInt16(mcp9808_temperature_decimal);
-[e ( _UART_WriteUInt16 (1 _mcp9808_temperature_decimal ]
-"231
-[; ;main.c: 231:     UART_WriteString(" C\r\n");
+"228
+[; ;main.c: 228:     UART_WriteString("Temperatura: ");
 [e ( _UART_WriteString (1 :s 2C ]
+"230
+[; ;main.c: 230:     if (mcp9808_temperature_centi < 0)
+[e $ ! < -> _mcp9808_temperature_centi `i -> 0 `i 912  ]
+"231
+[; ;main.c: 231:     {
+{
 "232
-[; ;main.c: 232: }
-[e :UE 919 ]
+[; ;main.c: 232:         UART_WriteChar('-');
+[e ( _UART_WriteChar (1 -> -> 45 `ui `uc ]
+"233
+[; ;main.c: 233:     }
 }
-"239
-[; ;main.c: 239: static void UART_WriteLight(void)
+[e :U 912 ]
+"235
+[; ;main.c: 235:     UART_WriteUInt16(
+[e ( _UART_WriteUInt16 (1 -> ? < -> _mcp9808_temperature_integer `i -> 0 `i : -U -> _mcp9808_temperature_integer `i -> _mcp9808_temperature_integer `i `us ]
+"243
+[; ;main.c: 243:     UART_WriteChar('.');
+[e ( _UART_WriteChar (1 -> -> 46 `ui `uc ]
+"245
+[; ;main.c: 245:     if (mcp9808_temperature_decimal < 10)
+[e $ ! < -> _mcp9808_temperature_decimal `ui -> -> 10 `i `ui 913  ]
+"246
+[; ;main.c: 246:     {
+{
+"247
+[; ;main.c: 247:         UART_WriteChar('0');
+[e ( _UART_WriteChar (1 -> -> 48 `ui `uc ]
+"248
+[; ;main.c: 248:     }
+}
+[e :U 913 ]
+"250
+[; ;main.c: 250:     UART_WriteUInt16(mcp9808_temperature_decimal);
+[e ( _UART_WriteUInt16 (1 _mcp9808_temperature_decimal ]
+"252
+[; ;main.c: 252:     UART_WriteString(" C\r\n");
+[e ( _UART_WriteString (1 :s 3C ]
+"253
+[; ;main.c: 253: }
+[e :UE 911 ]
+}
+"261
+[; ;main.c: 261: static void UART_WriteLight(void)
 [v _UART_WriteLight `(v ~T0 @X0 1 sf ]
-"240
-[; ;main.c: 240: {
+"262
+[; ;main.c: 262: {
 {
 [e :U _UART_WriteLight ]
 [f ]
-"241
-[; ;main.c: 241:     UART_WriteString("Luz: ");
-[e ( _UART_WriteString (1 :s 3C ]
-"243
-[; ;main.c: 243:     UART_WriteUInt32(vcnl4200_lux_integer);
-[e ( _UART_WriteUInt32 (1 _vcnl4200_lux_integer ]
-"245
-[; ;main.c: 245:     UART_WriteChar('.');
-[e ( _UART_WriteChar (1 -> -> 46 `ui `uc ]
-"247
-[; ;main.c: 247:     if (vcnl4200_lux_decimal < 10)
-[e $ ! < -> _vcnl4200_lux_decimal `ui -> -> 10 `i `ui 923  ]
-"248
-[; ;main.c: 248:     {
-{
-"249
-[; ;main.c: 249:         UART_WriteChar('0');
-[e ( _UART_WriteChar (1 -> -> 48 `ui `uc ]
-"250
-[; ;main.c: 250:     }
-}
-[e :U 923 ]
-"252
-[; ;main.c: 252:     UART_WriteUInt16(vcnl4200_lux_decimal);
-[e ( _UART_WriteUInt16 (1 _vcnl4200_lux_decimal ]
-"254
-[; ;main.c: 254:     UART_WriteString(" lux\r\n");
+"263
+[; ;main.c: 263:     UART_WriteString("Luz: ");
 [e ( _UART_WriteString (1 :s 4C ]
-"255
-[; ;main.c: 255: }
-[e :UE 922 ]
-}
-"262
-[; ;main.c: 262: static _Bool VCNL4200_WriteRegister16(uint8_t reg,
-[v _VCNL4200_WriteRegister16 `(a ~T0 @X0 1 sf3`uc`uc`uc ]
 "265
-[; ;main.c: 265: {
+[; ;main.c: 265:     UART_WriteUInt32(vcnl4200_lux_integer);
+[e ( _UART_WriteUInt32 (1 _vcnl4200_lux_integer ]
+"267
+[; ;main.c: 267:     UART_WriteChar('.');
+[e ( _UART_WriteChar (1 -> -> 46 `ui `uc ]
+"269
+[; ;main.c: 269:     if (vcnl4200_lux_decimal < 10)
+[e $ ! < -> _vcnl4200_lux_decimal `ui -> -> 10 `i `ui 915  ]
+"270
+[; ;main.c: 270:     {
+{
+"271
+[; ;main.c: 271:         UART_WriteChar('0');
+[e ( _UART_WriteChar (1 -> -> 48 `ui `uc ]
+"272
+[; ;main.c: 272:     }
+}
+[e :U 915 ]
+"274
+[; ;main.c: 274:     UART_WriteUInt16(vcnl4200_lux_decimal);
+[e ( _UART_WriteUInt16 (1 _vcnl4200_lux_decimal ]
+"276
+[; ;main.c: 276:     UART_WriteString(" lux\r\n");
+[e ( _UART_WriteString (1 :s 5C ]
+"277
+[; ;main.c: 277: }
+[e :UE 914 ]
+}
+"285
+[; ;main.c: 285: static _Bool I2C_WaitComplete(void)
+[v _I2C_WaitComplete `(a ~T0 @X0 1 sf ]
+"286
+[; ;main.c: 286: {
+{
+[e :U _I2C_WaitComplete ]
+[f ]
+"287
+[; ;main.c: 287:     volatile uint32_t timeout = 0;
+[v _timeout `Vul ~T0 @X0 1 a ]
+[e = _timeout -> -> -> 0 `i `l `ul ]
+"289
+[; ;main.c: 289:     while (I2C1_IsBusy())
+[e $U 917  ]
+[e :U 918 ]
+"290
+[; ;main.c: 290:     {
+{
+"291
+[; ;main.c: 291:         timeout++;
+[e ++ _timeout -> -> 1 `i `Vul ]
+"293
+[; ;main.c: 293:         if (timeout > 100000UL)
+[e $ ! > _timeout -> 100000 `ul 920  ]
+"294
+[; ;main.c: 294:         {
+{
+"295
+[; ;main.c: 295:             return 0;
+[e ) -> -> 0 `i `a ]
+[e $UE 916  ]
+"296
+[; ;main.c: 296:         }
+}
+[e :U 920 ]
+"297
+[; ;main.c: 297:     }
+}
+[e :U 917 ]
+"289
+[; ;main.c: 289:     while (I2C1_IsBusy())
+[e $ != -> ( _I2C1_IsBusy ..  `i -> 0 `i 918  ]
+[e :U 919 ]
+"299
+[; ;main.c: 299:     return 1;
+[e ) -> -> 1 `i `a ]
+[e $UE 916  ]
+"300
+[; ;main.c: 300: }
+[e :UE 916 ]
+}
+"308
+[; ;main.c: 308: static _Bool VCNL4200_WriteRegister16(uint8_t reg,
+[v _VCNL4200_WriteRegister16 `(a ~T0 @X0 1 sf3`uc`uc`uc ]
+"311
+[; ;main.c: 311: {
 {
 [e :U _VCNL4200_WriteRegister16 ]
-"262
-[; ;main.c: 262: static _Bool VCNL4200_WriteRegister16(uint8_t reg,
+"308
+[; ;main.c: 308: static _Bool VCNL4200_WriteRegister16(uint8_t reg,
 [v _reg `uc ~T0 @X0 1 r1 ]
-"263
-[; ;main.c: 263:                                      uint8_t low,
+"309
+[; ;main.c: 309:                                      uint8_t low,
 [v _low `uc ~T0 @X0 1 r2 ]
-"264
-[; ;main.c: 264:                                      uint8_t high)
+"310
+[; ;main.c: 310:                                      uint8_t high)
 [v _high `uc ~T0 @X0 1 r3 ]
-"265
-[; ;main.c: 265: {
+"311
+[; ;main.c: 311: {
 [f ]
-"266
-[; ;main.c: 266:     i2c_write_buffer[0] = reg;
+"312
+[; ;main.c: 312:     i2c_write_buffer[0] = reg;
 [e = *U + &U _i2c_write_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _i2c_write_buffer `ui `ux _reg ]
-"267
-[; ;main.c: 267:     i2c_write_buffer[1] = low;
+"313
+[; ;main.c: 313:     i2c_write_buffer[1] = low;
 [e = *U + &U _i2c_write_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _i2c_write_buffer `ui `ux _low ]
-"268
-[; ;main.c: 268:     i2c_write_buffer[2] = high;
+"314
+[; ;main.c: 314:     i2c_write_buffer[2] = high;
 [e = *U + &U _i2c_write_buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _i2c_write_buffer `ui `ux _high ]
-"270
-[; ;main.c: 270:     if (!I2C1_Write(0x51,
-[e $ ! ! != -> ( _I2C1_Write (3 , , -> -> 81 `i `us &U _i2c_write_buffer -> -> 3 `i `ui `i -> 0 `i 925  ]
-"273
-[; ;main.c: 273:     {
+"316
+[; ;main.c: 316:     if (!I2C1_Write(
+[e $ ! ! != -> ( _I2C1_Write (3 , , -> -> 81 `i `us &U _i2c_write_buffer -> -> 3 `i `ui `i -> 0 `i 922  ]
+"320
+[; ;main.c: 320:     {
 {
-"274
-[; ;main.c: 274:         return 0;
+"321
+[; ;main.c: 321:         return 0;
 [e ) -> -> 0 `i `a ]
-[e $UE 924  ]
-"275
-[; ;main.c: 275:     }
+[e $UE 921  ]
+"322
+[; ;main.c: 322:     }
 }
-[e :U 925 ]
-"277
-[; ;main.c: 277:     if (!I2C_WaitComplete())
-[e $ ! ! != -> ( _I2C_WaitComplete ..  `i -> 0 `i 926  ]
-"278
-[; ;main.c: 278:     {
+[e :U 922 ]
+"324
+[; ;main.c: 324:     if (!I2C_WaitComplete())
+[e $ ! ! != -> ( _I2C_WaitComplete ..  `i -> 0 `i 923  ]
+"325
+[; ;main.c: 325:     {
 {
-"279
-[; ;main.c: 279:         return 0;
+"326
+[; ;main.c: 326:         return 0;
 [e ) -> -> 0 `i `a ]
-[e $UE 924  ]
-"280
-[; ;main.c: 280:     }
+[e $UE 921  ]
+"327
+[; ;main.c: 327:     }
 }
-[e :U 926 ]
-"282
-[; ;main.c: 282:     vcnl4200_error = I2C1_ErrorGet();
+[e :U 923 ]
+"329
+[; ;main.c: 329:     vcnl4200_error = I2C1_ErrorGet();
 [e = _vcnl4200_error ( _I2C1_ErrorGet ..  ]
-"284
-[; ;main.c: 284:     if (vcnl4200_error != I2C_ERROR_NONE)
-[e $ ! != -> _vcnl4200_error `ui -> . `E6559 0 `ui 927  ]
-"285
-[; ;main.c: 285:     {
+"331
+[; ;main.c: 331:     if (vcnl4200_error != I2C_ERROR_NONE)
+[e $ ! != -> _vcnl4200_error `ui -> . `E6559 0 `ui 924  ]
+"332
+[; ;main.c: 332:     {
 {
-"286
-[; ;main.c: 286:         return 0;
+"333
+[; ;main.c: 333:         return 0;
 [e ) -> -> 0 `i `a ]
-[e $UE 924  ]
-"287
-[; ;main.c: 287:     }
+[e $UE 921  ]
+"334
+[; ;main.c: 334:     }
 }
-[e :U 927 ]
-"289
-[; ;main.c: 289:     return 1;
+[e :U 924 ]
+"336
+[; ;main.c: 336:     return 1;
 [e ) -> -> 1 `i `a ]
-[e $UE 924  ]
-"290
-[; ;main.c: 290: }
-[e :UE 924 ]
+[e $UE 921  ]
+"337
+[; ;main.c: 337: }
+[e :UE 921 ]
 }
-"297
-[; ;main.c: 297: static _Bool VCNL4200_ReadRegister16(uint8_t reg,
+"345
+[; ;main.c: 345: static _Bool VCNL4200_ReadRegister16(uint8_t reg,
 [v _VCNL4200_ReadRegister16 `(a ~T0 @X0 1 sf2`uc`*us ]
-"299
-[; ;main.c: 299: {
+"347
+[; ;main.c: 347: {
 {
 [e :U _VCNL4200_ReadRegister16 ]
-"297
-[; ;main.c: 297: static _Bool VCNL4200_ReadRegister16(uint8_t reg,
+"345
+[; ;main.c: 345: static _Bool VCNL4200_ReadRegister16(uint8_t reg,
 [v _reg `uc ~T0 @X0 1 r1 ]
-"298
-[; ;main.c: 298:                                     uint16_t *value)
+"346
+[; ;main.c: 346:                                     uint16_t *value)
 [v _value `*us ~T0 @X0 1 r2 ]
-"299
-[; ;main.c: 299: {
+"347
+[; ;main.c: 347: {
 [f ]
-"300
-[; ;main.c: 300:     i2c_write_buffer[0] = reg;
+"348
+[; ;main.c: 348:     i2c_write_buffer[0] = reg;
 [e = *U + &U _i2c_write_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _i2c_write_buffer `ui `ux _reg ]
-"302
-[; ;main.c: 302:     i2c_read_buffer[0] = 0;
+"350
+[; ;main.c: 350:     i2c_read_buffer[0] = 0;
 [e = *U + &U _i2c_read_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _i2c_read_buffer `ui `ux -> -> 0 `i `uc ]
-"303
-[; ;main.c: 303:     i2c_read_buffer[1] = 0;
+"351
+[; ;main.c: 351:     i2c_read_buffer[1] = 0;
 [e = *U + &U _i2c_read_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _i2c_read_buffer `ui `ux -> -> 0 `i `uc ]
-"305
-[; ;main.c: 305:     if (!I2C1_WriteRead(0x51,
-[e $ ! ! != -> ( _I2C1_WriteRead (4 , , , , -> -> 81 `i `us &U _i2c_write_buffer -> -> 1 `i `ui &U _i2c_read_buffer -> -> 2 `i `ui `i -> 0 `i 929  ]
-"310
-[; ;main.c: 310:     {
+"353
+[; ;main.c: 353:     if (!I2C1_WriteRead(
+[e $ ! ! != -> ( _I2C1_WriteRead (4 , , , , -> -> 81 `i `us &U _i2c_write_buffer -> -> 1 `i `ui &U _i2c_read_buffer -> -> 2 `i `ui `i -> 0 `i 926  ]
+"359
+[; ;main.c: 359:     {
 {
-"311
-[; ;main.c: 311:         return 0;
+"360
+[; ;main.c: 360:         return 0;
 [e ) -> -> 0 `i `a ]
-[e $UE 928  ]
-"312
-[; ;main.c: 312:     }
+[e $UE 925  ]
+"361
+[; ;main.c: 361:     }
 }
-[e :U 929 ]
-"314
-[; ;main.c: 314:     if (!I2C_WaitComplete())
-[e $ ! ! != -> ( _I2C_WaitComplete ..  `i -> 0 `i 930  ]
-"315
-[; ;main.c: 315:     {
+[e :U 926 ]
+"363
+[; ;main.c: 363:     if (!I2C_WaitComplete())
+[e $ ! ! != -> ( _I2C_WaitComplete ..  `i -> 0 `i 927  ]
+"364
+[; ;main.c: 364:     {
 {
-"316
-[; ;main.c: 316:         return 0;
+"365
+[; ;main.c: 365:         return 0;
 [e ) -> -> 0 `i `a ]
-[e $UE 928  ]
-"317
-[; ;main.c: 317:     }
+[e $UE 925  ]
+"366
+[; ;main.c: 366:     }
 }
-[e :U 930 ]
-"319
-[; ;main.c: 319:     vcnl4200_error = I2C1_ErrorGet();
+[e :U 927 ]
+"368
+[; ;main.c: 368:     vcnl4200_error = I2C1_ErrorGet();
 [e = _vcnl4200_error ( _I2C1_ErrorGet ..  ]
-"321
-[; ;main.c: 321:     if (vcnl4200_error != I2C_ERROR_NONE)
-[e $ ! != -> _vcnl4200_error `ui -> . `E6559 0 `ui 931  ]
-"322
-[; ;main.c: 322:     {
+"370
+[; ;main.c: 370:     if (vcnl4200_error != I2C_ERROR_NONE)
+[e $ ! != -> _vcnl4200_error `ui -> . `E6559 0 `ui 928  ]
+"371
+[; ;main.c: 371:     {
 {
-"323
-[; ;main.c: 323:         return 0;
+"372
+[; ;main.c: 372:         return 0;
 [e ) -> -> 0 `i `a ]
-[e $UE 928  ]
-"324
-[; ;main.c: 324:     }
+[e $UE 925  ]
+"373
+[; ;main.c: 373:     }
 }
-[e :U 931 ]
-"331
-[; ;main.c: 331:     *value =
+[e :U 928 ]
+"381
+[; ;main.c: 381:     *value =
 [e = *U _value -> | << -> -> *U + &U _i2c_read_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _i2c_read_buffer `ui `ux `us `ui -> 8 `i -> *U + &U _i2c_read_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _i2c_read_buffer `ui `ux `ui `us ]
-"335
-[; ;main.c: 335:     return 1;
+"385
+[; ;main.c: 385:     return 1;
 [e ) -> -> 1 `i `a ]
-[e $UE 928  ]
-"336
-[; ;main.c: 336: }
-[e :UE 928 ]
+[e $UE 925  ]
+"386
+[; ;main.c: 386: }
+[e :UE 925 ]
 }
-"343
-[; ;main.c: 343: static _Bool MCP9808_ReadTemperatureRaw(uint16_t *value)
+"394
+[; ;main.c: 394: static _Bool MCP9808_ReadTemperatureRaw(uint16_t *value)
 [v _MCP9808_ReadTemperatureRaw `(a ~T0 @X0 1 sf1`*us ]
-"344
-[; ;main.c: 344: {
+"395
+[; ;main.c: 395: {
 {
 [e :U _MCP9808_ReadTemperatureRaw ]
-"343
-[; ;main.c: 343: static _Bool MCP9808_ReadTemperatureRaw(uint16_t *value)
+"394
+[; ;main.c: 394: static _Bool MCP9808_ReadTemperatureRaw(uint16_t *value)
 [v _value `*us ~T0 @X0 1 r1 ]
-"344
-[; ;main.c: 344: {
+"395
+[; ;main.c: 395: {
 [f ]
-"345
-[; ;main.c: 345:     i2c_write_buffer[0] = 0x05;
+"396
+[; ;main.c: 396:     i2c_write_buffer[0] =
 [e = *U + &U _i2c_write_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _i2c_write_buffer `ui `ux -> -> 5 `i `uc ]
-"347
-[; ;main.c: 347:     i2c_read_buffer[0] = 0;
+"399
+[; ;main.c: 399:     i2c_read_buffer[0] = 0;
 [e = *U + &U _i2c_read_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _i2c_read_buffer `ui `ux -> -> 0 `i `uc ]
-"348
-[; ;main.c: 348:     i2c_read_buffer[1] = 0;
+"400
+[; ;main.c: 400:     i2c_read_buffer[1] = 0;
 [e = *U + &U _i2c_read_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _i2c_read_buffer `ui `ux -> -> 0 `i `uc ]
-"350
-[; ;main.c: 350:     if (!I2C1_WriteRead(0x1C,
-[e $ ! ! != -> ( _I2C1_WriteRead (4 , , , , -> -> 28 `i `us &U _i2c_write_buffer -> -> 1 `i `ui &U _i2c_read_buffer -> -> 2 `i `ui `i -> 0 `i 933  ]
-"355
-[; ;main.c: 355:     {
+"402
+[; ;main.c: 402:     if (!I2C1_WriteRead(
+[e $ ! ! != -> ( _I2C1_WriteRead (4 , , , , -> -> 28 `i `us &U _i2c_write_buffer -> -> 1 `i `ui &U _i2c_read_buffer -> -> 2 `i `ui `i -> 0 `i 930  ]
+"408
+[; ;main.c: 408:     {
 {
-"356
-[; ;main.c: 356:         return 0;
+"409
+[; ;main.c: 409:         return 0;
 [e ) -> -> 0 `i `a ]
-[e $UE 932  ]
-"357
-[; ;main.c: 357:     }
+[e $UE 929  ]
+"410
+[; ;main.c: 410:     }
 }
-[e :U 933 ]
-"359
-[; ;main.c: 359:     if (!I2C_WaitComplete())
-[e $ ! ! != -> ( _I2C_WaitComplete ..  `i -> 0 `i 934  ]
-"360
-[; ;main.c: 360:     {
+[e :U 930 ]
+"412
+[; ;main.c: 412:     if (!I2C_WaitComplete())
+[e $ ! ! != -> ( _I2C_WaitComplete ..  `i -> 0 `i 931  ]
+"413
+[; ;main.c: 413:     {
 {
-"361
-[; ;main.c: 361:         return 0;
+"414
+[; ;main.c: 414:         return 0;
 [e ) -> -> 0 `i `a ]
-[e $UE 932  ]
-"362
-[; ;main.c: 362:     }
+[e $UE 929  ]
+"415
+[; ;main.c: 415:     }
 }
-[e :U 934 ]
-"364
-[; ;main.c: 364:     mcp9808_error = I2C1_ErrorGet();
+[e :U 931 ]
+"417
+[; ;main.c: 417:     mcp9808_error = I2C1_ErrorGet();
 [e = _mcp9808_error ( _I2C1_ErrorGet ..  ]
-"366
-[; ;main.c: 366:     if (mcp9808_error != I2C_ERROR_NONE)
-[e $ ! != -> _mcp9808_error `ui -> . `E6559 0 `ui 935  ]
-"367
-[; ;main.c: 367:     {
+"419
+[; ;main.c: 419:     if (mcp9808_error != I2C_ERROR_NONE)
+[e $ ! != -> _mcp9808_error `ui -> . `E6559 0 `ui 932  ]
+"420
+[; ;main.c: 420:     {
 {
-"368
-[; ;main.c: 368:         return 0;
+"421
+[; ;main.c: 421:         return 0;
 [e ) -> -> 0 `i `a ]
-[e $UE 932  ]
-"369
-[; ;main.c: 369:     }
+[e $UE 929  ]
+"422
+[; ;main.c: 422:     }
 }
-[e :U 935 ]
-"378
-[; ;main.c: 378:     *value =
+[e :U 932 ]
+"430
+[; ;main.c: 430:     *value =
 [e = *U _value -> | << -> -> *U + &U _i2c_read_buffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _i2c_read_buffer `ui `ux `us `ui -> 8 `i -> *U + &U _i2c_read_buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _i2c_read_buffer `ui `ux `ui `us ]
-"382
-[; ;main.c: 382:     return 1;
+"434
+[; ;main.c: 434:     return 1;
 [e ) -> -> 1 `i `a ]
-[e $UE 932  ]
-"383
-[; ;main.c: 383: }
-[e :UE 932 ]
+[e $UE 929  ]
+"435
+[; ;main.c: 435: }
+[e :UE 929 ]
 }
-"390
-[; ;main.c: 390: static void MCP9808_ProcessTemperature(uint16_t raw)
+"443
+[; ;main.c: 443: static void MCP9808_ProcessTemperature(uint16_t raw)
 [v _MCP9808_ProcessTemperature `(v ~T0 @X0 1 sf1`us ]
-"391
-[; ;main.c: 391: {
+"444
+[; ;main.c: 444: {
 {
 [e :U _MCP9808_ProcessTemperature ]
-"390
-[; ;main.c: 390: static void MCP9808_ProcessTemperature(uint16_t raw)
+"443
+[; ;main.c: 443: static void MCP9808_ProcessTemperature(uint16_t raw)
 [v _raw `us ~T0 @X0 1 r1 ]
-"391
-[; ;main.c: 391: {
-[f ]
-"392
-[; ;main.c: 392:     int16_t temperature_raw;
-[v _temperature_raw `s ~T0 @X0 1 a ]
-"393
-[; ;main.c: 393:     int16_t centi;
-[v _centi `s ~T0 @X0 1 a ]
-"399
-[; ;main.c: 399:     temperature_raw = raw & 0x1FFF;
-[e = _temperature_raw -> & -> _raw `ui -> -> 8191 `i `ui `s ]
-"405
-[; ;main.c: 405:     if (temperature_raw & 0x1000)
-[e $ ! != & -> _temperature_raw `i -> 4096 `i -> 0 `i 937  ]
-"406
-[; ;main.c: 406:     {
-{
-"407
-[; ;main.c: 407:         temperature_raw -= 0x2000;
-[e =- _temperature_raw -> -> 8192 `i `s ]
-"408
-[; ;main.c: 408:     }
-}
-[e :U 937 ]
-"419
-[; ;main.c: 419:     centi =
-[e = _centi -> / * -> _temperature_raw `l -> -> 25 `i `l -> -> 4 `i `l `s ]
-"422
-[; ;main.c: 422:     mcp9808_temperature_centi = centi;
-[e = _mcp9808_temperature_centi _centi ]
-"428
-[; ;main.c: 428:     mcp9808_temperature_integer =
-[e = _mcp9808_temperature_integer -> / -> _centi `i -> 100 `i `s ]
-"435
-[; ;main.c: 435:     if (centi >= 0)
-[e $ ! >= -> _centi `i -> 0 `i 938  ]
-"436
-[; ;main.c: 436:     {
-{
-"437
-[; ;main.c: 437:         mcp9808_temperature_decimal =
-[e = _mcp9808_temperature_decimal -> % -> _centi `i -> 100 `i `us ]
-"439
-[; ;main.c: 439:     }
-}
-[e $U 939  ]
-"440
-[; ;main.c: 440:     else
-[e :U 938 ]
-"441
-[; ;main.c: 441:     {
-{
-"442
-[; ;main.c: 442:         mcp9808_temperature_decimal =
-[e = _mcp9808_temperature_decimal -> % -U -> _centi `i -> 100 `i `us ]
 "444
-[; ;main.c: 444:     }
-}
-[e :U 939 ]
-"450
-[; ;main.c: 450:     mcp9808_temperature =
-[e = _mcp9808_temperature _mcp9808_temperature_integer ]
+[; ;main.c: 444: {
+[f ]
+"445
+[; ;main.c: 445:     int16_t temperature_raw;
+[v _temperature_raw `s ~T0 @X0 1 a ]
+"446
+[; ;main.c: 446:     int16_t centi;
+[v _centi `s ~T0 @X0 1 a ]
 "452
-[; ;main.c: 452: }
-[e :UE 936 ]
-}
+[; ;main.c: 452:     temperature_raw =
+[e = _temperature_raw -> & -> _raw `ui -> -> 8191 `i `ui `s ]
 "459
-[; ;main.c: 459: static _Bool VCNL4200_Initialize(void)
-[v _VCNL4200_Initialize `(a ~T0 @X0 1 sf ]
+[; ;main.c: 459:     if (temperature_raw & 0x1000)
+[e $ ! != & -> _temperature_raw `i -> 4096 `i -> 0 `i 934  ]
 "460
-[; ;main.c: 460: {
+[; ;main.c: 460:     {
+{
+"461
+[; ;main.c: 461:         temperature_raw -= 0x2000;
+[e =- _temperature_raw -> -> 8192 `i `s ]
+"462
+[; ;main.c: 462:     }
+}
+[e :U 934 ]
+"474
+[; ;main.c: 474:     centi =
+[e = _centi -> / * -> _temperature_raw `l -> -> 25 `i `l -> -> 4 `i `l `s ]
+"479
+[; ;main.c: 479:     mcp9808_temperature_centi = centi;
+[e = _mcp9808_temperature_centi _centi ]
+"485
+[; ;main.c: 485:     mcp9808_temperature_integer =
+[e = _mcp9808_temperature_integer -> / -> _centi `i -> 100 `i `s ]
+"492
+[; ;main.c: 492:     if (centi >= 0)
+[e $ ! >= -> _centi `i -> 0 `i 935  ]
+"493
+[; ;main.c: 493:     {
+{
+"494
+[; ;main.c: 494:         mcp9808_temperature_decimal =
+[e = _mcp9808_temperature_decimal -> % -> _centi `i -> 100 `i `us ]
+"496
+[; ;main.c: 496:     }
+}
+[e $U 936  ]
+"497
+[; ;main.c: 497:     else
+[e :U 935 ]
+"498
+[; ;main.c: 498:     {
+{
+"499
+[; ;main.c: 499:         mcp9808_temperature_decimal =
+[e = _mcp9808_temperature_decimal -> % -U -> _centi `i -> 100 `i `us ]
+"501
+[; ;main.c: 501:     }
+}
+[e :U 936 ]
+"503
+[; ;main.c: 503:     mcp9808_temperature =
+[e = _mcp9808_temperature _mcp9808_temperature_integer ]
+"505
+[; ;main.c: 505: }
+[e :UE 933 ]
+}
+"513
+[; ;main.c: 513: static _Bool VCNL4200_Initialize(void)
+[v _VCNL4200_Initialize `(a ~T0 @X0 1 sf ]
+"514
+[; ;main.c: 514: {
 {
 [e :U _VCNL4200_Initialize ]
 [f ]
-"461
-[; ;main.c: 461:     _Bool ok;
-[v _ok `a ~T0 @X0 1 a ]
-"469
-[; ;main.c: 469:     ok = VCNL4200_WriteRegister16(
-[e = _ok ( _VCNL4200_WriteRegister16 (3 , , -> -> 0 `i `uc -> -> 0 `i `uc -> -> 0 `i `uc ]
-"475
-[; ;main.c: 475:     if (!ok)
-[e $ ! ! != -> _ok `i -> 0 `i 941  ]
-"476
-[; ;main.c: 476:     {
-{
-"477
-[; ;main.c: 477:         return 0;
-[e ) -> -> 0 `i `a ]
-[e $UE 940  ]
-"478
-[; ;main.c: 478:     }
-}
-[e :U 941 ]
-"484
-[; ;main.c: 484:     ok = VCNL4200_WriteRegister16(
-[e = _ok ( _VCNL4200_WriteRegister16 (3 , , -> -> 3 `i `uc -> -> 0 `i `uc -> -> 0 `i `uc ]
-"490
-[; ;main.c: 490:     if (!ok)
-[e $ ! ! != -> _ok `i -> 0 `i 942  ]
-"491
-[; ;main.c: 491:     {
-{
-"492
-[; ;main.c: 492:         return 0;
-[e ) -> -> 0 `i `a ]
-[e $UE 940  ]
-"493
-[; ;main.c: 493:     }
-}
-[e :U 942 ]
-"495
-[; ;main.c: 495:     return 1;
-[e ) -> -> 1 `i `a ]
-[e $UE 940  ]
-"496
-[; ;main.c: 496: }
-[e :UE 940 ]
-}
-"503
-[; ;main.c: 503: static _Bool VCNL4200_ReadSensors(void)
-[v _VCNL4200_ReadSensors `(a ~T0 @X0 1 sf ]
-"504
-[; ;main.c: 504: {
-{
-[e :U _VCNL4200_ReadSensors ]
-[f ]
-"505
-[; ;main.c: 505:     uint16_t ambient;
-[v _ambient `us ~T0 @X0 1 a ]
-"511
-[; ;main.c: 511:     if (!VCNL4200_ReadRegister16(
-[e $ ! ! != -> ( _VCNL4200_ReadRegister16 (2 , -> -> 9 `i `uc &U _ambient `i -> 0 `i 944  ]
-"514
-[; ;main.c: 514:     {
-{
 "515
-[; ;main.c: 515:         return 0;
-[e ) -> -> 0 `i `a ]
-[e $UE 943  ]
-"516
-[; ;main.c: 516:     }
-}
-[e :U 944 ]
-"518
-[; ;main.c: 518:     vcnl4200_ambient_light = ambient;
-[e = _vcnl4200_ambient_light _ambient ]
+[; ;main.c: 515:     _Bool ok;
+[v _ok `a ~T0 @X0 1 a ]
+"521
+[; ;main.c: 521:     ok = VCNL4200_WriteRegister16(
+[e = _ok ( _VCNL4200_WriteRegister16 (3 , , -> -> 0 `i `uc -> -> 0 `i `uc -> -> 0 `i `uc ]
+"527
+[; ;main.c: 527:     if (!ok)
+[e $ ! ! != -> _ok `i -> 0 `i 938  ]
 "528
-[; ;main.c: 528:     vcnl4200_lux_millilux =
-[e = _vcnl4200_lux_millilux * -> _ambient `ul -> 24 `ul ]
-"535
-[; ;main.c: 535:     vcnl4200_lux_integer =
-[e = _vcnl4200_lux_integer / _vcnl4200_lux_millilux -> 1000 `ul ]
+[; ;main.c: 528:     {
+{
+"529
+[; ;main.c: 529:         return 0;
+[e ) -> -> 0 `i `a ]
+[e $UE 937  ]
+"530
+[; ;main.c: 530:     }
+}
+[e :U 938 ]
+"536
+[; ;main.c: 536:     ok = VCNL4200_WriteRegister16(
+[e = _ok ( _VCNL4200_WriteRegister16 (3 , , -> -> 3 `i `uc -> -> 0 `i `uc -> -> 0 `i `uc ]
 "542
-[; ;main.c: 542:     vcnl4200_lux_decimal =
-[e = _vcnl4200_lux_decimal -> / % _vcnl4200_lux_millilux -> 1000 `ul -> 10 `ul `us ]
+[; ;main.c: 542:     if (!ok)
+[e $ ! ! != -> _ok `i -> 0 `i 939  ]
+"543
+[; ;main.c: 543:     {
+{
+"544
+[; ;main.c: 544:         return 0;
+[e ) -> -> 0 `i `a ]
+[e $UE 937  ]
+"545
+[; ;main.c: 545:     }
+}
+[e :U 939 ]
 "547
 [; ;main.c: 547:     return 1;
 [e ) -> -> 1 `i `a ]
-[e $UE 943  ]
+[e $UE 937  ]
 "548
 [; ;main.c: 548: }
-[e :UE 943 ]
+[e :UE 937 ]
 }
-"555
-[; ;main.c: 555: static _Bool VCNL4200_ReadID(void)
-[v _VCNL4200_ReadID `(a ~T0 @X0 1 sf ]
 "556
-[; ;main.c: 556: {
+[; ;main.c: 556: static _Bool VCNL4200_ReadSensors(void)
+[v _VCNL4200_ReadSensors `(a ~T0 @X0 1 sf ]
+"557
+[; ;main.c: 557: {
+{
+[e :U _VCNL4200_ReadSensors ]
+[f ]
+"558
+[; ;main.c: 558:     uint16_t ambient;
+[v _ambient `us ~T0 @X0 1 a ]
+"564
+[; ;main.c: 564:     if (!VCNL4200_ReadRegister16(
+[e $ ! ! != -> ( _VCNL4200_ReadRegister16 (2 , -> -> 9 `i `uc &U _ambient `i -> 0 `i 941  ]
+"567
+[; ;main.c: 567:     {
+{
+"568
+[; ;main.c: 568:         return 0;
+[e ) -> -> 0 `i `a ]
+[e $UE 940  ]
+"569
+[; ;main.c: 569:     }
+}
+[e :U 941 ]
+"571
+[; ;main.c: 571:     vcnl4200_ambient_light =
+[e = _vcnl4200_ambient_light _ambient ]
+"582
+[; ;main.c: 582:     vcnl4200_lux_millilux =
+[e = _vcnl4200_lux_millilux * -> _ambient `ul -> 24 `ul ]
+"589
+[; ;main.c: 589:     vcnl4200_lux_integer =
+[e = _vcnl4200_lux_integer / _vcnl4200_lux_millilux -> 1000 `ul ]
+"596
+[; ;main.c: 596:     vcnl4200_lux_decimal =
+[e = _vcnl4200_lux_decimal -> / % _vcnl4200_lux_millilux -> 1000 `ul -> 10 `ul `us ]
+"602
+[; ;main.c: 602:     return 1;
+[e ) -> -> 1 `i `a ]
+[e $UE 940  ]
+"603
+[; ;main.c: 603: }
+[e :UE 940 ]
+}
+"611
+[; ;main.c: 611: static _Bool VCNL4200_ReadID(void)
+[v _VCNL4200_ReadID `(a ~T0 @X0 1 sf ]
+"612
+[; ;main.c: 612: {
 {
 [e :U _VCNL4200_ReadID ]
 [f ]
-"557
-[; ;main.c: 557:     uint16_t id;
+"613
+[; ;main.c: 613:     uint16_t id;
 [v _id `us ~T0 @X0 1 a ]
-"559
-[; ;main.c: 559:     if (!VCNL4200_ReadRegister16(
-[e $ ! ! != -> ( _VCNL4200_ReadRegister16 (2 , -> -> 14 `i `uc &U _id `i -> 0 `i 946  ]
-"562
-[; ;main.c: 562:     {
+"615
+[; ;main.c: 615:     if (!VCNL4200_ReadRegister16(
+[e $ ! ! != -> ( _VCNL4200_ReadRegister16 (2 , -> -> 14 `i `uc &U _id `i -> 0 `i 943  ]
+"618
+[; ;main.c: 618:     {
 {
-"563
-[; ;main.c: 563:         return 0;
+"619
+[; ;main.c: 619:         return 0;
 [e ) -> -> 0 `i `a ]
-[e $UE 945  ]
-"564
-[; ;main.c: 564:     }
+[e $UE 942  ]
+"620
+[; ;main.c: 620:     }
 }
-[e :U 946 ]
-"566
-[; ;main.c: 566:     vcnl4200_id_data[0] =
+[e :U 943 ]
+"622
+[; ;main.c: 622:     vcnl4200_id_data[0] =
 [e = *U + &U _vcnl4200_id_data * -> -> -> 0 `i `ui `ux -> -> # *U &U _vcnl4200_id_data `ui `ux -> & -> _id `ui -> -> 255 `i `ui `uc ]
-"569
-[; ;main.c: 569:     vcnl4200_id_data[1] =
+"625
+[; ;main.c: 625:     vcnl4200_id_data[1] =
 [e = *U + &U _vcnl4200_id_data * -> -> -> 1 `i `ui `ux -> -> # *U &U _vcnl4200_id_data `ui `ux -> & >> -> _id `ui -> 8 `i -> -> 255 `i `ui `uc ]
-"572
-[; ;main.c: 572:     return 1;
+"628
+[; ;main.c: 628:     return 1;
 [e ) -> -> 1 `i `a ]
-[e $UE 945  ]
-"573
-[; ;main.c: 573: }
-[e :UE 945 ]
+[e $UE 942  ]
+"629
+[; ;main.c: 629: }
+[e :UE 942 ]
+}
+"646
+[; ;main.c: 646: static void Delay_3_Seconds(void)
+[v _Delay_3_Seconds `(v ~T0 @X0 1 sf ]
+"647
+[; ;main.c: 647: {
+{
+[e :U _Delay_3_Seconds ]
+[f ]
+"648
+[; ;main.c: 648:     uint8_t i;
+[v _i `uc ~T0 @X0 1 a ]
+"650
+[; ;main.c: 650:     for (i = 0; i < 3; i++)
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 3 `i 945  ]
+[e $U 946  ]
+[e :U 945 ]
+"651
+[; ;main.c: 651:     {
+{
+"652
+[; ;main.c: 652:         _delay((unsigned long)((1000)*(32000000U/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 32000000 `ul `d .4000.0 `ul ]
+"653
+[; ;main.c: 653:     }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 3 `i 945  ]
+[e :U 946 ]
+}
+"654
+[; ;main.c: 654: }
+[e :UE 944 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"580
-[; ;main.c: 580: void main(void)
+"662
+[; ;main.c: 662: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"581
-[; ;main.c: 581: {
+"663
+[; ;main.c: 663: {
 {
 [e :U _main ]
 [f ]
-"582
-[; ;main.c: 582:     uint16_t mcp9808_raw_temperature;
+"664
+[; ;main.c: 664:     uint16_t mcp9808_raw_temperature;
 [v _mcp9808_raw_temperature `us ~T0 @X0 1 a ]
-"590
-[; ;main.c: 590:     SYSTEM_Initialize();
+"672
+[; ;main.c: 672:     SYSTEM_Initialize();
 [e ( _SYSTEM_Initialize ..  ]
-"599
-[; ;main.c: 599:     I2C1_Initialize();
+"681
+[; ;main.c: 681:     I2C1_Initialize();
 [e ( _I2C1_Initialize ..  ]
-"608
-[; ;main.c: 608:     EUSART1_Initialize();
-[e ( _EUSART1_Initialize ..  ]
-"617
-[; ;main.c: 617:     mcp9808_temperature = 0;
-[e = _mcp9808_temperature -> -> 0 `i `s ]
-"618
-[; ;main.c: 618:     mcp9808_temperature_centi = 0;
-[e = _mcp9808_temperature_centi -> -> 0 `i `s ]
-"619
-[; ;main.c: 619:     mcp9808_temperature_integer = 0;
-[e = _mcp9808_temperature_integer -> -> 0 `i `s ]
-"620
-[; ;main.c: 620:     mcp9808_temperature_decimal = 0;
-[e = _mcp9808_temperature_decimal -> -> 0 `i `us ]
-"622
-[; ;main.c: 622:     mcp9808_ok = 0;
-[e = _mcp9808_ok -> -> 0 `i `a ]
-"623
-[; ;main.c: 623:     mcp9808_error = I2C_ERROR_NONE;
-[e = _mcp9808_error . `E6559 0 ]
-"632
-[; ;main.c: 632:     vcnl4200_ambient_light = 0;
-[e = _vcnl4200_ambient_light -> -> 0 `i `us ]
-"634
-[; ;main.c: 634:     vcnl4200_lux_millilux = 0;
-[e = _vcnl4200_lux_millilux -> -> -> 0 `i `l `ul ]
-"635
-[; ;main.c: 635:     vcnl4200_lux_integer = 0;
-[e = _vcnl4200_lux_integer -> -> -> 0 `i `l `ul ]
-"636
-[; ;main.c: 636:     vcnl4200_lux_decimal = 0;
-[e = _vcnl4200_lux_decimal -> -> 0 `i `us ]
-"638
-[; ;main.c: 638:     vcnl4200_proximity = 0;
-[e = _vcnl4200_proximity -> -> 0 `i `us ]
-"640
-[; ;main.c: 640:     vcnl4200_id_data[0] = 0;
-[e = *U + &U _vcnl4200_id_data * -> -> -> 0 `i `ui `ux -> -> # *U &U _vcnl4200_id_data `ui `ux -> -> 0 `i `uc ]
-"641
-[; ;main.c: 641:     vcnl4200_id_data[1] = 0;
-[e = *U + &U _vcnl4200_id_data * -> -> -> 1 `i `ui `ux -> -> # *U &U _vcnl4200_id_data `ui `ux -> -> 0 `i `uc ]
-"643
-[; ;main.c: 643:     vcnl4200_ok = 0;
-[e = _vcnl4200_ok -> -> 0 `i `a ]
-"644
-[; ;main.c: 644:     vcnl4200_error = I2C_ERROR_NONE;
-[e = _vcnl4200_error . `E6559 0 ]
-"653
-[; ;main.c: 653:     INTCONbits.PEIE = 1;
-[e = . . _INTCONbits 0 2 -> -> 1 `i `uc ]
-"654
-[; ;main.c: 654:     INTCONbits.GIE = 1;
-[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
-"663
-[; ;main.c: 663:     UART_WriteString(
-[e ( _UART_WriteString (1 :s 5C ]
-"667
-[; ;main.c: 667:     UART_WriteString(
-[e ( _UART_WriteString (1 :s 6C ]
-"671
-[; ;main.c: 671:     UART_WriteString(
-[e ( _UART_WriteString (1 :s 7C ]
-"675
-[; ;main.c: 675:     UART_WriteString(
-[e ( _UART_WriteString (1 :s 8C ]
-"679
-[; ;main.c: 679:     UART_WriteString(
-[e ( _UART_WriteString (1 :s 9C ]
 "690
-[; ;main.c: 690:     vcnl4200_ok =
-[e = _vcnl4200_ok ( _VCNL4200_Initialize ..  ]
+[; ;main.c: 690:     EUSART1_Initialize();
+[e ( _EUSART1_Initialize ..  ]
+"699
+[; ;main.c: 699:     INTCONbits.PEIE = 1;
+[e = . . _INTCONbits 0 2 -> -> 1 `i `uc ]
 "700
-[; ;main.c: 700:     if (vcnl4200_ok)
-[e $ ! != -> _vcnl4200_ok `i -> 0 `i 948  ]
-"701
-[; ;main.c: 701:     {
-{
-"702
-[; ;main.c: 702:         if (!VCNL4200_ReadID())
-[e $ ! ! != -> ( _VCNL4200_ReadID ..  `i -> 0 `i 949  ]
-"703
-[; ;main.c: 703:         {
-{
-"704
-[; ;main.c: 704:             vcnl4200_ok = 0;
-[e = _vcnl4200_ok -> -> 0 `i `a ]
-"705
-[; ;main.c: 705:         }
-}
-[e :U 949 ]
-"706
-[; ;main.c: 706:     }
-}
-[e :U 948 ]
+[; ;main.c: 700:     INTCONbits.GIE = 1;
+[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+"709
+[; ;main.c: 709:     UART_ClearScreen();
+[e ( _UART_ClearScreen ..  ]
+"711
+[; ;main.c: 711:     UART_WriteString(
+[e ( _UART_WriteString (1 :s 6C ]
 "715
-[; ;main.c: 715:     if (vcnl4200_ok)
-[e $ ! != -> _vcnl4200_ok `i -> 0 `i 950  ]
-"716
-[; ;main.c: 716:     {
-{
-"717
-[; ;main.c: 717:         UART_WriteString(
+[; ;main.c: 715:     UART_WriteString(
+[e ( _UART_WriteString (1 :s 7C ]
+"719
+[; ;main.c: 719:     UART_WriteString(
+[e ( _UART_WriteString (1 :s 8C ]
+"723
+[; ;main.c: 723:     UART_WriteString(
+[e ( _UART_WriteString (1 :s 9C ]
+"727
+[; ;main.c: 727:     UART_WriteString(
 [e ( _UART_WriteString (1 :s 10C ]
-"721
-[; ;main.c: 721:         UART_WriteString(
-[e ( _UART_WriteString (1 :s 11C ]
-"729
-[; ;main.c: 729:     }
-}
-[e $U 951  ]
-"730
-[; ;main.c: 730:     else
-[e :U 950 ]
 "731
-[; ;main.c: 731:     {
-{
-"732
-[; ;main.c: 732:         UART_WriteString(
-[e ( _UART_WriteString (1 :s 12C ]
-"735
-[; ;main.c: 735:     }
-}
-[e :U 951 ]
-"744
-[; ;main.c: 744:     while (1)
-[e :U 953 ]
-"745
-[; ;main.c: 745:     {
-{
+[; ;main.c: 731:     UART_WriteString(
+[e ( _UART_WriteString (1 :s 11C ]
+"742
+[; ;main.c: 742:     vcnl4200_ok =
+[e = _vcnl4200_ok ( _VCNL4200_Initialize ..  ]
+"752
+[; ;main.c: 752:     if (vcnl4200_ok)
+[e $ ! != -> _vcnl4200_ok `i -> 0 `i 949  ]
 "753
-[; ;main.c: 753:         if (MCP9808_ReadTemperatureRaw(
-[e $ ! != -> ( _MCP9808_ReadTemperatureRaw (1 &U _mcp9808_raw_temperature `i -> 0 `i 955  ]
+[; ;main.c: 753:     {
+{
+"754
+[; ;main.c: 754:         if (!VCNL4200_ReadID())
+[e $ ! ! != -> ( _VCNL4200_ReadID ..  `i -> 0 `i 950  ]
 "755
 [; ;main.c: 755:         {
 {
 "756
-[; ;main.c: 756:             MCP9808_ProcessTemperature(
-[e ( _MCP9808_ProcessTemperature (1 _mcp9808_raw_temperature ]
-"760
-[; ;main.c: 760:             mcp9808_ok = 1;
-[e = _mcp9808_ok -> -> 1 `i `a ]
-"761
-[; ;main.c: 761:         }
-}
-[e $U 956  ]
-"762
-[; ;main.c: 762:         else
-[e :U 955 ]
-"763
-[; ;main.c: 763:         {
-{
-"764
-[; ;main.c: 764:             mcp9808_ok = 0;
-[e = _mcp9808_ok -> -> 0 `i `a ]
-"765
-[; ;main.c: 765:         }
-}
-[e :U 956 ]
-"774
-[; ;main.c: 774:         if (VCNL4200_ReadSensors())
-[e $ ! != -> ( _VCNL4200_ReadSensors ..  `i -> 0 `i 957  ]
-"775
-[; ;main.c: 775:         {
-{
-"776
-[; ;main.c: 776:             vcnl4200_ok = 1;
-[e = _vcnl4200_ok -> -> 1 `i `a ]
-"777
-[; ;main.c: 777:         }
-}
-[e $U 958  ]
-"778
-[; ;main.c: 778:         else
-[e :U 957 ]
-"779
-[; ;main.c: 779:         {
-{
-"780
-[; ;main.c: 780:             vcnl4200_ok = 0;
+[; ;main.c: 756:             vcnl4200_ok = 0;
 [e = _vcnl4200_ok -> -> 0 `i `a ]
-"781
-[; ;main.c: 781:         }
+"757
+[; ;main.c: 757:         }
 }
-[e :U 958 ]
-"790
-[; ;main.c: 790:         if (mcp9808_ok)
-[e $ ! != -> _mcp9808_ok `i -> 0 `i 959  ]
-"791
-[; ;main.c: 791:         {
-{
-"792
-[; ;main.c: 792:             UART_WriteTemperature();
-[e ( _UART_WriteTemperature ..  ]
-"793
-[; ;main.c: 793:         }
+[e :U 950 ]
+"758
+[; ;main.c: 758:     }
 }
-[e $U 960  ]
-"794
-[; ;main.c: 794:         else
-[e :U 959 ]
-"795
-[; ;main.c: 795:         {
+[e :U 949 ]
+"767
+[; ;main.c: 767:     UART_WriteString("\r\n");
+[e ( _UART_WriteString (1 :s 12C ]
+"769
+[; ;main.c: 769:     if (vcnl4200_ok)
+[e $ ! != -> _vcnl4200_ok `i -> 0 `i 951  ]
+"770
+[; ;main.c: 770:     {
 {
-"796
-[; ;main.c: 796:             UART_WriteString(
+"771
+[; ;main.c: 771:         UART_WriteString(
 [e ( _UART_WriteString (1 :s 13C ]
-"799
-[; ;main.c: 799:         }
+"774
+[; ;main.c: 774:     }
 }
-[e :U 960 ]
-"802
-[; ;main.c: 802:         if (vcnl4200_ok)
-[e $ ! != -> _vcnl4200_ok `i -> 0 `i 961  ]
-"803
-[; ;main.c: 803:         {
+[e $U 952  ]
+"775
+[; ;main.c: 775:     else
+[e :U 951 ]
+"776
+[; ;main.c: 776:     {
 {
-"804
-[; ;main.c: 804:             UART_WriteLight();
-[e ( _UART_WriteLight ..  ]
-"805
-[; ;main.c: 805:         }
-}
-[e $U 962  ]
-"806
-[; ;main.c: 806:         else
-[e :U 961 ]
-"807
-[; ;main.c: 807:         {
-{
-"808
-[; ;main.c: 808:             UART_WriteString(
+"777
+[; ;main.c: 777:         UART_WriteString(
 [e ( _UART_WriteString (1 :s 14C ]
-"811
-[; ;main.c: 811:         }
-}
-[e :U 962 ]
-"818
-[; ;main.c: 818:         UART_WriteString(
-[e ( _UART_WriteString (1 :s 15C ]
-"827
-[; ;main.c: 827:         Delay_Long();
-[e ( _Delay_Long ..  ]
-"828
-[; ;main.c: 828:     }
+"780
+[; ;main.c: 780:     }
 }
 [e :U 952 ]
-[e $U 953  ]
+"783
+[; ;main.c: 783:     UART_WriteString(
+[e ( _UART_WriteString (1 :s 15C ]
+"787
+[; ;main.c: 787:     UART_WriteString(
+[e ( _UART_WriteString (1 :s 16C ]
+"798
+[; ;main.c: 798:     Delay_3_Seconds();
+[e ( _Delay_3_Seconds ..  ]
+"807
+[; ;main.c: 807:     while (1)
 [e :U 954 ]
+"808
+[; ;main.c: 808:     {
+{
+"816
+[; ;main.c: 816:         UART_ClearScreen();
+[e ( _UART_ClearScreen ..  ]
+"825
+[; ;main.c: 825:         UART_WriteString(
+[e ( _UART_WriteString (1 :s 17C ]
 "829
-[; ;main.c: 829: }
-[e :UE 947 ]
+[; ;main.c: 829:         UART_WriteString(
+[e ( _UART_WriteString (1 :s 18C ]
+"833
+[; ;main.c: 833:         UART_WriteString(
+[e ( _UART_WriteString (1 :s 19C ]
+"844
+[; ;main.c: 844:         if (MCP9808_ReadTemperatureRaw(
+[e $ ! != -> ( _MCP9808_ReadTemperatureRaw (1 &U _mcp9808_raw_temperature `i -> 0 `i 956  ]
+"846
+[; ;main.c: 846:         {
+{
+"847
+[; ;main.c: 847:             MCP9808_ProcessTemperature(
+[e ( _MCP9808_ProcessTemperature (1 _mcp9808_raw_temperature ]
+"851
+[; ;main.c: 851:             mcp9808_ok = 1;
+[e = _mcp9808_ok -> -> 1 `i `a ]
+"852
+[; ;main.c: 852:         }
 }
-[a 11C 73 68 32 76 79 87 58 32 48 120 0 ]
-[a 3C 76 117 122 58 32 0 ]
-[a 1C 84 101 109 112 101 114 97 116 117 114 97 58 32 0 ]
-[a 4C 32 108 117 120 13 10 0 ]
-[a 6C 69 115 116 97 99 105 111 110 32 77 111 110 105 116 111 114 101 111 32 65 109 98 105 101 110 116 97 108 13 10 0 ]
-[a 14C 76 117 122 58 32 69 82 82 79 82 13 10 0 ]
-[a 13C 84 101 109 112 101 114 97 116 117 114 97 58 32 69 82 82 79 82 13 10 0 ]
-[a 12C 86 67 78 76 52 50 48 48 58 32 69 82 82 79 82 13 10 0 ]
-[a 10C 86 67 78 76 52 50 48 48 58 32 79 75 13 10 0 ]
-[a 2C 32 67 13 10 0 ]
-[a 5C 13 10 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 13 10 0 ]
-[a 7C 80 73 67 49 54 70 49 51 49 52 53 13 10 0 ]
-[a 8C 85 65 82 84 58 32 57 54 48 48 32 56 78 49 13 10 0 ]
-[a 15C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 13 10 0 ]
-[a 9C 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 13 10 13 10 0 ]
+[e $U 957  ]
+"853
+[; ;main.c: 853:         else
+[e :U 956 ]
+"854
+[; ;main.c: 854:         {
+{
+"855
+[; ;main.c: 855:             mcp9808_ok = 0;
+[e = _mcp9808_ok -> -> 0 `i `a ]
+"856
+[; ;main.c: 856:         }
+}
+[e :U 957 ]
+"865
+[; ;main.c: 865:         if (VCNL4200_ReadSensors())
+[e $ ! != -> ( _VCNL4200_ReadSensors ..  `i -> 0 `i 958  ]
+"866
+[; ;main.c: 866:         {
+{
+"867
+[; ;main.c: 867:             vcnl4200_ok = 1;
+[e = _vcnl4200_ok -> -> 1 `i `a ]
+"868
+[; ;main.c: 868:         }
+}
+[e $U 959  ]
+"869
+[; ;main.c: 869:         else
+[e :U 958 ]
+"870
+[; ;main.c: 870:         {
+{
+"871
+[; ;main.c: 871:             vcnl4200_ok = 0;
+[e = _vcnl4200_ok -> -> 0 `i `a ]
+"872
+[; ;main.c: 872:         }
+}
+[e :U 959 ]
+"881
+[; ;main.c: 881:         if (mcp9808_ok)
+[e $ ! != -> _mcp9808_ok `i -> 0 `i 960  ]
+"882
+[; ;main.c: 882:         {
+{
+"883
+[; ;main.c: 883:             UART_WriteTemperature();
+[e ( _UART_WriteTemperature ..  ]
+"884
+[; ;main.c: 884:         }
+}
+[e $U 961  ]
+"885
+[; ;main.c: 885:         else
+[e :U 960 ]
+"886
+[; ;main.c: 886:         {
+{
+"887
+[; ;main.c: 887:             UART_WriteString(
+[e ( _UART_WriteString (1 :s 20C ]
+"890
+[; ;main.c: 890:         }
+}
+[e :U 961 ]
+"899
+[; ;main.c: 899:         if (vcnl4200_ok)
+[e $ ! != -> _vcnl4200_ok `i -> 0 `i 962  ]
+"900
+[; ;main.c: 900:         {
+{
+"901
+[; ;main.c: 901:             UART_WriteLight();
+[e ( _UART_WriteLight ..  ]
+"902
+[; ;main.c: 902:         }
+}
+[e $U 963  ]
+"903
+[; ;main.c: 903:         else
+[e :U 962 ]
+"904
+[; ;main.c: 904:         {
+{
+"905
+[; ;main.c: 905:             UART_WriteString(
+[e ( _UART_WriteString (1 :s 21C ]
+"908
+[; ;main.c: 908:         }
+}
+[e :U 963 ]
+"917
+[; ;main.c: 917:         UART_WriteString(
+[e ( _UART_WriteString (1 :s 22C ]
+"921
+[; ;main.c: 921:         UART_WriteString(
+[e ( _UART_WriteString (1 :s 23C ]
+"925
+[; ;main.c: 925:         UART_WriteString(
+[e ( _UART_WriteString (1 :s 24C ]
+"936
+[; ;main.c: 936:         Delay_3_Seconds();
+[e ( _Delay_3_Seconds ..  ]
+"937
+[; ;main.c: 937:     }
+}
+[e :U 953 ]
+[e $U 954  ]
+[e :U 955 ]
+"938
+[; ;main.c: 938: }
+[e :UE 948 ]
+}
+[a 1C 50 74 0 ]
+[a 4C 76 117 122 58 32 0 ]
+[a 2C 84 101 109 112 101 114 97 116 117 114 97 58 32 0 ]
+[a 5C 32 108 117 120 13 10 0 ]
+[a 23C 65 99 116 117 97 108 105 122 97 99 105 111 110 32 99 97 100 97 32 51 32 115 101 103 117 110 100 111 115 13 10 0 ]
+[a 15C 77 67 80 57 56 48 56 58 32 112 114 101 112 97 114 97 100 111 13 10 0 ]
+[a 21C 76 117 122 58 32 69 82 82 79 82 13 10 0 ]
+[a 20C 84 101 109 112 101 114 97 116 117 114 97 58 32 69 82 82 79 82 13 10 0 ]
+[a 14C 86 67 78 76 52 50 48 48 58 32 69 82 82 79 82 13 10 0 ]
+[a 7C 32 69 83 84 65 67 73 79 78 32 68 69 32 77 79 78 73 84 79 82 69 79 32 65 77 66 73 69 78 84 65 76 13 10 0 ]
+[a 18C 32 32 32 77 79 78 73 84 79 82 69 79 32 65 77 66 73 69 78 84 65 76 13 10 0 ]
+[a 13C 86 67 78 76 52 50 48 48 58 32 79 75 13 10 0 ]
+[a 3C 32 67 13 10 0 ]
+[a 6C 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 13 10 0 ]
+[a 10C 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 13 10 0 ]
+[a 17C 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 13 10 0 ]
+[a 8C 32 80 73 67 49 54 70 49 51 49 52 53 13 10 0 ]
+[a 9C 32 85 65 82 84 58 32 57 54 48 48 32 56 78 49 13 10 0 ]
+[a 11C 73 110 105 99 105 97 108 105 122 97 110 100 111 32 115 101 110 115 111 114 101 115 46 46 46 13 10 0 ]
+[a 16C 13 10 67 111 109 101 110 122 97 110 100 111 32 109 111 110 105 116 111 114 101 111 46 46 46 13 10 0 ]
+[a 22C 13 10 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 13 10 0 ]
+[a 24C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 13 10 0 ]
+[a 19C 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 13 10 13 10 0 ]
+[a 12C 13 10 0 ]

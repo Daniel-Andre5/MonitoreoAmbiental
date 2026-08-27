@@ -1,3 +1,27 @@
+/*
+ * ============================================================
+ * ESTACION DE MONITOREO AMBIENTAL
+ * PIC16F13145
+ *
+ * MCP9808  -> Temperatura
+ * VCNL4200 -> Luz ambiental
+ * EUSART1  -> USB Bridge -> PuTTY
+ *
+ * UART:
+ * 9600 baudios
+ * 8 bits
+ * Sin paridad
+ * 1 bit de parada
+ * Sin control de flujo
+ *
+ * ACTUALIZACION:
+ * Cada 3 segundos
+ *
+ * La pantalla de PuTTY se limpia antes de cada lectura,
+ * por lo que solamente se muestra una lectura a la vez.
+ * ============================================================
+ */
+
 #include <xc.h>
 #include <stdint.h>
 #include <stdbool.h>
@@ -7,24 +31,27 @@
 #include "mcc_generated_files/uart/eusart1.h"
 
 
-/* =========================================================
+/* ============================================================
  * DIRECCIONES I2C
- * ========================================================= */
+ * ============================================================
+ */
 
 #define MCP9808_I2C_ADDRESS       0x1C
 #define VCNL4200_I2C_ADDRESS      0x51
 
 
-/* =========================================================
+/* ============================================================
  * REGISTROS MCP9808
- * ========================================================= */
+ * ============================================================
+ */
 
 #define MCP9808_REG_TEMPERATURE   0x05
 
 
-/* =========================================================
+/* ============================================================
  * REGISTROS VCNL4200
- * ========================================================= */
+ * ============================================================
+ */
 
 #define VCNL4200_REG_ALS_CONF     0x00
 #define VCNL4200_REG_PS_CONF      0x03
@@ -33,9 +60,10 @@
 #define VCNL4200_REG_ID           0x0E
 
 
-/* =========================================================
+/* ============================================================
  * VARIABLES MCP9808
- * ========================================================= */
+ * ============================================================
+ */
 
 volatile int16_t mcp9808_temperature = 0;
 volatile int16_t mcp9808_temperature_centi = 0;
@@ -46,9 +74,10 @@ volatile bool mcp9808_ok = false;
 volatile i2c_host_error_t mcp9808_error = I2C_ERROR_NONE;
 
 
-/* =========================================================
+/* ============================================================
  * VARIABLES VCNL4200
- * ========================================================= */
+ * ============================================================
+ */
 
 volatile uint16_t vcnl4200_ambient_light = 0;
 
@@ -64,54 +93,19 @@ volatile bool vcnl4200_ok = false;
 volatile i2c_host_error_t vcnl4200_error = I2C_ERROR_NONE;
 
 
-/* =========================================================
+/* ============================================================
  * BUFFERS I2C
- * ========================================================= */
+ * ============================================================
+ */
 
 static uint8_t i2c_write_buffer[3];
 static uint8_t i2c_read_buffer[2];
 
 
-/* =========================================================
- * RETARDO
- * ========================================================= */
-
-static void Delay_Long(void)
-{
-    volatile uint32_t delay;
-
-    for (delay = 0; delay < 50000UL; delay++)
-    {
-        ;
-    }
-}
-
-
-/* =========================================================
- * ESPERAR A QUE TERMINE I2C
- * ========================================================= */
-
-static bool I2C_WaitComplete(void)
-{
-    volatile uint32_t timeout = 0;
-
-    while (I2C1_IsBusy())
-    {
-        timeout++;
-
-        if (timeout > 100000UL)
-        {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-
-/* =========================================================
- * UART - ENVIAR UN CARACTER
- * ========================================================= */
+/* ============================================================
+ * UART - ENVIAR CARACTER
+ * ============================================================
+ */
 
 static void UART_WriteChar(char c)
 {
@@ -124,9 +118,10 @@ static void UART_WriteChar(char c)
 }
 
 
-/* =========================================================
+/* ============================================================
  * UART - ENVIAR TEXTO
- * ========================================================= */
+ * ============================================================
+ */
 
 static void UART_WriteString(const char *text)
 {
@@ -138,9 +133,33 @@ static void UART_WriteString(const char *text)
 }
 
 
-/* =========================================================
- * UART - ENVIAR NUMERO ENTERO POSITIVO
- * ========================================================= */
+/* ============================================================
+ * LIMPIAR PANTALLA DE PUTTY
+ *
+ * ESC [ 2 J
+ * ESC [ H
+ *
+ * Esto funciona en terminales que soportan ANSI.
+ * PuTTY soporta estas secuencias.
+ * ============================================================
+ */
+
+static void UART_ClearScreen(void)
+{
+    UART_WriteChar(0x1B);
+    UART_WriteChar('[');
+    UART_WriteString("2J");
+
+    UART_WriteChar(0x1B);
+    UART_WriteChar('[');
+    UART_WriteChar('H');
+}
+
+
+/* ============================================================
+ * UART - ENVIAR UINT16
+ * ============================================================
+ */
 
 static void UART_WriteUInt16(uint16_t value)
 {
@@ -168,9 +187,10 @@ static void UART_WriteUInt16(uint16_t value)
 }
 
 
-/* =========================================================
- * UART - ENVIAR NUMERO ENTERO 32 BITS
- * ========================================================= */
+/* ============================================================
+ * UART - ENVIAR UINT32
+ * ============================================================
+ */
 
 static void UART_WriteUInt32(uint32_t value)
 {
@@ -198,9 +218,10 @@ static void UART_WriteUInt32(uint32_t value)
 }
 
 
-/* =========================================================
- * UART - ENVIAR TEMPERATURA
- * ========================================================= */
+/* ============================================================
+ * UART - TEMPERATURA
+ * ============================================================
+ */
 
 static void UART_WriteTemperature(void)
 {
@@ -232,9 +253,10 @@ static void UART_WriteTemperature(void)
 }
 
 
-/* =========================================================
- * UART - ENVIAR LUZ
- * ========================================================= */
+/* ============================================================
+ * UART - LUZ
+ * ============================================================
+ */
 
 static void UART_WriteLight(void)
 {
@@ -255,9 +277,33 @@ static void UART_WriteLight(void)
 }
 
 
-/* =========================================================
- * ESCRIBIR REGISTRO DE 16 BITS VCNL4200
- * ========================================================= */
+/* ============================================================
+ * ESPERAR I2C
+ * ============================================================
+ */
+
+static bool I2C_WaitComplete(void)
+{
+    volatile uint32_t timeout = 0;
+
+    while (I2C1_IsBusy())
+    {
+        timeout++;
+
+        if (timeout > 100000UL)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
+/* ============================================================
+ * VCNL4200 - ESCRIBIR REGISTRO 16 BITS
+ * ============================================================
+ */
 
 static bool VCNL4200_WriteRegister16(uint8_t reg,
                                      uint8_t low,
@@ -267,9 +313,10 @@ static bool VCNL4200_WriteRegister16(uint8_t reg,
     i2c_write_buffer[1] = low;
     i2c_write_buffer[2] = high;
 
-    if (!I2C1_Write(VCNL4200_I2C_ADDRESS,
-                    i2c_write_buffer,
-                    3))
+    if (!I2C1_Write(
+            VCNL4200_I2C_ADDRESS,
+            i2c_write_buffer,
+            3))
     {
         return false;
     }
@@ -290,9 +337,10 @@ static bool VCNL4200_WriteRegister16(uint8_t reg,
 }
 
 
-/* =========================================================
- * LEER REGISTRO DE 16 BITS VCNL4200
- * ========================================================= */
+/* ============================================================
+ * VCNL4200 - LEER REGISTRO 16 BITS
+ * ============================================================
+ */
 
 static bool VCNL4200_ReadRegister16(uint8_t reg,
                                     uint16_t *value)
@@ -302,11 +350,12 @@ static bool VCNL4200_ReadRegister16(uint8_t reg,
     i2c_read_buffer[0] = 0;
     i2c_read_buffer[1] = 0;
 
-    if (!I2C1_WriteRead(VCNL4200_I2C_ADDRESS,
-                        i2c_write_buffer,
-                        1,
-                        i2c_read_buffer,
-                        2))
+    if (!I2C1_WriteRead(
+            VCNL4200_I2C_ADDRESS,
+            i2c_write_buffer,
+            1,
+            i2c_read_buffer,
+            2))
     {
         return false;
     }
@@ -324,8 +373,9 @@ static bool VCNL4200_ReadRegister16(uint8_t reg,
     }
 
     /*
-     * VCNL4200 entrega primero byte LOW
-     * y después byte HIGH.
+     * VCNL4200:
+     * byte 0 = LOW
+     * byte 1 = HIGH
      */
 
     *value =
@@ -336,22 +386,25 @@ static bool VCNL4200_ReadRegister16(uint8_t reg,
 }
 
 
-/* =========================================================
- * LEER TEMPERATURA RAW MCP9808
- * ========================================================= */
+/* ============================================================
+ * MCP9808 - LEER TEMPERATURA RAW
+ * ============================================================
+ */
 
 static bool MCP9808_ReadTemperatureRaw(uint16_t *value)
 {
-    i2c_write_buffer[0] = MCP9808_REG_TEMPERATURE;
+    i2c_write_buffer[0] =
+        MCP9808_REG_TEMPERATURE;
 
     i2c_read_buffer[0] = 0;
     i2c_read_buffer[1] = 0;
 
-    if (!I2C1_WriteRead(MCP9808_I2C_ADDRESS,
-                        i2c_write_buffer,
-                        1,
-                        i2c_read_buffer,
-                        2))
+    if (!I2C1_WriteRead(
+            MCP9808_I2C_ADDRESS,
+            i2c_write_buffer,
+            1,
+            i2c_read_buffer,
+            2))
     {
         return false;
     }
@@ -369,10 +422,9 @@ static bool MCP9808_ReadTemperatureRaw(uint16_t *value)
     }
 
     /*
-     * MCP9808 entrega:
-     *
-     * Byte 0 = MSB
-     * Byte 1 = LSB
+     * MCP9808:
+     * byte 0 = MSB
+     * byte 1 = LSB
      */
 
     *value =
@@ -383,9 +435,10 @@ static bool MCP9808_ReadTemperatureRaw(uint16_t *value)
 }
 
 
-/* =========================================================
- * PROCESAR TEMPERATURA MCP9808
- * ========================================================= */
+/* ============================================================
+ * MCP9808 - PROCESAR TEMPERATURA
+ * ============================================================
+ */
 
 static void MCP9808_ProcessTemperature(uint16_t raw)
 {
@@ -393,13 +446,14 @@ static void MCP9808_ProcessTemperature(uint16_t raw)
     int16_t centi;
 
     /*
-     * Extraer los 13 bits de temperatura.
+     * Extraer 13 bits de temperatura.
      */
 
-    temperature_raw = raw & 0x1FFF;
+    temperature_raw =
+        raw & 0x1FFF;
 
     /*
-     * Detectar temperatura negativa.
+     * Temperatura negativa.
      */
 
     if (temperature_raw & 0x1000)
@@ -408,16 +462,19 @@ static void MCP9808_ProcessTemperature(uint16_t raw)
     }
 
     /*
-     * Resolución MCP9808:
+     * MCP9808:
      *
-     * 0.25 °C por cuenta.
+     * 1 cuenta = 0.25 C
      *
-     * Multiplicamos por 25 / 4
-     * para obtener centésimas de grado.
+     * En centesimas:
+     *
+     * temperatura * 25 / 4
      */
 
     centi =
-        (int16_t)(((int32_t)temperature_raw * 25) / 4);
+        (int16_t)(
+            ((int32_t)temperature_raw * 25) / 4
+        );
 
     mcp9808_temperature_centi = centi;
 
@@ -443,26 +500,21 @@ static void MCP9808_ProcessTemperature(uint16_t raw)
             (uint16_t)((-centi) % 100);
     }
 
-    /*
-     * Mantener también la temperatura entera.
-     */
-
     mcp9808_temperature =
         mcp9808_temperature_integer;
 }
 
 
-/* =========================================================
- * CONFIGURAR VCNL4200
- * ========================================================= */
+/* ============================================================
+ * VCNL4200 - INICIALIZACION
+ * ============================================================
+ */
 
 static bool VCNL4200_Initialize(void)
 {
     bool ok;
 
     /*
-     * Configurar ALS.
-     *
      * ALS habilitado.
      */
 
@@ -478,7 +530,7 @@ static bool VCNL4200_Initialize(void)
     }
 
     /*
-     * Configurar proximidad.
+     * Proximidad.
      */
 
     ok = VCNL4200_WriteRegister16(
@@ -496,16 +548,17 @@ static bool VCNL4200_Initialize(void)
 }
 
 
-/* =========================================================
- * LEER SENSORES VCNL4200
- * ========================================================= */
+/* ============================================================
+ * VCNL4200 - LEER SENSORES
+ * ============================================================
+ */
 
 static bool VCNL4200_ReadSensors(void)
 {
     uint16_t ambient;
 
     /*
-     * Leer luz ambiente.
+     * Leer ALS.
      */
 
     if (!VCNL4200_ReadRegister16(
@@ -515,14 +568,15 @@ static bool VCNL4200_ReadSensors(void)
         return false;
     }
 
-    vcnl4200_ambient_light = ambient;
+    vcnl4200_ambient_light =
+        ambient;
 
     /*
-     * Según la conversión utilizada:
+     * Conversion:
      *
      * 1 cuenta = 0.024 lux
      *
-     * 0.024 lux = 24 mililux.
+     * 0.024 lux = 24 mililux
      */
 
     vcnl4200_lux_millilux =
@@ -541,16 +595,18 @@ static bool VCNL4200_ReadSensors(void)
 
     vcnl4200_lux_decimal =
         (uint16_t)(
-            (vcnl4200_lux_millilux % 1000UL) / 10UL
+            (vcnl4200_lux_millilux % 1000UL)
+            / 10UL
         );
 
     return true;
 }
 
 
-/* =========================================================
- * LEER ID VCNL4200
- * ========================================================= */
+/* ============================================================
+ * VCNL4200 - LEER ID
+ * ============================================================
+ */
 
 static bool VCNL4200_ReadID(void)
 {
@@ -573,81 +629,71 @@ static bool VCNL4200_ReadID(void)
 }
 
 
-/* =========================================================
+/* ============================================================
+ * RETARDO DE 3 SEGUNDOS
+ *
+ * IMPORTANTE:
+ *
+ * Esta función usa __delay_ms().
+ *
+ * XC8 necesita conocer _XTAL_FREQ.
+ *
+ * Si MCC ya define _XTAL_FREQ en system.h,
+ * se utilizará esa frecuencia.
+ * ============================================================
+ */
+
+static void Delay_3_Seconds(void)
+{
+    uint8_t i;
+
+    for (i = 0; i < 3; i++)
+    {
+        __delay_ms(1000);
+    }
+}
+
+
+/* ============================================================
  * MAIN
- * ========================================================= */
+ * ============================================================
+ */
 
 void main(void)
 {
     uint16_t mcp9808_raw_temperature;
 
     /*
-     * =====================================================
-     * 1. INICIALIZAR SISTEMA
-     * =====================================================
+     * --------------------------------------------------------
+     * Inicializar sistema
+     * --------------------------------------------------------
      */
 
     SYSTEM_Initialize();
 
 
     /*
-     * =====================================================
-     * 2. INICIALIZAR I2C
-     * =====================================================
+     * --------------------------------------------------------
+     * Inicializar I2C
+     * --------------------------------------------------------
      */
 
     I2C1_Initialize();
 
 
     /*
-     * =====================================================
-     * 3. INICIALIZAR EUSART1
-     * =====================================================
+     * --------------------------------------------------------
+     * Inicializar UART
+     * --------------------------------------------------------
      */
 
     EUSART1_Initialize();
 
 
     /*
-     * =====================================================
-     * 4. INICIALIZAR VARIABLES MCP9808
-     * =====================================================
-     */
-
-    mcp9808_temperature = 0;
-    mcp9808_temperature_centi = 0;
-    mcp9808_temperature_integer = 0;
-    mcp9808_temperature_decimal = 0;
-
-    mcp9808_ok = false;
-    mcp9808_error = I2C_ERROR_NONE;
-
-
-    /*
-     * =====================================================
-     * 5. INICIALIZAR VARIABLES VCNL4200
-     * =====================================================
-     */
-
-    vcnl4200_ambient_light = 0;
-
-    vcnl4200_lux_millilux = 0;
-    vcnl4200_lux_integer = 0;
-    vcnl4200_lux_decimal = 0;
-
-    vcnl4200_proximity = 0;
-
-    vcnl4200_id_data[0] = 0;
-    vcnl4200_id_data[1] = 0;
-
-    vcnl4200_ok = false;
-    vcnl4200_error = I2C_ERROR_NONE;
-
-
-    /*
-     * =====================================================
-     * 6. HABILITAR INTERRUPCIONES
-     * =====================================================
+     * --------------------------------------------------------
+     * Habilitar interrupciones
+     * --------------------------------------------------------
      */
 
     INTCONbits.PEIE = 1;
@@ -655,36 +701,42 @@ void main(void)
 
 
     /*
-     * =====================================================
-     * 7. MENSAJE INICIAL POR UART
-     * =====================================================
+     * --------------------------------------------------------
+     * Mensaje inicial
+     * --------------------------------------------------------
      */
 
+    UART_ClearScreen();
+
     UART_WriteString(
-        "\r\n================================\r\n"
+        "================================\r\n"
     );
 
     UART_WriteString(
-        "Estacion Monitoreo Ambiental\r\n"
+        " ESTACION DE MONITOREO AMBIENTAL\r\n"
     );
 
     UART_WriteString(
-        "PIC16F13145\r\n"
+        " PIC16F13145\r\n"
     );
 
     UART_WriteString(
-        "UART: 9600 8N1\r\n"
+        " UART: 9600 8N1\r\n"
     );
 
     UART_WriteString(
-        "================================\r\n\r\n"
+        "================================\r\n"
+    );
+
+    UART_WriteString(
+        "Inicializando sensores...\r\n"
     );
 
 
     /*
-     * =====================================================
-     * 8. INICIALIZAR VCNL4200
-     * =====================================================
+     * --------------------------------------------------------
+     * Inicializar VCNL4200
+     * --------------------------------------------------------
      */
 
     vcnl4200_ok =
@@ -692,9 +744,9 @@ void main(void)
 
 
     /*
-     * =====================================================
-     * 9. LEER ID DEL VCNL4200
-     * =====================================================
+     * --------------------------------------------------------
+     * Leer ID
+     * --------------------------------------------------------
      */
 
     if (vcnl4200_ok)
@@ -707,25 +759,18 @@ void main(void)
 
 
     /*
-     * =====================================================
-     * 10. INFORMAR ESTADO DEL VCNL4200
-     * =====================================================
+     * --------------------------------------------------------
+     * Mostrar estado
+     * --------------------------------------------------------
      */
+
+    UART_WriteString("\r\n");
 
     if (vcnl4200_ok)
     {
         UART_WriteString(
             "VCNL4200: OK\r\n"
         );
-
-        UART_WriteString(
-            "ID LOW: 0x"
-        );
-
-        /*
-         * El ID se conserva en las variables
-         * para poder observarlo en el debugger.
-         */
     }
     else
     {
@@ -735,19 +780,65 @@ void main(void)
     }
 
 
+    UART_WriteString(
+        "MCP9808: preparado\r\n"
+    );
+
+    UART_WriteString(
+        "\r\nComenzando monitoreo...\r\n"
+    );
+
+
     /*
-     * =====================================================
-     * 11. BUCLE PRINCIPAL
-     * =====================================================
+     * --------------------------------------------------------
+     * Pequeña espera inicial
+     * --------------------------------------------------------
+     */
+
+    Delay_3_Seconds();
+
+
+    /*
+     * ========================================================
+     * BUCLE PRINCIPAL
+     * ========================================================
      */
 
     while (1)
     {
 
         /*
-         * =================================================
-         * TEMPERATURA MCP9808
-         * =================================================
+         * ----------------------------------------------------
+         * LIMPIAR PANTALLA
+         * ----------------------------------------------------
+         */
+
+        UART_ClearScreen();
+
+
+        /*
+         * ----------------------------------------------------
+         * ENCABEZADO
+         * ----------------------------------------------------
+         */
+
+        UART_WriteString(
+            "================================\r\n"
+        );
+
+        UART_WriteString(
+            "   MONITOREO AMBIENTAL\r\n"
+        );
+
+        UART_WriteString(
+            "================================\r\n\r\n"
+        );
+
+
+        /*
+         * ----------------------------------------------------
+         * LEER MCP9808
+         * ----------------------------------------------------
          */
 
         if (MCP9808_ReadTemperatureRaw(
@@ -766,9 +857,9 @@ void main(void)
 
 
         /*
-         * =================================================
-         * LUZ AMBIENTE VCNL4200
-         * =================================================
+         * ----------------------------------------------------
+         * LEER VCNL4200
+         * ----------------------------------------------------
          */
 
         if (VCNL4200_ReadSensors())
@@ -782,9 +873,9 @@ void main(void)
 
 
         /*
-         * =================================================
-         * ENVIAR DATOS POR UART
-         * =================================================
+         * ----------------------------------------------------
+         * MOSTRAR TEMPERATURA
+         * ----------------------------------------------------
          */
 
         if (mcp9808_ok)
@@ -799,6 +890,12 @@ void main(void)
         }
 
 
+        /*
+         * ----------------------------------------------------
+         * MOSTRAR LUZ
+         * ----------------------------------------------------
+         */
+
         if (vcnl4200_ok)
         {
             UART_WriteLight();
@@ -812,18 +909,30 @@ void main(void)
 
 
         /*
-         * Separador.
+         * ----------------------------------------------------
+         * ESTADO DE LOS SENSORES
+         * ----------------------------------------------------
          */
 
         UART_WriteString(
-            "-----------------------------\r\n"
+            "\r\n--------------------------------\r\n"
+        );
+
+        UART_WriteString(
+            "Actualizacion cada 3 segundos\r\n"
+        );
+
+        UART_WriteString(
+            "--------------------------------\r\n"
         );
 
 
         /*
-         * Pequeña espera.
+         * ----------------------------------------------------
+         * ESPERAR 3 SEGUNDOS
+         * ----------------------------------------------------
          */
 
-        Delay_Long();
+        Delay_3_Seconds();
     }
 }
